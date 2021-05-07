@@ -9,13 +9,11 @@ with open("成績サンプル-UTF8.csv","r",encoding="utf-8") as file:
   for row in reader:
     data.append(row)
 
-#print(data)
-
 print(len(data))
 
 print(data[0][1])
 
 for i in range(len(data)):
-  sum += data[i][1]
+  sum += 1
 
-print(data)
+print(sum)
