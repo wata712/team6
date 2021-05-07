@@ -2,7 +2,7 @@ import csv
 
 data = []
 
-with open("成績サンプル-UTF8.csv","r") as file:
+with open("成績サンプル-UTF8.csv","r",encoding="utf-8") as file:
   reader = csv.reader(file)
 
   header = next(reader)
