@@ -9,7 +9,7 @@ def takara():
 
 data = []
 
-with open("file-seiseki.csv","r") as file:
+with open("成績サンプル-UTF8.csv","r") as file:
   reader = csv.reader(file)
 
   header = next(reader)
