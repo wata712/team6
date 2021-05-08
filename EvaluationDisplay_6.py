@@ -14,7 +14,6 @@ def hyoujunn():
   ans = h/len(data)
   return ans
 
-
 data = []
 
 with open("成績サンプル-UTF8.csv","r",encoding="utf-8") as file:
@@ -30,3 +29,20 @@ stde = hyoujunn()
 
 print("平均は" + str(heikinn))
 print("標準偏差は"+str(stde))
+
+data=sorted(data,reverse=True,key=lambda x:x[1])
+print(data)
+
+print("名前を入力してください")
+name = input()
+
+for i in range(len(data)):
+  if data[i][0] == name:
+    print("順位は"+str(i+1)+"番目です")
+    break
+  elif i == len(data):
+    print('(σ´┳￣)')
+    break
+  
+  
+  
