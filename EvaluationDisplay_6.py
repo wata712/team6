@@ -18,6 +18,7 @@ with open("成績サンプル-UTF8.csv","r") as file:
 
 #print(data)
 
+#test_potato
 print(len(data))
 
 
