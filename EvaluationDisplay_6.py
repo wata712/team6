@@ -11,7 +11,8 @@ def hyoujunn():
   for i in range(len(data)):
     a = float(data[i][1])
     h += (heikinn-a)**2
-  ans = h/len(data)
+  dis = h/len(data)
+  ans = dis**0.5
   return ans
 
 data = []
@@ -42,8 +43,3 @@ for i in range(len(data)):
       i -= 1
     print("順位は"+str(i+1)+"番目です")
     break
-  elif i >= len(data):
-    print("名前が一致しません")
-    break
-  
-  
