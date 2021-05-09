@@ -32,7 +32,6 @@ print("平均は" + str(heikinn))
 print("標準偏差は"+str(stde))
 
 data=sorted(data,reverse=True,key=lambda x:x[1])
-print(data)
 
 print("名前を入力してください")
 name = input()
