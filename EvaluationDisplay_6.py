@@ -42,3 +42,5 @@ for i in range(len(data)):
       i -= 1
     print("順位は"+str(i+1)+"番目です")
     break
+
+#aaaaaaaaaaaaaaaaaaaaa
