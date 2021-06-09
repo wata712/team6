@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Eel Examples</title>
+        <script src="eel.js"></script>
+        <script>
+            function callPython(){
+                eel.hello()
+            }
+        </script>
+        <script>
+            function addText(text){
+                var div = document.getElementById("content");
+                div.innerHTML += "<br>" + text;
+            }
+            eel.expose(addText);         
+        </script>
+        <script>
+            function compute(){
+                var textbox = document.getElementById("input");
+                text = textbox.value;
+                eel.sort(text);
+            }
+
+            eel.expose(showAnswers);
+            function showAnswers(answer){
+                var outputDiv = document.getElementById("result");
+                outputDiv.innerHTML = "Result: " + answer;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Hello World!</h1>
+        <textarea id="input"></textarea>
+        <button onclick="compute()">Compute</button>
+        <button onclick="callPython()">Click Me!</button>
+        <div id="result"></div>
+        <P>Text will appear here:</P>
+        <div id="content"></div>
+    </body>
+</html>
