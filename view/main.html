@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Log In</title>
+        <link rel="stylesheet" href="main.css">
+        <script src="eel.js"></script>
+        <script>
+            function addText(text){
+                var div = document.getElementById("id-input");
+                div.innerHTML += "<br>" + text;
+            }
+            eel.expose(addText);         
+        </script>
+        <script>
+            eel.expose(readtID)
+            function readtID() {
+                var textbox = document.getElementById("id-input");
+                return textbox.value;
+            }
+
+            function sendtID() {
+                var textbox = document.getElementById("id-input");
+                eel.send(textbox.value);
+            }
+
+            eel.expose(readtPW)
+            function readtPW() {
+                var textbox = document.getElementById("pw-input");
+                return textbox.value;
+            }
+
+            function sendtPW() {
+                var textbox = document.getElementById("pw-input");
+                eel.send(textbox.value);
+            }
+
+            //tID,tPWをmain.pyに渡す
+            eel.expose(readtData)
+            function readtData() {
+                var textbox1 = document.getElementById("id-input");
+                var textbox2 = document.getElementById("pw-input");
+                return [textbox1.value, textbox2.value];
+            }
+
+            function sendtData() {
+                var textbox1 = document.getElementById("id-input");
+                var textbox2 = document.getElementById("pw-input");
+                eel.send(textbox.value, textbox2.value)(processAcknowledgement);
+            }
+
+            function processAcknowledgement(result) {
+                if (result == "ok") {
+                    var textbox = document.getElementById("box");
+                    textbox.value = "";
+                }
+            }
+
+            </script>
+    </head>
+    <body>
+        <title>出欠管理システム</title>
+        <div id="header">
+        <h1>出欠管理システム</h1>
+        </div>
+        <form class="loginform">
+            <dl>
+                <dt>教員ID</dt>
+                <dd><input id="id-input" type="text"></dd>
+                <dt>パスワード</dt>
+                <dd><input id="pw-input" type="password"></dd>
+            </dl>
+        </form>
+        <button onclick="sendtData()">ログイン</button>
+               
+        
+    </body>
+</html>
