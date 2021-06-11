@@ -15,17 +15,14 @@ def hello():
 
 @eel.expose
 def send(tID,tPW):
-   #tID = eel.readtID()()
    print("tID: {}".format(tID))
-   #tPW = eel.readtPW()()
    print("tPW: {}".format(tPW))
    return "ok"
 
 while True:
-   tID = eel.readtData(0)()
-   print("tID: {}".format(tID))
-   tPW = eel.readtData(1)()
-   print("tPW: {}".format(tPW))
+   tData = eel.readtData()()
+   print("tID: {}".format(tData[0]))
+   print("tPW: {}".format(tData[1]))
    eel.sleep(2.0)
 
 '''
