@@ -1,3 +1,4 @@
+
 import eel
 from datetime import datetime as dt
 
@@ -22,7 +23,7 @@ def registtData(tData):
    tPW = tData[1]
    print("tID: {}".format(tID))
    print("tPW: {}".format(tPW))
-   return 0
+   return "ok"
 
 '''
 while True:
