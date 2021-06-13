@@ -2,17 +2,25 @@ body{
     background-color: #ececec;
 }
 
-form{
-    margin: 10px auto;
+.loginform{
+    padding: auto;
+    margin: auto;
 }
 
 form dl dt{
     width: 165px;
-    padding:10px 0;
+    padding: 10px 0;
     float:left;
     clear:both;
 }
 
 form dl dd{
-    padding:10px 0;
+    padding: 10px 0;
+}
+
+#loginbtn{
+    font-size: 1em;
+    padding: 5px 20px 5px 20px;
+    position: relative;
+    float: right;
 }

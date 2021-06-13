@@ -8,22 +8,21 @@ eel.start("main.html",block=False) #スタートページのファイル名
 def hello():
    print("Hello World!")
 
-#@eel.expose
-#def send(msg):
-    #print("Received Message: " + msg)
-    #return "ok"
-
+'''
 @eel.expose
 def send(tID,tPW):
    print("tID: {}".format(tID))
    print("tPW: {}".format(tPW))
    return "ok"
+'''
 
-while True:
-   tData = eel.readtData()()
-   print("tID: {}".format(tData[0]))
-   print("tPW: {}".format(tData[1]))
-   eel.sleep(2.0)
+@eel.expose
+def registtData(tData):
+   tID = tData[0]
+   tPW = tData[1]
+   print("tID: {}".format(tID))
+   print("tPW: {}".format(tPW))
+   return 0
 
 '''
 while True:

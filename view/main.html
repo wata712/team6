@@ -5,35 +5,17 @@
         <link rel="stylesheet" href="main.css">
         <script src="eel.js"></script>
         <script>
+            function callPython() {
+                eel.hello()
+            }
+
             function addText(text){
                 var div = document.getElementById("id-input");
                 div.innerHTML += "<br>" + text;
             }
             eel.expose(addText);         
         </script>
-        <script>
-            eel.expose(readtID)
-            function readtID() {
-                var textbox = document.getElementById("id-input");
-                return textbox.value;
-            }
-
-            function sendtID() {
-                var textbox = document.getElementById("id-input");
-                eel.send(textbox.value);
-            }
-
-            eel.expose(readtPW)
-            function readtPW() {
-                var textbox = document.getElementById("pw-input");
-                return textbox.value;
-            }
-
-            function sendtPW() {
-                var textbox = document.getElementById("pw-input");
-                eel.send(textbox.value);
-            }
-
+        <script>            
             //tID,tPWをmain.pyに渡す
             eel.expose(readtData)
             function readtData() {
@@ -45,17 +27,24 @@
             function sendtData() {
                 var textbox1 = document.getElementById("id-input");
                 var textbox2 = document.getElementById("pw-input");
-                eel.send(textbox.value, textbox2.value)(processAcknowledgement);
+                return [textbox1.value, textbox2.value];
             }
 
-            function processAcknowledgement(result) {
-                if (result == "ok") {
-                    var textbox = document.getElementById("box");
-                    textbox.value = "";
-                }
+            //function processAcknowledgement(result) {
+            //    if (result == "ok") {
+            //        var textbox = document.getElementById("box");
+            //        textbox.value = "";
+            //    }
+            //}
+
+            function registtDataBtn() {
+                var textbox1 = document.getElementById("id-input");
+                var textbox2 = document.getElementById("pw-input");
+                var tData1 = [textbox1.value, textbox2.value];
+                eel.registtData(tData1);
             }
 
-            </script>
+        </script>
     </head>
     <body>
         <title>出欠管理システム</title>
@@ -70,8 +59,7 @@
                 <dd><input id="pw-input" type="password"></dd>
             </dl>
         </form>
-        <button onclick="sendtData()">ログイン</button>
-               
-        
+        <button id="loginbtn" onclick="registtDataBtn()">ログイン</button>
+                
     </body>
 </html>
