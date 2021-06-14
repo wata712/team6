@@ -18,12 +18,11 @@ def send(tID,tPW):
 '''
 
 @eel.expose
-def registtData(tData):
-   tID = tData[0]
-   tPW = tData[1]
-   print("tID: {}".format(tID))
-   print("tPW: {}".format(tPW))
-   return "ok"
+def registtData(textbox1, textbox2):
+   #tID = tData[0]
+   #tPW = tData[1]
+   print("tID: {}".format(textbox1))
+   print("tPW: {}".format(textbox2))
 
 '''
 while True:

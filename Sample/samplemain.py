@@ -6,4 +6,4 @@ def sort(text):
     eel.showAnswers(answer)
 
 eel.init("view")
-eel.start("samplemain.html")
+eel.start("samplemain.html",block=False)

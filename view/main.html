@@ -41,14 +41,7 @@
                 var textbox1 = document.getElementById("id-input");
                 var textbox2 = document.getElementById("pw-input");
                 var tData = [textbox1.value, textbox2.value];
-                eel.registtData(tData)(processAcknowledgement);
-            }
-
-            function processAcknowledgement(result) {
-                if (result == "ok") {
-                    var textbox = document.getElementById("pw-input");
-                    textbox.value = "";
-                }
+                eel.registtData(textbox1.value, textbox2.value);
             }
 
         </script>
