@@ -1,5 +1,6 @@
 
 import eel
+import csv
 from datetime import datetime as dt
 
 eel.init("view") #HTMLのフォルダ
@@ -18,11 +19,11 @@ def send(tID,tPW):
 '''
 
 @eel.expose
-def registtData(textbox1, textbox2):
-   #tID = tData[0]
+def registtData(tData):
+   tID = tData
    #tPW = tData[1]
-   print("tID: {}".format(textbox1))
-   print("tPW: {}".format(textbox2))
+   print("tID: {}".format(tID))
+   #print("tPW: {}".format(tPW))
 
 '''
 while True:
@@ -31,3 +32,10 @@ while True:
 
    eel.sleep(1.0)
 '''
+
+csv_file = open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="" )
+f = csv.DictReader(csv_file)
+for row in f:
+    #rowはdictionary
+    #row["column_name"] or row.get("column_name")で必要な項目を取得することができる
+    print(row)

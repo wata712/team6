@@ -40,8 +40,10 @@
             function registtDataBtn() {
                 var textbox1 = document.getElementById("id-input");
                 var textbox2 = document.getElementById("pw-input");
-                var tData = [textbox1.value, textbox2.value];
-                eel.registtData(textbox1.value, textbox2.value);
+                //tData = [textbox1.value, textbox2.value];
+                var outputDiv = document.getElementById("result");
+                outputDiv.innerHTML = "tID: " + tData[0] +"  tPW: " + tData[1];
+                eel.registtData(textbox1);
             }
 
         </script>
@@ -60,6 +62,8 @@
             </dl>
         </form>
         <button id="loginbtn" onclick="registtDataBtn()">ログイン</button>
-                
+        <div id="result">
+
+        </div>
     </body>
 </html>
