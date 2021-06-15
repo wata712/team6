@@ -41,9 +41,9 @@
                 var textbox1 = document.getElementById("id-input");
                 var textbox2 = document.getElementById("pw-input");
                 //tData = [textbox1.value, textbox2.value];
-                var outputDiv = document.getElementById("result");
-                outputDiv.innerHTML = "tID: " + tData[0] +"  tPW: " + tData[1];
-                eel.registtData(textbox1);
+                //var outputDiv = document.getElementById("result");
+                //outputDiv.innerHTML = "tID: " + tData[0] +"  tPW: " + tData[1];
+                eel.registtData();
             }
 
         </script>
@@ -61,7 +61,7 @@
                 <dd><input id="pw-input" type="password"></dd>
             </dl>
         </form>
-        <button id="loginbtn" onclick="registtDataBtn()">ログイン</button>
+        <button id="loginbtn" onclick="registtDataBtn()()">ログイン</button>
         <div id="result">
 
         </div>

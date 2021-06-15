@@ -1,9 +1,20 @@
 import eel
 
-@eel.expose
-def sort(text):
-    answer = sorted([float(num) for num in text.split(",")])
-    eel.showAnswers(answer)
+def main():
+    eel.init("view")
+    eel.start("view/samplemain.html", port=9998)
 
-eel.init("view")
-eel.start("samplemain.html",block=False)
+
+"""link1が押下された際に呼び出すスクリプト"""
+@eel.expose
+def link1_click():
+    print("link1_clicked")
+
+"""link2が押下された際に呼び出すスクリプト"""
+@eel.expose
+def link2_click(args):
+    print(args)
+    return "link2_clicked"
+
+if __name__ == '__main__':
+     main()

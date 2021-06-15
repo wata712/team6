@@ -1,30 +1,25 @@
 <html>
-    <head>
-        <script src="eel.js"></script>
-        <script>
-            function compute() {
-                var textbox = document.getElementById("input");
-                text = textbox.value;
-                eel.sort(text);
-            }
+<head>
+    <meta charset="UTF-8">
+    <title>eel_exsample</title>
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript">
+        // 非同期でPythonスクリプトを実行する
+        function link1Click() {
+            eel.link1_click();
+        }
+        
+        // Pythonスクリプトに引数を渡し、結果の帰り値を待つ例
+        async function link2Click() {
+            let val = await eel.link2_click("args-test")();
+            alert(val);
+        }
+    </script>
+</head>
 
-            eel.expose(showAnswers);
-            function showAnswers(answer) {
-                var outputDiv = document.getElementById("result");
-                outputDiv.innerHTML = "Result: " + answer;
-            }
-        </script>
-    </head>
-    <body>
-        <h1>Number Sorter</h1>
-        <p>
-            Enter numbers here:
-            <input type="text" id="input">
-            <button onclick="compute()">Compute</button>
-        </p>
-        <div id="result">
-
-        </div>
-    </body>
+<body>
+    <a href="#" onclick="link1Click()">Link1</a>
+    <br>
+    <a href="#" onclick="link2Click()">Link2</a>
+</body>
 </html>
-
