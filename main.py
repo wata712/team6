@@ -2,8 +2,6 @@ import eel
 import csv
 from datetime import datetime as dt
 
-eel.init("view") #HTMLのフォルダ
-eel.start("main.html",block=False, port=9999) #スタートページのファイル名
 
 @eel.expose
 def hello():
@@ -32,6 +30,8 @@ while True:
 
    eel.sleep(1.0)
 '''
+eel.init("view") #HTMLのフォルダ
+eel.start("main.html",block=False) #スタートページのファイル名
 
 #教員ファイル読み込み
 csv_file = open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="" )

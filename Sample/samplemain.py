@@ -1,8 +1,8 @@
 import eel
 
 def main():
-    eel.init("view")
-    eel.start("view/samplemain.html", port=9998)
+    eel.init("Sample/view")
+    eel.start("samplemain.html", port=8000)
 
 
 """link1が押下された際に呼び出すスクリプト"""
