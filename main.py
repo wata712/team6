@@ -31,7 +31,7 @@ while True:
    eel.sleep(1.0)
 '''
 eel.init("view") #HTMLのフォルダ
-eel.start("main.html",block=False) #スタートページのファイル名
+eel.start("main.html",block=False, port=8000) #スタートページのファイル名
 
 #教員ファイル読み込み
 csv_file = open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="" )
