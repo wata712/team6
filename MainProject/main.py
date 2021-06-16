@@ -23,7 +23,7 @@ def registtData():
    #print("tPW: {}".format(tPW))
 
 '''
-.format(textbox1)
+.format(textbox1)z
 while True:
    timestamp = dt.now()
    eel.addText("The time now is {}".format(timestamp.strftime("%I:%M:%S %p")))
