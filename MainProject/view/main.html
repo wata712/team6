@@ -1,6 +1,8 @@
 <html>
     <head>
         <script src="eel.js"></script>
+        <title>Log In</title>
+        <link rel="stylesheet" href="main.css">
         <script>
             eel.expose(readTextBox)
             function readTextBox() {
@@ -19,15 +21,32 @@
                     textbox.value = "";
                 }
             }
+
+            function sendtData(){
+                //tID,tPWをmain.pyに渡す
+                var tID = document.getElementById("id-input");
+                var tPW = document.getElementById("pw-input");
+                var tData = [tID.value, tPW.value];
+                eel.registtData(tData)();
+            }
+
+            
         </script>
     </head>
     <body>
-        <h1>Type some text!</h1>
-        <h2>The server isn't snooping on you I swear</h2>
+        <h1>出欠管理システム</h1>
+        <h2>カードをタッチしてください</h2>
 
-        <p>
-            <input type="text" id="box">
-            <button onclick="sendMessage()">Send</button>
+        <p>            
+            <form class="loginform">
+                <dl>
+                    <dt>教員ID</dt>
+                    <dd><input id="id-input" type="text"></dd>
+                    <dt>パスワード</dt>
+                    <dd><input id="pw-input" type="password"></dd>
+                </dl>
+            </form>
+            <button id="loginbtn" onclick="sendtData()">ログイン</button>
         </p>
     </body>
 </html>
