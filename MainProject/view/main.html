@@ -1,69 +1,33 @@
-<!DOCTYPE html>
 <html>
     <head>
-        <title>Log In</title>
-        <link rel="stylesheet" href="main.css">
         <script src="eel.js"></script>
         <script>
-            function callPython() {
-                eel.hello()
+            eel.expose(readTextBox)
+            function readTextBox() {
+                var textbox = document.getElementById("box");
+                return textbox.value;
             }
 
-            function addText(text){
-                var div = document.getElementById("id-input");
-                div.innerHTML += "<br>" + text;
-            }
-            eel.expose(addText);         
-        </script>
-        <script>            
-            //tID,tPWをmain.pyに渡す
-            eel.expose(readtData)
-            function readtData() {
-                var textbox1 = document.getElementById("id-input");
-                var textbox2 = document.getElementById("pw-input");
-                return [textbox1.value, textbox2.value];
+            function sendMessage() {
+                var textbox = document.getElementById("box");
+                eel.send(textbox.value)(processAcknowledgement);
             }
 
-            function sendtData() {
-                var textbox1 = document.getElementById("id-input");
-                var textbox2 = document.getElementById("pw-input");
-                return [textbox1.value, textbox2.value];
+            function processAcknowledgement(result) {
+                if (result == "ok") {
+                    var textbox = document.getElementById("box");
+                    textbox.value = "";
+                }
             }
-
-            //function processAcknowledgement(result) {
-            //    if (result == "ok") {
-            //        var textbox = document.getElementById("box");
-            //        textbox.value = "";
-            //    }
-            //}
-
-            function registtDataBtn() {
-                var textbox1 = document.getElementById("id-input");
-                var textbox2 = document.getElementById("pw-input");
-                //tData = [textbox1.value, textbox2.value];
-                //var outputDiv = document.getElementById("result");
-                //outputDiv.innerHTML = "tID: " + tData[0] +"  tPW: " + tData[1];
-                eel.registtData();
-            }
-
         </script>
     </head>
     <body>
-        <title>出欠管理システム</title>
-        <div id="header">
-        <h1>出欠管理システム</h1>
-        </div>
-        <form class="loginform">
-            <dl>
-                <dt>教員ID</dt>
-                <dd><input id="id-input" type="text"></dd>
-                <dt>パスワード</dt>
-                <dd><input id="pw-input" type="password"></dd>
-            </dl>
-        </form>
-        <button id="loginbtn" onclick="registtDataBtn()()">ログイン</button>
-        <div id="result">
+        <h1>Type some text!</h1>
+        <h2>The server isn't snooping on you I swear</h2>
 
-        </div>
+        <p>
+            <input type="text" id="box">
+            <button onclick="sendMessage()">Send</button>
+        </p>
     </body>
 </html>

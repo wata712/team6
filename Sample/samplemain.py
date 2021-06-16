@@ -1,7 +1,7 @@
 import eel
 
 eel.init("sample/view")
-eel.start("samplemain.html", block=False)
+eel.start("samplemain.html", block=False, port=8080)
 
 @eel.expose
 def send(msg):

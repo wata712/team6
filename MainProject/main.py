@@ -1,42 +1,14 @@
 import eel
-import csv
-from datetime import datetime as dt
 
-
-@eel.expose
-def hello():
-   print("Hello World!")
-
-'''
-@eel.expose
-def send(tID,tPW):
-   print("tID: {}".format(tID))
-   print("tPW: {}".format(tPW))
-   return "ok"
-'''
+eel.init("MainProject/view")
+eel.start("main.html", block=False)
 
 @eel.expose
-def registtData():
-   #tID = tData[0]
-   #tPW = tData[1]
-   print("tID: ")
-   #print("tPW: {}".format(tPW))
+def send(msg):
+    print("Received Message: " + msg)
+    return "ok"
 
-'''
-.format(textbox1)z
 while True:
-   timestamp = dt.now()
-   eel.addText("The time now is {}".format(timestamp.strftime("%I:%M:%S %p")))
-
-   eel.sleep(1.0)
-'''
-eel.init("view") #HTMLのフォルダ
-eel.start("main.html",block=False, port=8000) #スタートページのファイル名
-
-#教員ファイル読み込み
-csv_file = open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="" )
-f = csv.DictReader(csv_file)
-for row in f:
-    #rowはdictionary
-    #row["column_name"] or row.get("column_name")で必要な項目を取得することができる
-    print(row)
+    text = eel.readTextBox()()
+    print("Text box contents: {}".format(text))
+    eel.sleep(2.0)
