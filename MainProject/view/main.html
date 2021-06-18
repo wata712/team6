@@ -6,8 +6,17 @@
         <script>
             
             function sendtData(){
-                if(eel.registtData()()){
+                //tIDとtPWが一致した時にページ遷移
+                console.log('potato!!!!!!!!!!!!!!')
+                console.log(eel.registtData()())
+                function tDataDeci(){
+                    return (eel.registtData()() == 'tomato')? true: false;
+                }                
+                if(tDataDeci == true){      
+                    console.log('log in success')
                     location.href="admin.html";
+                }else{
+                    console.log('value error')
                 }
             }
 

@@ -6,7 +6,12 @@ eel.start("main.html", block=False)
 
 @eel.expose
 def registtData():
-   return registtDatatoPy()
+    print(registtDatatoPy())
+    if registtDatatoPy() == True:
+        return "tomato"
+    else:
+        return "onion"
+
 
 #main.htmlで入力されたtIDとtPWを照合した先の処理
 def registtDatatoPy():
