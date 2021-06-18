@@ -13,7 +13,11 @@ def registtDatatoPy():
     tID = tData[0]
     tPW = tData[1]
     print("tID: {0} tPW: {1}".format(tID, tPW))
-    tIDtPWverify(tID,tPW)
+    if tIDtPWverify(tID,tPW):
+        print("Yeeeeeeeeee")
+    else:
+        print("Noooooooooo")
+
 
 #教員ファイル読み込み/tID,yPW照合
 def tIDtPWverify(tID,tPW):
@@ -32,11 +36,9 @@ def tIDtPWverify(tID,tPW):
         tPWoncsv = tpwcsv[tID]
     #print(tPWoncsv)
 
-    if tPW == tPWoncsv:
-        print("Yeeeeeeeeee")
+    if tPW == tPWoncsv:        
         return True
-    else:
-        print("noooooooooo")
+    else:        
         return False
 
     
