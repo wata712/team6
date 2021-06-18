@@ -4,30 +4,18 @@
         <title>Log In</title>
         <link rel="stylesheet" href="main.css">
         <script>
-            eel.expose(readTextBox)
-            function readTextBox() {
-                var textbox = document.getElementById("box");
-                return textbox.value;
-            }
-
-            function sendMessage() {
-                var textbox = document.getElementById("box");
-                eel.send(textbox.value)(processAcknowledgement);
-            }
-
-            function processAcknowledgement(result) {
-                if (result == "ok") {
-                    var textbox = document.getElementById("box");
-                    textbox.value = "";
-                }
-            }
-
+            
             function sendtData(){
-                //tID,tPWをmain.pyに渡す
-                var tID = document.getElementById("id-input");
-                var tPW = document.getElementById("pw-input");
-                var tData = [tID.value, tPW.value];
-                eel.registtData(tData)();
+                eel.registtData()();
+            }
+
+            //tID,tPWをmain.pyに渡す
+            eel.expose(sendtDatatoPy)
+            function sendtDatatoPy(){
+                var tIDp = document.getElementById("id-input");
+                var tPWp = document.getElementById("pw-input");
+                var tData = [tIDp.value, tPWp.value];
+                return tData;
             }
 
             
