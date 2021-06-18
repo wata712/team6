@@ -6,8 +6,9 @@ eel.start("main.html", block=False)
 
 @eel.expose
 def registtData():
-   registtDatatoPy()
+   return registtDatatoPy()
 
+#main.htmlで入力されたtIDとtPWを照合した先の処理
 def registtDatatoPy():
     tData = eel.sendtDatatoPy()()
     tID = tData[0]
@@ -15,8 +16,10 @@ def registtDatatoPy():
     print("tID: {0} tPW: {1}".format(tID, tPW))
     if tIDtPWverify(tID,tPW):
         print("Yeeeeeeeeee")
+        return True
     else:
         print("Noooooooooo")
+        return False
 
 
 #教員ファイル読み込み/tID,yPW照合

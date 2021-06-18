@@ -6,7 +6,9 @@
         <script>
             
             function sendtData(){
-                eel.registtData()();
+                if(eel.registtData()()){
+                    location.href="admin.html";
+                }
             }
 
             //tID,tPWをmain.pyに渡す
