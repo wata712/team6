@@ -2,7 +2,7 @@ import eel
 import csv
 
 eel.init("MainProject/view")
-eel.start("main.html", block=False)
+eel.start("login.html", block=False)
 
 @eel.expose
 def registtData():
