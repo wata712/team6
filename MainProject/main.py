@@ -12,6 +12,10 @@ def registtData():
     else:
         return "onion"
 
+@eel.expose
+def hello():
+    print("Hello from Python")
+
 
 #main.htmlで入力されたtIDとtPWを照合した先の処理
 def registtDatatoPy():

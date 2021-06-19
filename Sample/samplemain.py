@@ -1,14 +1,9 @@
 import eel
 
-eel.init("sample/view")
-eel.start("samplemain.html", block=False, port=8080)
-
 @eel.expose
-def send(msg):
-    print("Received Message: " + msg)
-    return "ok"
+def sort(text):
+    answer = sorted([float(num) for num in text.split(",")])
+    eel.showAnswers(answer)
 
-while True:
-    text = eel.readTextBox()()
-    print("Text box contents: {}".format(text))
-    eel.sleep(2.0)
+eel.init("Sample/view")
+eel.start("samplemain.html", port=8080)

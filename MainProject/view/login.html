@@ -1,3 +1,5 @@
+
+<!doctype html>
 <html>
     <head>
         <script src="eel.js"></script>
@@ -14,10 +16,10 @@
                     console.log(val)
 
                     if(val == "tomato"){      
-                    console.log('log in success')
-                    location.href="admin.html";
+                        console.log('log in success')
+                        location.href="admin.html";
                     }else{
-                    console.log('value error')
+                        console.log('value error')
                     }
                 }
                tDataDeci();
@@ -39,16 +41,18 @@
         <h1>出欠管理システム</h1>
         <h2>カードをタッチしてください</h2>
 
-        <p>            
-            <form class="loginform">
-                <dl>
-                    <dt>教員ID</dt>
-                    <dd><input id="id-input" type="text"></dd>
-                    <dt>パスワード</dt>
-                    <dd><input id="pw-input" type="password"></dd>
-                </dl>
-            </form>
-            <button id="loginbtn" onclick="sendtData()">ログイン</button>
-        </p>
+        <div class="loginbox">
+            <p>            
+                <form class="loginform">
+                    <dl>
+                        <dt>教員ID</dt>
+                        <dd><input id="id-input" type="text"></dd>
+                        <dt>パスワード</dt>
+                        <dd><input id="pw-input" type="password"></dd>
+                    </dl>
+                </form>
+                <button id="loginbtn" onclick="sendtData()">ログイン</button>
+            </p>
+        </div>
     </body>
 </html>

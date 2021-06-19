@@ -2,6 +2,11 @@ body{
     background-color: #ececec;
 }
 
+.loginbos{
+    margin: 0 auto;
+    text-align: center;
+}
+
 .loginform{
     padding: auto;
     margin: auto;

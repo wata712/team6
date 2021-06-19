@@ -2,32 +2,28 @@
     <head>
         <script src="eel.js"></script>
         <script>
-            eel.expose(readTextBox)
-            function readTextBox() {
-                var textbox = document.getElementById("box");
-                return textbox.value;
+            function compute() {
+                var textbox = document.getElementById("input");
+                text = textbox.value;
+                eel.sort(text);
             }
 
-            function sendMessage() {
-                var textbox = document.getElementById("box");
-                eel.send(textbox.value)(processAcknowledgement);
-            }
-
-            function processAcknowledgement(result) {
-                if (result == "ok") {
-                    var textbox = document.getElementById("box");
-                    textbox.value = "";
-                }
+            eel.expose(showAnswers);
+            function showAnswers(answer) {
+                var outputDiv = document.getElementById("result");
+                outputDiv.innerHTML = "Result: " + answer;
             }
         </script>
     </head>
     <body>
-        <h1>Type some text!</h1>
-        <h2>The server isn't snooping on you I swear</h2>
-
+        <h1>Number Sorter</h1>
         <p>
-            <input type="text" id="box">
-            <button onclick="sendMessage()">Send</button>
+            Enter numbers here:
+            <input type="text" id="input">
+            <button onclick="compute()">Compute</button>
         </p>
+        <div id="result">
+
+        </div>
     </body>
 </html>
