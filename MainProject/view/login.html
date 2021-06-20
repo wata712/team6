@@ -17,12 +17,15 @@
 
                     if(val == "tomato"){      
                         console.log('log in success')
+                        var tID = document.getElementById("id-input");
+                        eel.pickName(tID);
                         location.href="admin.html";
                     }else{
                         console.log('value error')
                     }
                 }
                tDataDeci();
+
             }
 
             //tID,tPWをmain.pyに渡す

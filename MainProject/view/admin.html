@@ -7,12 +7,17 @@
             function callPython() {
                 eel.hello()
             }
+            eel.expose(showtName);
+            function showtName(tName) {
+                var outputDiv = document.getElementById("result");
+                outputDiv.innerHTML = tName;
+            }
         </script>
     </head>
     </head>
     <body>
         <h1>出欠管理システム</h1>
-        <h2>お味噌汁の中に国家が見えます</h2>
+        <h2><div id="result"></div></h2>
         <div>
             <p>
                 <button onclick="callPython()">Click Me!</button>

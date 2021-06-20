@@ -6,7 +6,7 @@ eel.start("login.html", block=False)
 
 @eel.expose
 def registtData():
-    print(registtDatatoPy())
+    #print(registtDatatoPy())
     if registtDatatoPy() == True:
         return "tomato"
     else:
@@ -53,7 +53,16 @@ def tIDtPWverify(tID,tPW):
     else:        
         return False
 
-    
+@eel.expose
+def pickName(tID):
+    tnamecsv = {}
+    with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            tnamecsv[row["ID"]] = row["氏名"]
+    #print(tnamecsv[tID])
+    tName = str(tnamecsv[tID])
+    eel.showtName(tName)
 
 
 
