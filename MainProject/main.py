@@ -70,8 +70,7 @@ def picktName():
     #print(tnamecsv[tID])
     tName = str(tnamecsv[tID])
     print("user: " + tName)
-    #return tName
-    return "xpotato"
+    return tName
 
 
 

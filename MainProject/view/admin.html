@@ -11,7 +11,8 @@
             function showtName() {
                 async function tNamefromPy(){
                     let ptName = await eel.picktName()();
-                    return ptName.value;
+                    console.log(ptName);
+                    return ptName;
                 }
                 var tName = tNamefromPy();
                 var outputDiv = document.getElementById("tNameArea");
