@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 import socket
-import datetime
 import sys
 
-
-def server(ip, port, ext):
-    output_list = []
+def client(ip, port, fname):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind((ip, port))
         s.listen(1)
@@ -22,23 +19,6 @@ def server(ip, port, ext):
                             break
                         f.write(data)
                         conn.sendall(b'Received done')
-                    # exit()
-
-def client(ip, port, fname):
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.connect((ip, port))
-        try:
-            with open(fname, mode='rb') as f:
-                for line in f:
-                    s.sendall(line)
-                    data = s.recv(1024)
-                print(repr(data.decode()))
-        except:
-            pass
+                    exit()
 
 
-if __name__ == "__main__":
-    if (sys.argv[1] == "s"):
-        server((sys.argv[2]), int(sys.argv[3]), sys.argv[4])
-    if (sys.argv[1] == "c"):
-        client((sys.argv[2]), int(sys.argv[3]), sys.argv[4])
