@@ -18,10 +18,11 @@
                     if(val == "tomato"){      
                         console.log('log in success')
                         var tID = document.getElementById("id-input");
-                        eel.pickName(tID);
                         location.href="admin.html";
                     }else{
                         console.log('value error')
+                        var outputDiv = document.getElementById("result");
+                        outputDiv.innerHTML = "IDとパスワードが一致しません";
                     }
                 }
                tDataDeci();
@@ -55,6 +56,7 @@
                     </dl>
                 </form>
                 <button id="loginbtn" onclick="sendtData()">ログイン</button>
+                <div id="result"></div>
             </p>
         </div>
     </body>

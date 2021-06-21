@@ -16,12 +16,17 @@ def registtData():
 def hello():
     print("Hello from Python")
 
+def gettData():
+    tData = eel.sendtDatatoPy()()
+    gtID = tData[0]
+    gtPW = tData[1]
+    return gtID, gtPW
+
+tID, tPW = gettData()
 
 #main.htmlで入力されたtIDとtPWを照合した先の処理
 def registtDatatoPy():
-    tData = eel.sendtDatatoPy()()
-    tID = tData[0]
-    tPW = tData[1]
+    tID, tPW = gettData()
     print("tID: {0} tPW: {1}".format(tID, tPW))
     if tIDtPWverify(tID,tPW):
         print("Yeeeeeeeeee")
@@ -33,6 +38,7 @@ def registtDatatoPy():
 
 #教員ファイル読み込み/tID,yPW照合
 def tIDtPWverify(tID,tPW):
+    tID, tPW = gettData()
     tnamecsv = {}
     with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
         reader = csv.DictReader(f)
@@ -54,7 +60,8 @@ def tIDtPWverify(tID,tPW):
         return False
 
 @eel.expose
-def pickName(tID):
+def picktName():
+    tID, tPW = gettData()
     tnamecsv = {}
     with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
         reader = csv.DictReader(f)
@@ -62,8 +69,7 @@ def pickName(tID):
             tnamecsv[row["ID"]] = row["氏名"]
     #print(tnamecsv[tID])
     tName = str(tnamecsv[tID])
-    eel.showtName(tName)
-
+    return tName
 
 
 
