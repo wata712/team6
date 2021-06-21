@@ -11,11 +11,11 @@
             function showtName() {
                 async function tNamefromPy(){
                     let ptName = await eel.picktName()();
-                    return ptName;
+                    return ptName.value;
                 }
                 var tName = tNamefromPy();
                 var outputDiv = document.getElementById("tNameArea");
-                console.log(tName)
+                console.log(tName);
                 outputDiv.innerHTML = tName;
             }
         </script>

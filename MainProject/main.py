@@ -22,10 +22,11 @@ def gettData():
     gtPW = tData[1]
     return gtID, gtPW
 
-tID, tPW = gettData()
+tID, tPW = "xxxx", "yyyy"
 
 #main.htmlで入力されたtIDとtPWを照合した先の処理
 def registtDatatoPy():
+    global tID, tPW
     tID, tPW = gettData()
     print("tID: {0} tPW: {1}".format(tID, tPW))
     if tIDtPWverify(tID,tPW):
@@ -34,7 +35,6 @@ def registtDatatoPy():
     else:
         print("Noooooooooo")
         return False
-
 
 #教員ファイル読み込み/tID,yPW照合
 def tIDtPWverify(tID,tPW):
@@ -61,7 +61,7 @@ def tIDtPWverify(tID,tPW):
 
 @eel.expose
 def picktName():
-    print(tID)
+    global tID
     tnamecsv = {}
     with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
         reader = csv.DictReader(f)
@@ -69,8 +69,9 @@ def picktName():
             tnamecsv[row["ID"]] = row["氏名"]
     #print(tnamecsv[tID])
     tName = str(tnamecsv[tID])
-    print(tName)
-    return tName
+    print("user: " + tName)
+    #return tName
+    return "xpotato"
 
 
 
