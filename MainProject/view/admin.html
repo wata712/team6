@@ -14,7 +14,7 @@
                     return ptName;
                 }
                 var tName = tNamefromPy();
-                var outputDiv = document.getElementById("tName");
+                var outputDiv = document.getElementById("tNameArea");
                 console.log(tName)
                 outputDiv.innerHTML = tName;
             }
@@ -23,7 +23,7 @@
     </head>
     <body onload="showtName()">
         <h1>出欠管理システム</h1>
-        <h2 id="tName"></h2>
+        <h2 id="tNameArea">NAME</h2>
         <div>
             <p>
                 <button onclick="callPython()">Click Me!</button>

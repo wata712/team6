@@ -61,7 +61,7 @@ def tIDtPWverify(tID,tPW):
 
 @eel.expose
 def picktName():
-    tID, tPW = gettData()
+    print(tID)
     tnamecsv = {}
     with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
         reader = csv.DictReader(f)
@@ -69,6 +69,7 @@ def picktName():
             tnamecsv[row["ID"]] = row["氏名"]
     #print(tnamecsv[tID])
     tName = str(tnamecsv[tID])
+    print(tName)
     return tName
 
 
