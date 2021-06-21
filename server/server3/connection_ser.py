@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 import socket
-import datetime
 import sys
+import threading
 
 
-def server(ip, port, ext):
+def server1():
+    ip = "127.0.0.1"
+    port = 50001
+    ext = "csv"
     output_list = []
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind((ip, port))
@@ -22,9 +25,16 @@ def server(ip, port, ext):
                             break
                         f.write(data)
                         conn.sendall(b'Received done')
-                    # exit()
 
-def client(ip, port, fname):
+    
+                    #exit()
+
+
+def server2():
+    ip = "127.0.0.1"
+    port = 50001
+    fname = "学生リスト.csv"
+    output_list = []
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((ip, port))
         try:
@@ -36,9 +46,12 @@ def client(ip, port, fname):
         except:
             pass
 
-
 if __name__ == "__main__":
-    if (sys.argv[1] == "s"):
-        server((sys.argv[2]), int(sys.argv[3]), sys.argv[4])
-    if (sys.argv[1] == "c"):
-        client((sys.argv[2]), int(sys.argv[3]), sys.argv[4])
+
+    th1 = threading.Thread(target=server1)
+
+    th2 = threading.Thread(target=server2)
+
+    th1.start()
+
+    th2.start()
