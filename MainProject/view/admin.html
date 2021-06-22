@@ -6,28 +6,27 @@
         <script>
             function callPython() {
                 eel.hello()
+            }       
+ 
+            function calltName(){
+                eel.picktName();
             }
-            
-            function showtName() {
-                async function tNamefromPy(){
-                    let ptName = await eel.picktName()();
-                    console.log(ptName);
-                    return ptName;
-                }
-                var tName = tNamefromPy();
+
+            eel.expose(printtName);
+            function printtName(tName){
                 var outputDiv = document.getElementById("tNameArea");
                 console.log(tName);
                 outputDiv.innerHTML = tName;
             }
         </script>
     </head>
-    </head>
-    <body onload="showtName()">
+    <body onload="calltName()">
+        
         <h1>出欠管理システム</h1>
-        <h2 id="tNameArea">NAME</h2>
+        <h2 id="tNameArea"></h2>
         <div>
             <p>
-                <button onclick="callPython()">Click Me!</button>
+                <button onclick="showtName()">Click Me!</button>
             </p>
         </div>
     </body>
