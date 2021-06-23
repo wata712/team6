@@ -3,19 +3,20 @@ body{
     color: #ffffff;
 }
 
-.loginbos{
+.loginbox{
     margin: 0 auto;
-    text-align: center;
+    text-align: left;
 }
 
 .loginform{
-    padding: auto;
-    margin: auto;
+    padding: left;
+    margin: left;
+    size: 2em;
 }
 
 form dl dt{
     width: 165px;
-    padding: 10px 0;
+    padding: 10px 10px;
     float:left;
     clear:both;
 }
