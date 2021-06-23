@@ -95,6 +95,7 @@ def pickcName():
     tc2ID = str(tc2xID[tc2Name])
     print("calss1ID: " + tc1ID)
     print("calss2ID: " + tc2ID)
+    eel.addcData(tc1Name, tc2Name, tc1ID, tc2ID)
 
 
 #これがないと動かないんでよ
