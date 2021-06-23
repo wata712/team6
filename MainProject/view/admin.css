@@ -21,3 +21,26 @@ h1{
     bottom: 0em;
     right: 0;
 }
+
+table{
+    table-layout: fixed;
+    width: 100%;
+    /* border: solid 2px #67c5ff; */
+    text-align: center;
+    border-collapse: collapse;
+}
+
+tr:nth-child(odd){
+    background-color: #dddddd;
+    color: #e6e6e6;
+}
+
+tr:nth-last-child(odd){
+    background-color: #afadc4;
+    color: #000000;
+}
+
+a{
+    color: #000000;
+}
+
