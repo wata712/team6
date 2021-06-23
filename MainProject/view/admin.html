@@ -14,6 +14,7 @@
                 var outputDiv = document.getElementById("tNameArea");
                 console.log(tName);
                 outputDiv.innerHTML = tName;
+                eel.pickcName();
             }
         </script>
     </head>
@@ -24,44 +25,16 @@
         </div>
         <div>
             <p>
-                <table border="1">
-                    <tr id="celcolor1"><td>曜日</td><td>時限</td><td>講義名</td><td>講義設定</td><td>出欠リスト</td><td>受付開始</td></tr>
-                    <tr id="celcolor2"><td>曜日</td><td>時限</td><td>講義名</td><td>講義設定</td><td>出欠リスト</td><td>受付開始</td></tr>
-                    <tr id="celcolor1"><td>曜日</td><td>時限</td><td>講義名</td><td>講義設定</td><td>出欠リスト</td><td>受付開始</td></tr>
-                    <tr id="celcolor2"><td>曜日</td><td>時限</td><td>講義名</td><td>講義設定</td><td>出欠リスト</td><td>受付開始</td></tr>
+                <table id="adminTable">
+                    <tr id="cl1"><td id="day"></td><td id="clPeriod">時限</td><td id="clName">講義名</td><td id="clConfig">講義設定</td><td id="IOList">出欠リスト</td><td id="clStart">受付開始</td></tr>
+                    <script src="adminTable.js">
+                    </script>
                 </table>
             </p>
         </div>
         <div class="underbar" id="datetime">
-            <script type="text/javascript">
-                timerID = setInterval('clock()',500); //0.5秒毎にclock()を実行
-                
-                function clock() {
-                    document.getElementById("datetime").innerHTML = getNow();
-                }
-                
-                function getNow() {
-                    function set2fig(num) {
-                        // 桁数が1桁だったら先頭に0を加えて2桁に調整する
-                        var ret;
-                        if( num < 10 ) { ret = "0" + num; }
-                        else { ret = num; }
-                        return ret;
-                    }
-                    var now = new Date();
-                    var year = now.getFullYear();
-                    var mon = now.getMonth()+1; //１を足す
-                    var day = now.getDate();
-                    var you = now.getDay(); //曜日(0～6=日～土)
-                    var hour = set2fig(now.getHours());
-                    var min = set2fig(now.getMinutes());
-                    var sec = set2fig(now.getSeconds());
-                    var youbi = new Array("日","月","火","水","木","金","土");
-                    //出力用
-                    var s = year + "年" + mon + "月" + day + "日" + "（" + youbi[you] + "）" + hour + ":" + min + ":" + sec + ""; 
-                    return s;
-                }
-                </script>
+            <script src="timeshow.js">
+            </script>
         </div>
     </body>
 </html>

@@ -12,10 +12,6 @@ def registtData():
     else:
         return "onion"
 
-@eel.expose
-def hello():
-    print("Hello from Python")
-
 def gettData():
     tData = eel.sendtDatatoPy()()
     gtID = tData[0]
@@ -59,6 +55,7 @@ def tIDtPWverify(tID,tPW):
     else:        
         return False
 
+#管理モードで教員氏名を表示
 @eel.expose
 def picktName():
     global tID
@@ -72,8 +69,32 @@ def picktName():
     print("user: " + tName)
     eel.printtName(tName)
 
-
-
+@eel.expose
+def pickcName():
+    global tID
+    tc1csv = {}
+    tc2csv = {}
+    with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            tc1csv[row["ID"]] = row["担当科目1"]
+            tc2csv[row["ID"]] = row["担当科目2"]
+    tc1Name = str(tc1csv[tID])
+    tc2Name = str(tc2csv[tID])
+    print("calss1: " + tc1Name)
+    print("calss2: " + tc2Name)
+    
+    tc1xID = {}
+    tc2xID = {}
+    with open("./data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
+        reader = csv.DictReader(p)
+        for row in reader:
+            tc1xID[row["科目名"]] = row["講義ID"]
+            tc2xID[row["科目名"]] = row["講義ID"]
+    tc1ID = str(tc1xID[tc1Name])
+    tc2ID = str(tc2xID[tc2Name])
+    print("calss1ID: " + tc1ID)
+    print("calss2ID: " + tc2ID)
 
 
 #これがないと動かないんでよ
