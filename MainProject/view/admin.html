@@ -3,32 +3,65 @@
     <head>
         <script src="eel.js"></script>
         <title>Admin</title>
+        <link rel="stylesheet" href="admin.css">
         <script>
-            function callPython() {
-                eel.hello()
+            function calltName(){
+                eel.picktName();
             }
-            
-            function showtName() {
-                async function tNamefromPy(){
-                    let ptName = await eel.picktName()();
-                    console.log(ptName);
-                    return ptName;
-                }
-                var tName = tNamefromPy();
+
+            eel.expose(printtName);
+            function printtName(tName){
                 var outputDiv = document.getElementById("tNameArea");
                 console.log(tName);
                 outputDiv.innerHTML = tName;
             }
         </script>
     </head>
-    </head>
-    <body onload="showtName()">
+    <body onload="calltName()">
+        <div id="top">
         <h1>出欠管理システム</h1>
-        <h2 id="tNameArea">NAME</h2>
+        <p id="tNameArea"></p>
+        </div>
         <div>
             <p>
-                <button onclick="callPython()">Click Me!</button>
+                <table border="1">
+                    <tr id="celcolor1"><td>曜日</td><td>時限</td><td>講義名</td><td>講義設定</td><td>出欠リスト</td><td>受付開始</td></tr>
+                    <tr id="celcolor2"><td>曜日</td><td>時限</td><td>講義名</td><td>講義設定</td><td>出欠リスト</td><td>受付開始</td></tr>
+                    <tr id="celcolor1"><td>曜日</td><td>時限</td><td>講義名</td><td>講義設定</td><td>出欠リスト</td><td>受付開始</td></tr>
+                    <tr id="celcolor2"><td>曜日</td><td>時限</td><td>講義名</td><td>講義設定</td><td>出欠リスト</td><td>受付開始</td></tr>
+                </table>
             </p>
+        </div>
+        <div class="underbar" id="datetime">
+            <script type="text/javascript">
+                timerID = setInterval('clock()',500); //0.5秒毎にclock()を実行
+                
+                function clock() {
+                    document.getElementById("datetime").innerHTML = getNow();
+                }
+                
+                function getNow() {
+                    function set2fig(num) {
+                        // 桁数が1桁だったら先頭に0を加えて2桁に調整する
+                        var ret;
+                        if( num < 10 ) { ret = "0" + num; }
+                        else { ret = num; }
+                        return ret;
+                    }
+                    var now = new Date();
+                    var year = now.getFullYear();
+                    var mon = now.getMonth()+1; //１を足す
+                    var day = now.getDate();
+                    var you = now.getDay(); //曜日(0～6=日～土)
+                    var hour = set2fig(now.getHours());
+                    var min = set2fig(now.getMinutes());
+                    var sec = set2fig(now.getSeconds());
+                    var youbi = new Array("日","月","火","水","木","金","土");
+                    //出力用
+                    var s = year + "年" + mon + "月" + day + "日" + "（" + youbi[you] + "）" + hour + ":" + min + ":" + sec + ""; 
+                    return s;
+                }
+                </script>
         </div>
     </body>
 </html>

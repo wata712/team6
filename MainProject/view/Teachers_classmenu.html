@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title> 講義リスト </title>
+        <script src="eel.js"></script>
+        <link rel="stylesheet" href="Teachers_classmenu.css">
+        <script>
+            function callPython1(){
+                eel.setting_time()
+            }
+            
+            function callPython2(){
+                eel.add_temporary()
+            }
+        </script>
+        <p>管理モード</p>
+    </head>
+    <body>
+        <h1> 教員　名前</h1>
+        <button id="backbtn1" onclick="callPython1()">時刻設定</button>
+        <table border="1">
+            <tr id="celcolor1"><td>曜日</td><td>時限</td><td>講義名</td><td>講義設定</td><td>出欠リスト</td><td>受付開始</td></tr>
+            <tr id="celcolor2"><td>曜日</td><td>時限</td><td>講義名</td><td>講義設定</td><td>出欠リスト</td><td>受付開始</td></tr>
+            <tr id="celcolor1"><td>曜日</td><td>時限</td><td>講義名</td><td>講義設定</td><td>出欠リスト</td><td>受付開始</td></tr>
+            <tr id="celcolor2"><td>曜日</td><td>時限</td><td>講義名</td><td>講義設定</td><td>出欠リスト</td><td>受付開始</td></tr>
+        </table>
+        
+        <button id="backbtn2" onclick="callPython2()">臨時の規則を追加</button>
+    </body>
+</html>
