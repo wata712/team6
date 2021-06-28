@@ -95,6 +95,42 @@ def pickcName():
     tc2ID = str(tc2xID[tc2Name])
     print("calss1ID: " + tc1ID)
     print("calss2ID: " + tc2ID)
+
+    tcDay = [5]
+    tcPeriod = [5]
+    cID = [tc1ID, tc2ID]
+    for n in range(0, len(cID)):
+        print(len(cID))
+        if('M' in cID[n]):
+            tcDay[n] = '月'
+        elif('Tu' in cID[n]):
+            tcDay[n] = '火'
+        elif('W' in cID[n]):
+            tcDay[n] = '水'
+        elif('Th' in cID[n]):
+            tcDay[n] = '木'
+        elif('F' in cID[n]):
+            tcDay[n] = '金'
+        else:
+            print('Day config error')
+
+        if('1' in cID[n]):
+            tcPeriod[n] = '1限'
+        elif('2' in cID[n]):
+            tcPeriod[n] = '2限'
+        elif('3' in cID[n]):
+            tcPeriod[n] = '3限'
+        elif('4' in cID[n]):
+            tcPeriod[n] = '4限'
+        elif('5' in cID[n]):
+            tcPeriod[n] = '5限'
+        else:
+            print('Class period config error')
+
+        print(tcDay[n] + tcPeriod[n])
+        n = n+1
+
+
     eel.addcData(tc1Name, tc2Name, tc1ID, tc2ID)
 
 
