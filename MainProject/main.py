@@ -72,18 +72,32 @@ def picktName():
 @eel.expose
 def pickcName():
     global tID
-    tc1csv = {}
-    tc2csv = {}
-    with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            tc1csv[row["ID"]] = row["担当科目1"]
-            tc2csv[row["ID"]] = row["担当科目2"]
-    tc1Name = str(tc1csv[tID])
-    tc2Name = str(tc2csv[tID])
-    print("calss1: " + tc1Name)
-    print("calss2: " + tc2Name)
-    
+
+    tccsv = []
+    tcName = []
+    for i in range(5):
+        tccsv[i] = {}
+        with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                tanto = str('担当科目' + str(row+1))
+                tccsv[i][row["ID"]] = row[tanto]
+            tcName[i] = str(tccsv[i][tID])
+            print("calss1: " + tcName[i])
+        
+
+    # tc1csv = {}
+    # tc2csv = {}
+    # with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
+    #     reader = csv.DictReader(f)
+    #     for row in reader:
+    #         tc1csv[row["ID"]] = row["担当科目1"]
+    #         tc2csv[row["ID"]] = row["担当科目2"]
+    # tc1Name = str(tc1csv[tID])
+    # tc2Name = str(tc2csv[tID])
+    # print("calss1: " + tc1Name)
+    # print("calss2: " + tc2Name)
+
     tc1xID = {}
     tc2xID = {}
     with open("./data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
@@ -100,6 +114,7 @@ def pickcName():
     tcPeriod = [5]
     cID = [tc1ID, tc2ID]
     for n in range(0, len(cID)):
+        print(n)
         print(len(cID))
         if('M' in cID[n]):
             tcDay[n] = '月'
