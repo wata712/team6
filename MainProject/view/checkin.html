@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="eel.js"></script>
+        <title>AttendanceCheck</title>
+        <link rel="stylesheet" href="checkin.css">
+    </head>
+    <script>
+        function calltName(){
+            eel.picktName();
+        }
+
+        eel.expose(printtName);
+        function printtName(tName){
+            var outputDiv = document.getElementById("tNameArea");
+            console.log(tName);
+            outputDiv.innerHTML = tName;
+            eel.pickcName();
+        }
+    </script>
+    <body onload="calltName()">
+        <div id="top">
+        <h1>出欠管理システム</h1>
+        <p id="tNameArea"></p>
+        </div>
+        <div>
+            
+        </div>
+        <div class="underbar">
+            <p id="datetime">
+                <script src="timeshow.js">
+                </script>
+            </p>
+        </div>
+    </body>
+</html>
