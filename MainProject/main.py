@@ -91,15 +91,16 @@ def pickcName():
 
     tc1csv = {}
     tc2csv = {}
+    tcName = ["name", "name"]
     with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
         reader = csv.DictReader(f)
         for row in reader:
             tc1csv[row["ID"]] = row["担当科目1"]
             tc2csv[row["ID"]] = row["担当科目2"]
-    tc1Name = str(tc1csv[tID])
-    tc2Name = str(tc2csv[tID])
-    print("calss1: " + tc1Name)
-    print("calss2: " + tc2Name)
+    tcName[0] = str(tc1csv[tID])
+    tcName[1] = str(tc2csv[tID])
+    print("calss1: " + tcName[0])
+    print("calss2: " + tcName[1])
 
     # tcID = [[0] * 5 for i in range(4)]
     # tcxID = [[0] * 5 for i in range(4)]
@@ -119,9 +120,9 @@ def pickcName():
         for row in reader:
             tc1xID[row["科目名"]] = row["講義ID"]
             tc2xID[row["科目名"]] = row["講義ID"]
-    tc1ID = str(tc1xID[tc1Name])
+    tc1ID = str(tc1xID[tcName[0]])
     try:
-        tc2ID = str(tc2xID[tc2Name])
+        tc2ID = str(tc2xID[tcName[1]])
     except(KeyError):
         tc2ID = "X0"
     print("calss1ID: " + tc1ID)
@@ -131,8 +132,8 @@ def pickcName():
     tcPeriod = [0, 0]
     cID = [tc1ID, tc2ID]
     for n in range(0, len(cID)):
-        print(n)
-        print(len(cID))
+        # print(n)
+        # print(len(cID))
         if('M' in cID[n]):
             tcDay[n] = '月'
         elif('Tu' in cID[n]):
@@ -144,27 +145,39 @@ def pickcName():
         elif('F' in cID[n]):
             tcDay[n] = '金'
         else:
+            tcDay[n] = ''
             print('Day config error')
 
-        if('1' in cID[n]):
+        if('12_' in cID[n]):
+            tcPeriod[n] = '1,2限'
+        elif('23_' in cID[n]):
+            tcPeriod[n] = '2,3限'
+        elif('34_' in cID[n]):
+            tcPeriod[n] = '3,4限'
+        elif('45_' in cID[n]):
+            tcPeriod[n] = '4,5限'
+        elif('1_' in cID[n]):
             tcPeriod[n] = '1限'
-        elif('2' in cID[n]):
+        elif('2_' in cID[n]):
             tcPeriod[n] = '2限'
-        elif('3' in cID[n]):
+        elif('3_' in cID[n]):
             tcPeriod[n] = '3限'
-        elif('4' in cID[n]):
+        elif('4_' in cID[n]):
             tcPeriod[n] = '4限'
-        elif('5' in cID[n]):
+        elif('5_' in cID[n]):
             tcPeriod[n] = '5限'
         else:
+            tcPeriod[n] = ''
             print('Class period config error')
 
         try:
             print(tcDay[n] + tcPeriod[n])
-        except(IndexError):
+        except(TypeError):
             pass
         n = n+1
 
+    tc1Name = tcName[0]
+    tc2Name = tcName[1]
 
     eel.addcData(tc1Name, tc2Name, tcDay, tcPeriod)
 
