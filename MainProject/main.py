@@ -1,6 +1,8 @@
 import eel
 import csv
 
+# P000のPWは000b
+
 eel.init("MainProject/view")
 eel.start("login.html", block=False)
 
