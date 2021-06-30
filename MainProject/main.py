@@ -73,16 +73,19 @@ def picktName():
 def pickcName():
     global tID
 
-    tccsv = []
-    tcName = []
+    # tccsv = [[0] * 5 for i in range(4)]
+    # print(tccsv)
+    tcName = [[0] * 5 for i in range(4)]
+    tccsvx = []
     for i in range(5):
-        tccsv[i] = {}
         with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
             reader = csv.DictReader(f)
             for row in reader:
-                tanto = str('担当科目' + str(row+1))
-                tccsv[i][row["ID"]] = row[tanto]
-            tcName[i] = str(tccsv[i][tID])
+                print(row)
+                tanto = str('担当科目' + str(i+1))
+                print(tanto)
+                tccsvx[row["ID"]] = row[tanto]
+            tcName[i] = str(tccsvx[tID])
             print("calss1: " + tcName[i])
         
 
@@ -98,17 +101,28 @@ def pickcName():
     # print("calss1: " + tc1Name)
     # print("calss2: " + tc2Name)
 
-    tc1xID = {}
-    tc2xID = {}
-    with open("./data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
-        reader = csv.DictReader(p)
-        for row in reader:
-            tc1xID[row["科目名"]] = row["講義ID"]
-            tc2xID[row["科目名"]] = row["講義ID"]
-    tc1ID = str(tc1xID[tc1Name])
-    tc2ID = str(tc2xID[tc2Name])
-    print("calss1ID: " + tc1ID)
-    print("calss2ID: " + tc2ID)
+    tcID = [[0] * 5 for i in range(4)]
+    tcxID = [[0] * 5 for i in range(4)]
+    for j in range(5):
+        with open("./data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
+            reader = csv.DictReader(p)
+            for row in reader:
+                tcxID[i][row["科目名"]] = row["講義ID"]
+            tcID[j] = str(tcxID[tcName[j]])
+            print("classID: " + tcID[j])
+
+
+    # tc1xID = {}
+    # tc2xID = {}
+    # with open("./data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
+    #     reader = csv.DictReader(p)
+    #     for row in reader:
+    #         tc1xID[row["科目名"]] = row["講義ID"]
+    #         tc2xID[row["科目名"]] = row["講義ID"]
+    # tc1ID = str(tc1xID[tc1Name])
+    # tc2ID = str(tc2xID[tc2Name])
+    # print("calss1ID: " + tc1ID)
+    # print("calss2ID: " + tc2ID)
 
     tcDay = [5]
     tcPeriod = [5]
