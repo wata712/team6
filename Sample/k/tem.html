@@ -1,0 +1,35 @@
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>管理モード＞臨時の講義を追加</title>
+    </head>
+<body>
+<form action="#" method="post">
+    <p>教員名<br>
+        <p>講義名：<br>
+            <input type="text" name="class"></p>
+
+	<p><input type="date" name="date">
+        <select name="period">
+        <option value="1st">１限目</option>
+        <option value="2nd">２限目</option>
+        <option value="3rd">３限目</option>
+        <option value="4th">４限目</option>
+        <option value="5th">５限目</option>
+        </select></p>
+
+    <input type="time" name="PreS">
+    から
+    <input type="time" name="PreE">
+    まで出席扱い</p>
+    <input type="time" name="LateS">
+    から
+    <input type="time" name="LateE">
+    まで遅刻扱い</p>
+   
+	<br><p><input type="button" value="この規則で講義を設定" id="button2" onClick="alert('臨時講義を設定しました。');">
+        　　　
+    <input type="button" value="講義一覧へ戻る" id="button3"></p>
+</form>
+</body>
+</html>

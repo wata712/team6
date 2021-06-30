@@ -1,0 +1,34 @@
+body{
+    /*背景色*/
+    background-color: #ffffff;
+    /*大きな文字*/
+    /*font-size: large;*/
+    /*太い文字*/
+    /*font-weight: 500;*/
+    /**/
+}
+table{
+    width: 100%;
+    height: 300px;
+}
+#backbtn1{
+    font-size: 1em;
+    padding: 2px 20px 2px 20px;
+    position: fixed;
+    top:5px;
+    right:5px;
+
+}
+#backbtn2{
+    font-size: 1em;
+    padding: 7px 15px 7px 15px;
+    position: fixed;
+    right:5px;
+    bottom: 5px;
+}
+#celcolor1{
+    background-color: #dab3b3e0;
+}
+#celcolor2{
+    background-color: #ffffff1a;
+}

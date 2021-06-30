@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title> 出欠リスト閲覧 </title>
+        <script src="eel.js"></script>
+        <link rel="stylesheet" href="Att_list_view.css">
+        <script>
+            function callPython1(){
+                eel.setting_time()
+            }
+            
+            function callPython2(){
+                eel.add_temporary()
+            }
+        </script>
+        <p>管理モード＞出欠リスト</p>
+    </head>
+    <body>
+        <h1> 教員　名前</h1>
+        <h2> 講義名 </h2>
+        <button id="backbtn1" onclick="callPython1()">時刻設定</button>
+        <button id="backbtn2" onclick="callPython2()">臨時の規則を追加</button>
+        <table border="1">
+            <tr id="celcolor1"><td>学籍番号</td><td>氏名</td><td>受付時刻</td><td>出欠</td></tr>
+            <tr id="celcolor2"><td>B31P001</td><td>私和輪</td><td>10:30.00</td><td>出席</td></tr>
+            <tr id="celcolor1"><td>B31P002</td><td>田中棚花</td><td>10:40.51</td><td>遅刻</td></tr>
+            <tr id="celcolor2"><td>B31P003</td><td>中田仲太</td><td>11:58.28/td><td>欠席</td></tr>
+        </table>
+        
+        
+    </body>
+</html>
