@@ -194,6 +194,48 @@ def pickcName():
 def clidSet(clid):
     global tcName
     print(clid)
+    print(tcName)
+    try:
+        if clid == "101":
+            cConfig = tcName[0]
+        elif clid == "102":
+            cConfig = tcName[1]
+        elif clid == "103":
+            cConfig = tcName[2]
+        elif clid == "104":
+            cConfig = tcName[3]
+        elif clid == "105":
+            cConfig = tcName[4]
+    except(IndexError):
+        pass
+
+    print(cConfig)
+    tcxID = {}
+    tcxCT1 = {}
+    tcxCT2 = {}
+    tcxLT1 = {}
+    tcxLT2 = {}
+
+    with open("./data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
+        reader = csv.DictReader(p)
+        for row in reader:
+            tcxID[row["科目名"]] = row["講義ID"]
+            tcxCT1[row["科目名"]] = row["開始時間"]
+            tcxCT2[row["科目名"]] = row["終了時間"]
+            tcxLT1[row["科目名"]] = row["出席限度(分)"]
+            tcxLT2[row["科目名"]] = row["遅刻限度(分)"]
+    tccID = str(tcxID[cConfig])
+    tccCT1 = str(tcxCT1[cConfig])
+    tccCT2 = str(tcxCT2[cConfig])
+    tccLT1 = str(tcxLT1[cConfig])
+    tccLT2 = str(tcxLT2[cConfig])
+    print("ID:    " + tccID)
+    print("Start: " + tccCT1)
+    print("End:   " + tccCT2)
+    print("Limit1:" + tccLT1)
+    print("Limit2:" + tccLT2)
+    eel.initialValue(tccID, tccCT1, tccCT2, tccLT1, tccLT2)
+
 
 #これがないと動かないんでよ
 while True:

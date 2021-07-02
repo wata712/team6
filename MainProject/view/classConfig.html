@@ -21,7 +21,7 @@
             // eel.pickcName();
         }
 
-        function getParam(name, url) {
+        function getParam(name, url){
             if (!url) url = window.location.href;
             name = name.replace(/[\[\]]/g, "\\$&");
             var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
@@ -29,6 +29,15 @@
             if (!results) return null;
             if (!results[2]) return '';
             return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        eel.expose(initialValue);
+        function initialValue(tccID, tccCT1, tccCT2, tccLT1, tccLT2){
+            cosole.log(tccID);
+            cosole.log(tccCT1);
+            cosole.log(tccCT2);
+            cosole.log(tccLT1);
+            cosole.log(tccLT2);
         }
         
     </script>
