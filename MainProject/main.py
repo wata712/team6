@@ -1,3 +1,4 @@
+from re import X
 import eel
 import csv
 
@@ -71,9 +72,14 @@ def picktName():
     print("user: " + tName)
     eel.printtName(tName)
 
+# reader = "x"
+
+tcName = ["xx", "xx"]
+
 @eel.expose
 def pickcName():
     global tID
+    global tcName
 
     # tccsv = [[0] * 5 for i in range(4)]
     # print(tccsv)
@@ -183,6 +189,11 @@ def pickcName():
 
     eel.addcData(tc1Name, tc2Name, tcDay, tcPeriod)
 
+
+@eel.expose
+def clidSet(clid):
+    global tcName
+    print(clid)
 
 #これがないと動かないんでよ
 while True:
