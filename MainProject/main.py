@@ -234,6 +234,7 @@ def clidSet(clid):
     print("End:   " + tccCT2)
     print("Limit1:" + tccLT1)
     print("Limit2:" + tccLT2)
+    
     eel.initialValue(tccID, tccCT1, tccCT2, tccLT1, tccLT2)
 
 
