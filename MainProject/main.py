@@ -132,7 +132,7 @@ def pickcName():
     try:
         tc2ID = str(tc2xID[tcName[1]])
     except(KeyError):
-        tc2ID = "X0"
+        tc2ID = "X0_"
     print("calss1ID: " + tc1ID)
     print("calss2ID: " + tc2ID)
 
