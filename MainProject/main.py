@@ -75,11 +75,15 @@ def picktName():
 # reader = "x"
 
 tcName = ["xx", "xx"]
+tcDay = [0, 0]
+tcPeriod = [0, 0]
 
 @eel.expose
 def pickcName():
     global tID
     global tcName
+    global tcDay
+    global tcPeriod
 
     # tccsv = [[0] * 5 for i in range(4)]
     # print(tccsv)
@@ -193,6 +197,9 @@ def pickcName():
 @eel.expose
 def clidSet(clid):
     global tcName
+    global tcDay
+    global tcPeriod
+
     print(clid)
     print(tcName)
     try:
@@ -235,7 +242,10 @@ def clidSet(clid):
     print("Limit1:" + tccLT1)
     print("Limit2:" + tccLT2)
     
-    eel.initialValue(tccID, tccCT1, tccCT2, tccLT1, tccLT2)
+    eel.initialID(tcDay, tcPeriod)
+    # eel.initialCT(tccCT1, tccCT2)
+    # eel.initialLT(tccLT1, tccLT2)
+    # return tccCT1, tccCT2, tccLT1, tccLT2
 
 
 #これがないと動かないんでよ

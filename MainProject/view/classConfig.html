@@ -21,14 +21,29 @@
             // eel.pickcName();
         }
 
-        eel.expose(initialValue);
-        function initialValue(tccID, tccCT1, tccCT2, tccLT1, tccLT2){
-            cosole.log(tccID);
-            cosole.log(tccCT1);
-            cosole.log(tccCT2);
-            cosole.log(tccLT1);
-            cosole.log(tccLT2);
+        eel.expose(initialID);
+        function initialID(tcDay, tcPeriod){
+            console.log(tcDay);
+            console.log(tcPeriod);
+            // gettccT();
         }
+
+        // async function gettccT(){
+        //     let val = await eel.clidSet()();
+        //     console.log(val)
+        // }
+
+        // eel.expose(initialCT);
+        // function initialCT(tccCT1, tccCT2){
+        //     cosole.log(tccCT1);
+        //     cosole.log(tccCT2);
+        // }
+
+        // eel.expose(initialLT);
+        // function initialLT(tccLT1, tccLT2){
+        //     cosole.log(tccLT1);
+        //     cosole.log(tccLT2);
+        // }
         
         function getParam(name, url){
             if (!url) url = window.location.href;
