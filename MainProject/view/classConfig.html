@@ -55,44 +55,60 @@
             return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
 
-        
+        function setcConfig(){
+            location.href="admin.html";
+        }
+
     </script>
     <body onload="calltName()">
         <div id="top">
-        <h1>出欠管理システム</h1>
+            <h1>出欠管理システム</h1>
         </div>
         <div class="infoarea">
             <div class="namearea">
             <p id="tNameArea">読込中...</p>
             </div>
             <div class="btnarea">
-            <button id="toadminbtn" onclick="location.href='admin.html'" >管理画面へ</button>
+            <button id="toadminbtn" onclick="location.href='admin.html'">管理画面へ</button>
             </div>
         </div>
         <div>
             <p>講義名：<input type="text" name="class"></p>
 
-	<p><input type="date" name="date">
-        <select name="period">
-        <option value="1st">１限目</option>
-        <option value="2nd">２限目</option>
-        <option value="3rd">３限目</option>
-        <option value="4th">４限目</option>
-        <option value="5th">５限目</option>
-        </select></p>
+            <p>
+                <select name="day">
+                <option value="M" >月曜</option>
+                <option value="Tu">火曜</option>
+                <option value="W" >水曜</option>
+                <option value="Th">木曜</option>
+                <option value="F" >金曜</option>
+                </select>
 
-    <input type="time" name="PreS">
-    から
-    <input type="time" name="PreE">
-    まで出席扱い</p>
-    <input type="time" name="LateS">
-    から
-    <input type="time" name="LateE">
-    まで遅刻扱い</p>
-   
-	<br><p><input type="button" value="この規則で講義を設定" id="button2" onClick="alert('臨時講義を設定しました。');">
-        　　　
-    <input type="button" value="講義一覧へ戻る" id="button3"></p>
+                <select name="period">
+                <option value="1_">1限</option>
+                <option value="2_">2限</option>
+                <option value="3_">3限</option>
+                <option value="4_">4限</option>
+                <option value="5_">5限</option>
+                <option value="12_">1,2限</option>
+                <option value="23_">2,3限</option>
+                <option value="34_">3,4限</option>
+                <option value="45_">4,5限</option>
+                </select></p>
+
+            <input type="time" name="PreS">
+            から
+            <input type="time" name="PreE">
+            まで出席扱い</p>
+            <input type="time" name="LateS">
+            から
+            <input type="time" name="LateE">
+            まで遅刻扱い</p>
+        
+            <br>
+            <div class="btnarea2">
+                <button id="toadminbtn" onclick="setcConfig()">規則を適用</button>
+            </div>
         </div>
         <div class="underbar">
             <p id="datetime">
