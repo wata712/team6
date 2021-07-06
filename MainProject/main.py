@@ -2,7 +2,7 @@ from re import X
 import eel
 import csv
 
-# P000のPWは000b
+# P000の初期PWは000b
 
 eel.init("MainProject/view")
 eel.start("login.html", block=False)
