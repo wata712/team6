@@ -10,6 +10,7 @@
             eel.picktName();
             var clid = getParam("clid");
             console.log(clid);
+            eel.clidSet(clid);
         }
 
         eel.expose(printtName);
@@ -18,6 +19,17 @@
             console.log(tName);
             outputDiv.innerHTML = tName;
             // eel.pickcName();
+        }
+
+        eel.expose(initialID);
+        function initialID(cConfig, cDay, cPeriod){
+            console.log(cConfig);
+            console.log(cDay);
+            console.log(cPeriod);
+            var outputcName = document.getElementById("cNameArea");
+            outputcName.innerHTML = cConfig;
+            var outputcDay = document.getElementById("cDayArea");
+            outputcDay.innerHTML = cDay + "曜  " + cPeriod;
         }
 
         function getParam(name, url) {
@@ -29,6 +41,14 @@
             if (!results[2]) return '';
             return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
+
+        var not = 0;
+        function countbtn(){
+            not++;
+            if(not > 4){
+                location.href="admin.html";
+            }
+        }
     </script>
     <body onload="calltName()">
         <div id="top">
@@ -39,11 +59,15 @@
             <p id="tNameArea">読込中...</p>
             </div>
             <div class="btnarea">
-            <button id="toadminbtn" onclick="location.href='admin.html'">管理画面へ</button>
+            <button id="toadminbtn" onclick="countbtn()">管理画面へ</button>
             </div>
         </div>
         <div>
+            <p id="cDayArea">日曜  0限</p>
+            <p id="cNameArea">読込中...</p>
+            <br>
             <p id="stdinfo">学生証をタッチしてください</p>
+            
         </div>
         <div class="underbar">
             <p id="datetime">

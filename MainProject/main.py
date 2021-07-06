@@ -202,17 +202,30 @@ def clidSet(clid):
 
     print(clid)
     print(tcName)
+    cDay = "0"
+    cPeriod = "0"
+
     try:
         if clid == "101":
             cConfig = tcName[0]
+            cDay = tcDay[0]
+            cPeriod = tcPeriod[0]
         elif clid == "102":
             cConfig = tcName[1]
+            cDay = tcDay[1]
+            cPeriod = tcPeriod[1]
         elif clid == "103":
             cConfig = tcName[2]
+            cDay = tcDay[2]
+            cPeriod = tcPeriod[2]
         elif clid == "104":
             cConfig = tcName[3]
+            cDay = tcDay[3]
+            cPeriod = tcPeriod[4]
         elif clid == "105":
             cConfig = tcName[4]
+            cDay = tcDay[4]
+            cPeriod = tcPeriod[4]
     except(IndexError):
         pass
 
@@ -237,12 +250,14 @@ def clidSet(clid):
     tccLT1 = str(tcxLT1[cConfig])
     tccLT2 = str(tcxLT2[cConfig])
     print("ID:    " + tccID)
+    print("Day:   " + cDay)
+    print("Period:" + cPeriod)
     print("Start: " + tccCT1)
     print("End:   " + tccCT2)
     print("Limit1:" + tccLT1)
     print("Limit2:" + tccLT2)
     
-    eel.initialID(tcDay, tcPeriod)
+    eel.initialID(cConfig, cDay, cPeriod)
     # eel.initialCT(tccCT1, tccCT2)
     # eel.initialLT(tccLT1, tccLT2)
     # return tccCT1, tccCT2, tccLT1, tccLT2

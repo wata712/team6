@@ -5,8 +5,28 @@
         <title>Admin</title>
         <link rel="stylesheet" href="admin.css">
         <script>
+            let headtime = 0;
             function calltName(){
                 eel.picktName();
+                sleep(2, function () {
+                    console.log('2秒経過');
+                    headtime = 2;
+                });
+                
+            }
+
+            function sleep(waitSec, callbackFunc) {
+                var spanedSec = 0;
+                var id = setInterval(function () {
+                    spanedSec++;
+                    // 経過時間 >= 待機時間の場合、待機終了。
+                    if (spanedSec >= waitSec) {
+                        // タイマー停止
+                        clearInterval(id);
+                        // 完了時、コールバック関数を実行
+                        if (callbackFunc) callbackFunc();
+                    }
+                }, 1000);
             }
 
             eel.expose(printtName);
@@ -15,6 +35,15 @@
                 console.log(tName);
                 outputDiv.innerHTML = tName;
                 eel.pickcName();
+            }
+
+            function btnctrl(){
+                if(headtime>1){
+                    location.href="login.html"
+                }
+                else{
+                    console.log("btn pass")
+                }
             }
 
         </script>
@@ -28,7 +57,7 @@
             <p id="tNameArea">読込中...</p>
             </div>
             <div class="btnarea">
-            <button id="tologinbtn" onclick="location.href='login.html'" >ログアウト</button>
+            <button id="tologinbtn" onclick="btnctrl()" >ログアウト</button>
             </div>
         </div>
         <div>

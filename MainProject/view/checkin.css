@@ -12,6 +12,7 @@ h1{
 }
 .namearea{
     width: 80%;
+    color: #06005f;
 }
 .btnarea{
     width: 20%;
@@ -48,6 +49,18 @@ h1{
     color: #ffffff;
     box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1);
     transform: translateY(2px);
+}
+
+#cDayArea{
+    font-size: 1.5em;
+    margin: auto;
+    text-align: center;
+}
+
+#cNameArea{
+    font-size: 2.5em;
+    margin: auto;
+    text-align: center;
 }
 
 #stdinfo{

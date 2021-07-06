@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="classConfig.css">
     </head>
     <script>
+        let headtime = 0;
         function calltName(){
             eel.picktName();
             var clid = getParam("clid");
@@ -22,9 +23,10 @@
         }
 
         eel.expose(initialID);
-        function initialID(tcDay, tcPeriod){
-            console.log(tcDay);
-            console.log(tcPeriod);
+        function initialID(cConfig, cDay, cPeriod){
+            console.log(cConfig);
+            console.log(cDay);
+            console.log(cPeriod);
             // gettccT();
         }
 
