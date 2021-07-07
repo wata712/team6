@@ -6,6 +6,7 @@ import MySQLdb
 connection = MySQLdb.connect(db="team6",user="root",passwd="",charset="utf8")
 cursor=connection.cursor()
 
+#ここでは教員・担当科目リスト.csvをMySQLにinsert
 f = open("教員・担当科目リスト.csv", "r", encoding="utf-8")
 
 reader = csv.reader(f)
