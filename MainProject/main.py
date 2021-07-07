@@ -266,11 +266,13 @@ def clidSet(clid):
 @eel.expose
 def openIOcsv(cID, cName):
     print("Preparations are underway: " + cName)
-    csvname = cName + "出欠リスト.csv"
-    
-    with open()
-    if(os.path.exists(csvname) == False):
-        IOcsv = open(csvname, "w")
+    # IOcsvName = cName + "出欠リスト.csv"
+    # stdcsvName = "履修者-" + cID + ".csv"
+    # with open(stdcsvName, "w", encoding="utf_8", errors="", newline="") as stdcsv:
+    #     if(os.path.exists(IOcsvName) == False):
+    #         IOcsv = open(IOcsvName, "w")
+    #         IOfieldnames = ["学籍番号", "氏名", "IDm", "入室時刻", "出欠"]
+    #         writer1 = csv.DictReader(IOcsv, fieldnames=IOfieldnames)
 
 
 #出席リスト更新
