@@ -22,7 +22,7 @@
         }
 
         eel.expose(initialID);
-        function initialID(cConfig, cDay, cPeriod){
+        function initialID(cConfig, tccID, cDay, cPeriod){
             console.log(cConfig);
             console.log(cDay);
             console.log(cPeriod);
@@ -30,6 +30,7 @@
             outputcName.innerHTML = cConfig;
             var outputcDay = document.getElementById("cDayArea");
             outputcDay.innerHTML = cDay + "曜  " + cPeriod;
+            eel.openIOcsv(tccID, cConfig);
         }
 
         function getParam(name, url) {

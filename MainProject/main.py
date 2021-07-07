@@ -1,4 +1,4 @@
-from re import X
+import os
 import eel
 import csv
 
@@ -193,7 +193,7 @@ def pickcName():
 
     eel.addcData(tc1Name, tc2Name, tcDay, tcPeriod)
 
-
+#adminでの分岐用
 @eel.expose
 def clidSet(clid):
     global tcName
@@ -257,11 +257,23 @@ def clidSet(clid):
     print("Limit1:" + tccLT1)
     print("Limit2:" + tccLT2)
     
-    eel.initialID(cConfig, cDay, cPeriod)
+    eel.initialID(cConfig, tccID, cDay, cPeriod)
     # eel.initialCT(tccCT1, tccCT2)
     # eel.initialLT(tccLT1, tccLT2)
     # return tccCT1, tccCT2, tccLT1, tccLT2
 
+#出席リストCSV作成
+@eel.expose
+def openIOcsv(cID, cName):
+    print("Preparations are underway: " + cName)
+    csvname = cName + "出欠リスト.csv"
+    
+    with open()
+    if(os.path.exists(csvname) == False):
+        IOcsv = open(csvname, "w")
+
+
+#出席リスト更新
 
 #これがないと動かないんでよ
 while True:
