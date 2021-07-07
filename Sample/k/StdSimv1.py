@@ -11,6 +11,6 @@ def stdSim(cID):
     #IDm IDm
     #StdID 学籍番号
     #StdName 名前
-    #inTime 入室時間(正規分布で生成して)
+    #inTime 入室時間(講義開始10分前を中心として定数とか使った正規分布で生成して)
 
     return (IDm, StdID, StdName, inTime)
