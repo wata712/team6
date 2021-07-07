@@ -14,3 +14,5 @@ def stdSim(cID):
     #inTime 入室時間(講義開始10分前を中心として定数とか使った正規分布で生成して)
 
     return (IDm, StdID, StdName, inTime)
+
+print(stdSim("Tu4_"))
