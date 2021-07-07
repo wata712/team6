@@ -1,6 +1,7 @@
 import os
 import eel
 import csv
+import datetime
 
 # P000の初期PWは000b
 
@@ -10,9 +11,12 @@ eel.start("login.html", block=False)
 @eel.expose
 def registtData():
     #print(registtDatatoPy())
-    if registtDatatoPy() == True:
-        return "tomato"
-    else:
+    try:
+        if registtDatatoPy() == True:
+            return "tomato"
+        else:
+            return "onion"
+    except(KeyError):
         return "onion"
 
 def gettData():
@@ -35,7 +39,7 @@ def registtDatatoPy():
         print("Noooooooooo")
         return False
 
-#教員ファイル読み込み/tID,yPW照合
+#教員ファイル読み込み/tID,tPW照合
 def tIDtPWverify(tID,tPW):
     tID, tPW = gettData()
     tnamecsv = {}
@@ -262,18 +266,22 @@ def clidSet(clid):
     # eel.initialLT(tccLT1, tccLT2)
     # return tccCT1, tccCT2, tccLT1, tccLT2
 
+date = str(datetime.date.today())
+print(date)
+
 #出席リストCSV作成
 @eel.expose
 def openIOcsv(cID, cName):
+    global date
     print("Preparations are underway: " + cName)
-    # IOcsvName = cName + "出欠リスト.csv"
-    # stdcsvName = "履修者-" + cID + ".csv"
-    # with open(stdcsvName, "w", encoding="utf_8", errors="", newline="") as stdcsv:
-    #     if(os.path.exists(IOcsvName) == False):
-    #         IOcsv = open(IOcsvName, "w")
-    #         IOfieldnames = ["学籍番号", "氏名", "IDm", "入室時刻", "出欠"]
-    #         writer1 = csv.DictReader(IOcsv, fieldnames=IOfieldnames)
-
+    IOcsvName = "./Mainproject/IOList/" + cName + date + "出欠リスト.csv"
+    stdcsvName = "./data/履修者-" + cID + ".csv"
+    with open(stdcsvName, "w", encoding="utf_8", errors="", newline="") as stdcsv:
+        if(os.path.exists(IOcsvName) == False):
+            IOcsv = open(IOcsvName, "w", encoding="utf_8")
+            IOfieldnames = ["学籍番号", "氏名", "IDm", "入室時刻", "出欠"]
+            writer1 = csv.writer(IOcsv)
+            writer1.writerow(IOfieldnames)
 
 #出席リスト更新
 
