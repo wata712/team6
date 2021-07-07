@@ -9,7 +9,7 @@ def stdSim(cID):
 
     stdIDmx = {} #辞書型
     stdNamex = {}
-    stdID = [] #配列
+    stdIDm = [] #配列
     stdName = []
     #講義IDに一致した履修者csvを開く
     stdcsvName = "./data/履修者-" + cID + ".csv"
@@ -18,9 +18,9 @@ def stdSim(cID):
         for row in reader:
             stdIDmx[row["学籍番号"]] = row["IDm"]
             stdNamex[row["学籍番号"]] = row["名前"]
-    stdID = str(stdIDmx[temNo])
+    stdIDm = str(stdIDmx[temNo])
     stdName = str(stdNamex[temNo])
-    print(stdID)
+    print(stdIDm)
     print(stdName)
 
     #上のかたまり周辺でfor文とか使ってうまいことやって
@@ -32,6 +32,6 @@ def stdSim(cID):
     #StdName 名前 csvママ 1次元配列
     #inTime 入室時間 1次元配列 個々の形式:str(hh:mm:ss) 例 inTime[0] : 08:43:21 (講義開始10分前を中心として定数とか使った正規分布で生成して)
 
-    return (IDm, StdID, StdName, inTime)
+    return (stdIDm, temNo, stdName, inTime)
 
 print(stdSim("Tu4_"))
