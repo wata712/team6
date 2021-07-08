@@ -275,6 +275,7 @@ def openIOcsv(cID, cName):
     global date
 
     stdIDm = stdSim(cID)
+    print(stdIDm)
 
     stdIDx = {}
     stdNamex = {}
@@ -283,20 +284,32 @@ def openIOcsv(cID, cName):
     print("Preparations are underway: " + cName)
     IOcsvName = "./Mainproject/IOList/" + cName + date + "出欠リスト.csv"
     stdcsvName = "./data/履修者-" + cID + ".csv"
-    with open(stdcsvName, "w", encoding="utf_8", errors="", newline="") as stdcsv:
+    #履修者のリストを取得
+    with open(stdcsvName, "r", encoding="utf_8", errors="", newline="") as stdcsv:
         reader = csv.DictReader(stdcsv)
-        if(os.path.exists(IOcsvName) == False):
-            IOcsv = open(IOcsvName, "w", encoding="utf_8")
-            IOfieldnames = ["学籍番号", "氏名", "IDm", "入室時刻", "出欠"]
-            writer1 = csv.writer(IOcsv)
-            writer1.writerow(IOfieldnames)
         for row in reader:
             stdIDx[row["IDm"]] = row["学籍番号"]
             stdNamex[row["IDm"]] = row["名前"]
-        stdID = str(stdIDx[stdIDm])
-        stdName = str(stdNamex[stdIDm])
-        print(stdID)
-        print(stdName)
+    for i in range(len(row)):
+        try:
+            try:
+                stdID.append(str(stdIDx[stdIDm[i]]))
+                stdName.append(str(stdNamex[stdIDm[i]]))
+            except(KeyError):
+                stdID.append("S000")
+                stdName.append("名無ノ権兵衛")
+        except(IndexError):
+            pass
+
+    if(os.path.exists(IOcsvName) == False):
+        IOcsv = open(IOcsvName, "w", encoding="utf_8")
+        IOfieldnames = ["学籍番号", "氏名", "IDm", "入室時刻", "出欠"]
+        writer1 = csv.writer(IOcsv)
+        writer1.writerow(IOfieldnames)
+        os.close
+        
+    print(stdID)
+    print(stdName)
         
 
 #出席リスト更新
