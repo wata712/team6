@@ -30,8 +30,10 @@ def stdSim(cID):
     #IDm IDm csvママ 1次元配列
     #StdID 学籍番号 csvママ 1次元配列
     #StdName 名前 csvママ 1次元配列
-    #inTime 入室時間 1次元配列 個々の形式:str(hh:mm:ss) 例 inTime[0] : 08:43:21 (講義開始10分前を中心として定数とか使った正規分布で生成して)
 
-    return (stdIDm, temNo, stdName, inTime)
+    #！！！ 以下のinTimeは実装しなくていいです ！！！#
+    #inTime 入室時間 1次元配列 個々の形式:str(hh:mm:ss) 例 inTime[0] : 08:43:21 (講義開始10分前を中心として定数とか使った正規分布で生成)
+
+    return (stdIDm, temNo, stdName)
 
 print(stdSim("Tu4_"))
