@@ -273,17 +273,39 @@ print(date)
 @eel.expose
 def openIOcsv(cID, cName):
     global date
+
+    stdIDm = stdSim(cID)
+
+    stdIDx = {}
+    stdNamex = {}
+    stdID = []
+    stdName = []
     print("Preparations are underway: " + cName)
     IOcsvName = "./Mainproject/IOList/" + cName + date + "出欠リスト.csv"
     stdcsvName = "./data/履修者-" + cID + ".csv"
     with open(stdcsvName, "w", encoding="utf_8", errors="", newline="") as stdcsv:
+        reader = csv.DictReader(stdcsv)
         if(os.path.exists(IOcsvName) == False):
             IOcsv = open(IOcsvName, "w", encoding="utf_8")
             IOfieldnames = ["学籍番号", "氏名", "IDm", "入室時刻", "出欠"]
             writer1 = csv.writer(IOcsv)
             writer1.writerow(IOfieldnames)
+        for row in reader:
+            stdIDx[row["IDm"]] = row["学籍番号"]
+            stdNamex[row["IDm"]] = row["名前"]
+        stdID = str(stdIDx[stdIDm])
+        stdName = str(stdNamex[stdIDm])
+        print(stdID)
+        print(stdName)
+        
 
 #出席リスト更新
+
+#臨時の出席者
+def stdSim(cID):
+    print(cID)
+    stdIDm = ["012E44A7A518807A", "012E44A7A5187159", "012E44A7A5187429", "012E44A7A5185260"]
+    return stdIDm
 
 #これがないと動かないんでよ
 while True:
