@@ -1,15 +1,23 @@
-#とりあえずひな形だけ作りました。
+#作成途中。
 import pandas as pd
 import matplotlib.pyplot as plt
 import japanize_matplotlib
+import os
 
-date=pd.read_csv('nanikasira.csv',encoding='UTF8')
-date
+#カレントディレクトリを指定
+path="Sample\m"
+os.chdir(path)
+#↑CSVファイルが保管されているディレクトリの指定が必要だった
 
+#現在は'no numeric data to plot'というエラーが出現中
+data=pd.read_csv("保健体育2021-07-07出欠リスト.csv",encoding='UTF8')
+print(data)
+#グラフを作成
+data.plot()
 #棒グラフを作成
-date.plot(kind="bar")
+#data.plot(kind="bar")
 #もしくは
-date.plot.bar()
+#data.plot.bar()
 
 #棒グラフに使う列を指定
-date[['出席','遅刻','欠席']].plot.bar()
+#data[['入室時刻']].plot.bar()
