@@ -3,7 +3,7 @@ import csv
 def stdSim(cID):
     #学籍番号を(ランダムに)生成して
     for i in range(1, 101):
-        temNo = "S" + str(i)
+        temNo = "S{:0>3}".format(str(i))
         print(temNo)
         #if文とかで"S001" "S012"のように3桁表示になるようにして
 
@@ -31,6 +31,6 @@ def stdSim(cID):
     #StdID 学籍番号 csvママ 1次元配列
     #StdName 名前 csvママ 1次元配列
 
-    return stdIDm
+    return temNo,stdIDm
 
 print(stdSim("Tu4_"))
