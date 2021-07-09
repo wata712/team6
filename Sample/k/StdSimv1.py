@@ -10,18 +10,22 @@ def stdSim(cID):
         print(temNo)
         #if文とかで"S001" "S012"のように3桁表示になるようにして
 
-    stdIDmx = {} #辞書型
-    stdIDm = [] #配列
-    #講義IDに一致した履修者csvを開く
-    stdcsvName = "./data/履修者-" + cID + ".csv"
-    with open(stdcsvName, "r", encoding="utf_8", errors="", newline="") as p:
-        reader = csv.DictReader(p)
-        for row in reader:
-            stdIDmx[row["学籍番号"]] = row["IDm"]
-        for i in range(len(row)):
-            stdIDm = str(stdIDmx[temNo])
+        stdIDmx = {} #辞書型
+        stdIDm = [] #配列
+        #講義IDに一致した履修者csvを開く
+        stdcsvName = "./data/履修者-" + cID + ".csv"
+        with open(stdcsvName, "r", encoding="utf_8", errors="", newline="") as p:
+            reader = csv.DictReader(p)
+            for row in reader:
+                stdIDmx[row["学籍番号"]] = row["IDm"]
+            for i in range(len(row)):
+                stdIDm = str(stdIDmx[temNo])
+            print(stdIDm)
+            
     print(stdcsvName)
+    return temNo,stdIDm
     
+print(stdSim("Tu4_"))
 
     #上のかたまり周辺でfor文とか使ってうまいことやって
     #雛形には多分エラーあるからうまいこといじって
@@ -35,6 +39,5 @@ def stdSim(cID):
     #StdID 学籍番号 csvママ 1次元配列
     #StdName 名前 csvママ 1次元配列
 
-    return temNo,stdIDm
+    #return temNo,stdIDm
 
-print(stdSim("Tu4_"))
