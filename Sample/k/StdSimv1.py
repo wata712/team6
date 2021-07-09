@@ -16,11 +16,14 @@ def stdSim(cID):
         stdcsvName = "./data/履修者-" + cID + ".csv"
         with open(stdcsvName, "r", encoding="utf_8", errors="", newline="") as p:
             reader = csv.DictReader(p)
-            for row in reader:
-                stdIDmx[row["学籍番号"]] = row["IDm"]
-            for i in range(len(row)):
-                stdIDm = str(stdIDmx[temNo])
-            print(stdIDm)
+            try:
+                for row in reader:
+                    stdIDmx[row["学籍番号"]] = row["IDm"]
+                for i in range(len(row)):
+                    stdIDm = str(stdIDmx[temNo])
+                print(stdIDm)
+            except KeyError:
+                pass
             
     print(stdcsvName)
     return temNo,stdIDm
@@ -38,6 +41,4 @@ print(stdSim("Tu4_"))
     #inTime 入室時間 1次元配列 個々の形式:str(hh:mm:ss) 例 inTime[0] : 08:43:21 (講義開始10分前を中心として定数とか使った正規分布で生成)
     #StdID 学籍番号 csvママ 1次元配列
     #StdName 名前 csvママ 1次元配列
-
-    #return temNo,stdIDm
 
