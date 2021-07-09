@@ -5,7 +5,7 @@ def stdSim(cID):
     #学籍番号を(ランダムに)生成して
     for i in range(1, 101):
         temNo = "S{:0>3}".format(str(i))
-        
+
         print(temNo)
         #if文とかで"S001" "S012"のように3桁表示になるようにして
 
@@ -17,8 +17,8 @@ def stdSim(cID):
         reader = csv.DictReader(p)
         for row in reader:
             stdIDmx[row["学籍番号"]] = row["IDm"]
-    for i in range(len(row)):
-        stdIDm = str(stdIDmx[temNo])
+        for i in range(len(row)):
+            stdIDm = str(stdIDmx[temNo])
     print(stdIDm)
     print(stdcsvName)
 
