@@ -3,9 +3,10 @@ import random
 
 def stdSim(cID):
     #学籍番号を(ランダムに)生成して
-    for i in range(1, 101):
-        temNo = "S{:0>3}".format(str(i))
-
+    number=range(1,101)
+    rnumber=random.sample(number,len(number))
+    for i in rnumber:
+        temNo = "S{:0>3}".format(i)
         print(temNo)
         #if文とかで"S001" "S012"のように3桁表示になるようにして
 
@@ -19,8 +20,8 @@ def stdSim(cID):
             stdIDmx[row["学籍番号"]] = row["IDm"]
         for i in range(len(row)):
             stdIDm = str(stdIDmx[temNo])
-    print(stdIDm)
     print(stdcsvName)
+    
 
     #上のかたまり周辺でfor文とか使ってうまいことやって
     #雛形には多分エラーあるからうまいこといじって
