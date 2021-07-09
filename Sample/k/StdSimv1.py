@@ -5,7 +5,7 @@ def stdSim(cID):
     #学籍番号を(ランダムに)生成して
     for i in range(1, 101):
         temNo = "S{:0>3}".format(str(i))
-        #random.shuffle(temNo)
+        
         print(temNo)
         #if文とかで"S001" "S012"のように3桁表示になるようにして
 
