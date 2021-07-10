@@ -7,7 +7,7 @@ def stdSim(cID):
     rnumber=random.sample(number,len(number))
     for i in rnumber:
         temNo = "S{:0>3}".format(i)
-        print(temNo)
+        # print(temNo)
         #if文とかで"S001" "S012"のように3桁表示になるようにして
 
         stdIDmx = {} #辞書型
@@ -21,21 +21,25 @@ def stdSim(cID):
                     stdIDmx[row["学籍番号"]] = row["IDm"]
                 for i in range(len(row)):
                     stdIDm = str(stdIDmx[temNo])
-                print(stdIDm)
+                # print(stdIDm)
             except KeyError:
                 pass
             
     print(stdcsvName)
-    return temNo,stdIDm
+    return stdIDm
     
+print("start:")
 print(stdSim("Tu4_"))
 
     #上のかたまり周辺でfor文とか使ってうまいことやって
     #雛形には多分エラーあるからうまいこといじって
 
     ## memoarea ##
+    # 返り値はstdIDm(リスト)のみ
+    # with open でCSVを開くのは1度だけ(効率が非常に悪いのでfor文の中にwith openを入れないで)
+
     #cID 講義ID
-    #IDm IDm csvママ 1次元配列
+    #stdIDm 生徒のIDm csvママ 1次元配列
 
     ###！！！ 以下の変数は実装しなくていいです ！！！###
     #inTime 入室時間 1次元配列 個々の形式:str(hh:mm:ss) 例 inTime[0] : 08:43:21 (講義開始10分前を中心として定数とか使った正規分布で生成)
