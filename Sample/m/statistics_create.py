@@ -1,4 +1,4 @@
-#まだ途中,なんか棒グラフが出ます。
+#まだ途中,なんか棒グラフが出ます。欠席0で試したところ,失敗しました。
 import matplotlib.pyplot as plt
 import japanize_matplotlib
 import os
@@ -35,7 +35,7 @@ for key, value in count.items():
    att_counter='{}: {:d}'.format(key,value)
    #y軸設定用
    y_list.append(int(value))
-   #x軸に文字ラベルを代入
+   #x軸の文字ラベル用
    x_label.append('{}({})'.format(key,value))
    print(att_counter)
 #↓棒グラフ作成
