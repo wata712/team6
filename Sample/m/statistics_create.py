@@ -11,7 +11,7 @@ os.chdir(path)
 
 #出席,遅刻,欠席のカウント
 count = {}
-with open("保健体育2021-07-07出欠リスト.csv",encoding='UTF8') as fo:
+with open("sample_listbox/保健体育2021-07-07出欠リスト.csv",encoding='UTF8') as fo:
     atl_reader = csv.reader(fo)
     data=fo
     atl_header = next(atl_reader)
@@ -21,7 +21,7 @@ with open("保健体育2021-07-07出欠リスト.csv",encoding='UTF8') as fo:
        count.setdefault(data2,0)
        count[data2] +=1
 
-with open("保健体育2021-07-07出欠リスト.csv",encoding='UTF8') as fc:
+with open("sample_listbox/保健体育2021-07-07出欠リスト.csv",encoding='UTF8') as fc:
     line_count=sum([1 for line in fc])
 
 li_ct=line_count-1
@@ -33,10 +33,12 @@ x_label=[]
 fig=plt.figure()
 for key, value in count.items():
    att_counter='{}: {:d}'.format(key,value)
+   #y軸設定用
    y_list.append(int(value))
+   #x軸に文字ラベルを代入
    x_label.append('{}({})'.format(key,value))
    print(att_counter)
-
+#↓棒グラフ作成
 print(y_list)
 plt.ylim(0,li_ct)
 plt.bar(x,y_list)
