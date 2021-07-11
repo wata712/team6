@@ -6,7 +6,7 @@ def stdSim(cID):
     rnumber=random.sample(number,len(number)) #学籍番号を(ランダムに)生成
     temlist=[]
     for i in rnumber:
-        temNo= "S{:0>3}".format(i)  #if文とかで"S001" "S012"のように3桁表示
+        temNo= "S{:0>3}".format(i)  #"S001" "S012"のように3桁表示
         temlist.append(temNo) #temlistはS001からS100の100個の要素からなるリスト
 
     #講義IDに一致した履修者csvを開く
