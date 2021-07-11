@@ -2,13 +2,12 @@ import csv
 import random
 
 def stdSim(cID):
-    #学籍番号を(ランダムに)生成して
     number=range(1,101)
-    rnumber=random.sample(number,len(number))
+    rnumber=random.sample(number,len(number)) #学籍番号を(ランダムに)生成
+    temlist=[]
     for i in rnumber:
-        temNo= "S{:0>3}".format(i)
-        print(temNo)
-        #if文とかで"S001" "S012"のように3桁表示になるようにして
+        temNo= "S{:0>3}".format(i)  #if文とかで"S001" "S012"のように3桁表示
+        temlist.append(temNo) #temlistはS001からS100の100個の要素からなるリスト
 
     #講義IDに一致した履修者csvを開く
     stdIDmx = {} #辞書型
@@ -16,17 +15,17 @@ def stdSim(cID):
     stdcsvName = "./data/履修者-" + cID + ".csv"
     with open(stdcsvName, "r", encoding="utf_8", errors="", newline="") as p:
         reader = csv.DictReader(p)
-        try:
-            for row in reader:
-                stdIDmx[row["学籍番号"]] = row["IDm"]
-            for i in range(len(row)):
-                stdIDm = str(stdIDmx[temNo])
-            print(stdIDm)
-        except KeyError:
-            pass
+        for row in reader:
+            stdIDmx[row["学籍番号"]] = row["IDm"]
+        for i in range(len(temlist)):
+            try:
+                IDm = str(stdIDmx[temlist[i]])
+                stdIDm.append(IDm)
+            except KeyError:
+                pass
             
     print(stdcsvName)
-    return {stdIDm}
+    return stdIDm
     
 print("start:")
 print(stdSim("Tu4_"))
