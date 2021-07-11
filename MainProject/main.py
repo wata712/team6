@@ -310,7 +310,9 @@ def openIOcsv(cID, cName):
         
     print(stdID)
     print(stdName)
-        
+
+    # for in rangeでstdIDとstdNameをJS関数に投げることで出席
+    # 時間は適度な間隔をあけて        
 
 #出席リスト更新
 
