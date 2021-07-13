@@ -11,8 +11,10 @@ path="Sample\m"
 os.chdir(path)
 #↑CSVファイルが保管されているディレクトリの指定が必要だった
 
+#グラフタイトル用の読み込みです。
 file_path="sample_listbox/保健体育2021-07-07出欠リスト.csv"
 file_name_path=os.path.basename(file_path)
+
 #出席,遅刻,欠席のカウント
 count = {}
 with open("sample_listbox/保健体育2021-07-07出欠リスト.csv",encoding='UTF8') as fo:
@@ -32,7 +34,9 @@ li_ct=line_count-1
 print(li_ct)
 y_list=[]
 x_label=[]
+#グラフ保存用
 fig=plt.figure()
+
 plt.title(file_name_path)
 for key, value in count.items():
    att_counter='{}: {:d}'.format(key,value)
@@ -99,7 +103,7 @@ print(y_list2)
 print(x_label2)
 plt.ylim(0,li_ct)
 graph=plt.bar(x,y_list2)
-
+#棒の上に数値を挿入するための処理
 height=y_list2
 for rect in graph:
     height=rect.get_height()
