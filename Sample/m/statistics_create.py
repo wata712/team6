@@ -4,15 +4,18 @@ import matplotlib.pyplot as plt
 import japanize_matplotlib
 import os
 import csv
+import os.path
 
 #カレントディレクトリを指定
 path="Sample\m"
 os.chdir(path)
 #↑CSVファイルが保管されているディレクトリの指定が必要だった
 
+file_path="sample_listbox/保健体育2021-07-07出欠リスト.csv"
+file_name_path=os.path.basename(file_path)
 #出席,遅刻,欠席のカウント
 count = {}
-with open("sample_listbox/保健体育2021-07-09出欠リスト.csv",encoding='UTF8') as fo:
+with open("sample_listbox/保健体育2021-07-07出欠リスト.csv",encoding='UTF8') as fo:
     atl_reader = csv.reader(fo)
     atl_header = next(atl_reader)
     data=fo
@@ -22,7 +25,7 @@ with open("sample_listbox/保健体育2021-07-09出欠リスト.csv",encoding='U
        count.setdefault(data2,0)
        count[data2] +=1
 
-with open("sample_listbox/保健体育2021-07-09出欠リスト.csv",encoding='UTF8') as fc:
+with open("sample_listbox/保健体育2021-07-07出欠リスト.csv",encoding='UTF8') as fc:
     line_count=sum([1 for line in fc])
 
 li_ct=line_count-1
@@ -30,6 +33,7 @@ print(li_ct)
 y_list=[]
 x_label=[]
 fig=plt.figure()
+plt.title(file_name_path)
 for key, value in count.items():
    att_counter='{}: {:d}'.format(key,value)
    #y軸設定用
@@ -88,11 +92,19 @@ else:
 
 x_label2=sorted(x_label,key=ex_label.index)
 
+
+
 #↓棒グラフ作成
 print(y_list2)
 print(x_label2)
 plt.ylim(0,li_ct)
-plt.bar(x,y_list2)
+graph=plt.bar(x,y_list2)
+
+height=y_list2
+for rect in graph:
+    height=rect.get_height()
+    plt.annotate('{}'.format(height),xy=(rect.get_x() + rect.get_width()/2,height),xytext=(0,3),textcoords="offset points",ha='center',va='bottom')
+
 plt.xticks(x,x_label2)    
 plt.show()
 #ここまでが一つの出席リストをグラフ化するスクリプト
