@@ -2,8 +2,7 @@
 <html>
     <head>
         <script src="eel.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="jquery.csvToTable.js"></script>
+        <script src="csv2table.js"></script>
         <title>showAttendanceList</title>
         <link rel="stylesheet" href="showIOList.css">
     </head>
@@ -11,6 +10,9 @@
         eel.expose(getIOcsvName);
         function getIOcsvName(IOcsvName){
             console.log(IOcsvName);
+            var tmp = document.getElementsByClassName("csv2table");
+            var val = IOcsvName;
+            tmp[0].setAttribute("data-src",val);
         }
 
         function calltName(){
@@ -51,11 +53,7 @@
             </div>
         </div>
         <div class="tablecsv">
-            <script>
-            $(function() {
-                $('. tablecsv').CSVToTable(IOcsvName);
-            });
-            </script>
+            <section class="csv2table" data-label="rice"></section>
         </div>
         <div class="underbar">
             <p id="datetime">
