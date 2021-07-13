@@ -67,7 +67,8 @@ for atdlist_csvdata in csv_list3:
 #人数
 list_length=len(stnumb_list)-1
 #print(list_length)
-
+w_list_length=list_length*2
+print(w_list_length)
 #リストの先頭('出席'と出席数)を削除
 stnumb_list.remove('出席')
 atd_count_list.remove(list_length)
@@ -81,10 +82,7 @@ fig=plt.figure()
 y_set=list(range(list_length))
 #print(y_set)    
 
+graph1=plt.barh(y_set,atd_count_list,height=0.5)
 
-
-
-
-#↓memo 後で消す
-
-#os.listdir('保存場所/ディレクトリ名')
+plt.yticks(y_set,stnumb_list)
+plt.show()
