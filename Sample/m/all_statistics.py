@@ -11,34 +11,10 @@ path="Sample\m"
 os.chdir(path)
 #↑CSVファイルが保管されているディレクトリの指定が必要だった
 
-#ディレクトリ内のcsv全部読み1
-csv_list2=glob.glob("sample_listbox/*.csv")
-for atdlist_csvdata in csv_list2:
-    count = {}
-    with open(atdlist_csvdata,encoding='UTF8') as fo:
-        atl_reader = csv.reader(fo)
-        atl_header = next(atl_reader)
-        #print(atl_header)
-        for row in atl_reader:
-            data=row[0]
-            data2=row[4]
-            count.setdefault(data2,0)
-            count[data2] +=1
-
-    with open(atdlist_csvdata,encoding='UTF8') as fc:
-        line_count=sum([1 for line in fc])
-
-    li_ct=line_count-1
-    #print(li_ct)
-    for key, value in count.items():
-        att_counter='{}: {:d}'.format(key,value)
-        #print(att_counter)    
-
-
 #こっちに実装用,現在は各生徒ごとに'出席'の数をカウントするようになってます。
 csv_list3=glob.glob("sample_listbox/*.csv")
 for atdlist_csvdata in csv_list3:
-    
+    count = {}
     with open(atdlist_csvdata,encoding='UTF8') as f3:
         atl_reader3 = csv.reader(f3)
         atl_header3 = next(atl_reader3)
