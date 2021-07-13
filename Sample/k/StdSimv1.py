@@ -25,10 +25,11 @@ def stdSim(cID):
                 pass
             
     print(stdcsvName)
+    print(len(stdIDm))
     return stdIDm
     
 print("start:")
-print(stdSim("Tu4_"))
+print(stdSim("W5_1"))
 
     #上のかたまり周辺でfor文とか使ってうまいことやって
     #雛形には多分エラーあるからうまいこといじって
