@@ -303,10 +303,13 @@ def stdSim(cID):
     # print(len(stdIDm))
     return stdIDm
 
+IOcsvName = "xx"
+
 #出席リストCSV作成
 @eel.expose
 def openIOcsv(cID, cName):
     global date
+    global IOcsvName
 
     stdIDm = stdSim(cID)
     # print(stdIDm)
@@ -316,8 +319,11 @@ def openIOcsv(cID, cName):
     stdID = []
     stdName = []
     print("Preparations are underway: " + cName)
-    IOcsvName = "./Mainproject/IOList/" + cName + date + "出欠リスト.csv"
+    dirName = "./Mainproject/IOList/" + cName
+    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + date + "出欠リスト.csv"
     stdcsvName = "./data/履修者-" + cID + ".csv"
+    if(os.path.exists(dirName) == False):
+        os.mkdir(dirName)
     #履修者のリストを取得
     with open(stdcsvName, "r", encoding="utf_8", errors="", newline="") as stdcsv:
         reader = csv.DictReader(stdcsv)
@@ -337,12 +343,12 @@ def openIOcsv(cID, cName):
             pass
 
     if(os.path.exists(IOcsvName) == False):
-        IOcsv = open(IOcsvName, "w", encoding="utf_8")
-        IOfieldnames = ["学籍番号", "氏名", "IDm", "入室時刻", "出欠"]
-        writer1 = csv.writer(IOcsv)
-        writer1.writerow(IOfieldnames)
-        os.close
+        with open(IOcsvName, "w", encoding="utf_8") as IOcsv:
+            writer = csv.writer(IOcsv)
+            writer.writerow(["学籍番号", "氏名", "IDm", "入室時刻", "出欠"])
         
+        
+    
     print(stdID)
     print(stdName)
 
@@ -386,7 +392,26 @@ def openIOcsv(cID, cName):
                 eel.sleep(3)
             print(stdIDm[s])
 
+@eel.expose
+def generateIOcsvName(clid):
+    global tcName
+    try:
+        if clid == "101":
+            cName = tcName[0]
+        elif clid == "102":
+            cName = tcName[1]
+        elif clid == "103":
+            cName = tcName[2]
+        elif clid == "104":
+            cName = tcName[3]
+        elif clid == "105":
+            cName = tcName[4]
+    except(IndexError):
+        pass
 
+    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + date + "出欠リスト.csv"
+    print(IOcsvName)
+    eel.getIOcsvName(IOcsvName)
 
 
 #出席リスト更新

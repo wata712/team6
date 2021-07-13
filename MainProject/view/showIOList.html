@@ -2,14 +2,22 @@
 <html>
     <head>
         <script src="eel.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
+        <script src="jquery.csvToTable.js"></script>
         <title>showAttendanceList</title>
         <link rel="stylesheet" href="showIOList.css">
     </head>
     <script>
+        eel.expose(getIOcsvName);
+        function getIOcsvName(IOcsvName){
+            console.log(IOcsvName);
+        }
+
         function calltName(){
             eel.picktName();
             var clid = getParam("clid");
             console.log(clid);
+            eel.generateIOcsvName(clid)
         }
 
         eel.expose(printtName);
@@ -42,8 +50,12 @@
             <button id="toadminbtn" onclick="location.href='admin.html'">管理画面へ</button>
             </div>
         </div>
-        <div>
-            
+        <div class="tablecsv">
+            <script>
+            $(function() {
+                $('. tablecsv').CSVToTable(IOcsvName);
+            });
+            </script>
         </div>
         <div class="underbar">
             <p id="datetime">
