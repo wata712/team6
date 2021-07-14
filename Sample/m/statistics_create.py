@@ -109,7 +109,7 @@ for rect in graph:
     height=rect.get_height()
     plt.annotate('{}'.format(height),xy=(rect.get_x() + rect.get_width()/2,height),xytext=(0,3),textcoords="offset points",ha='center',va='bottom')
 
-plt.xticks(x,x_label2)    
+plt.xticks(x,x_label2)
 plt.show()
 #ここまでが一つの出席リストをグラフ化するスクリプト
 
