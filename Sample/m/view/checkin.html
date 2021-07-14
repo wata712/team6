@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="eel.js"></script>
+        <title>AttendanceCheck</title>
+        <link rel="stylesheet" href="checkin.css">
+    </head>
+    <script>
+        function calltName(){
+            eel.picktName();
+            var clid = getParam("clid");
+            console.log(clid);
+            eel.clidSet(clid);
+        }
+
+        eel.expose(printtName);
+        function printtName(tName){
+            var outputDiv = document.getElementById("tNameArea");
+            console.log(tName);
+            outputDiv.innerHTML = tName;
+            // eel.pickcName();
+        }
+
+        eel.expose(initialID);
+        function initialID(cConfig, tccID, cDay, cPeriod){
+            console.log(cConfig);
+            console.log(cDay);
+            console.log(cPeriod);
+            var outputcName = document.getElementById("cNameArea");
+            outputcName.innerHTML = cConfig;
+            var outputcDay = document.getElementById("cDayArea");
+            outputcDay.innerHTML = cDay + "曜  " + cPeriod;
+            eel.openIOcsv(tccID, cConfig);
+        }
+
+        eel.expose(showIDinfo);
+        function showIDinfo(stdID, stdName){
+            console.log(stdID);
+            console.log(stdName);
+            var outputcName = document.getElementById("stdinfo");
+            outputcName.innerHTML = stdID + "  " + stdName;
+            sleep(1, function () {
+            });
+        }
+
+        function sleep(waitSec, callbackFunc) {
+            var spanedSec = 0;
+            var id = setInterval(function () {
+                spanedSec++;
+                // 経過時間 >= 待機時間の場合、待機終了。
+                if (spanedSec >= waitSec) {
+                    // タイマー停止
+                    clearInterval(id);
+                    // 完了時、コールバック関数を実行
+                    if (callbackFunc) callbackFunc();
+                }
+            }, 1000);
+        }
+
+        function getParam(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        var not = 0;
+        function countbtn(){
+            not++;
+            if(not > 4){
+                location.href="admin.html";
+            }
+        }
+    </script>
+    <body onload="calltName()">
+        <div id="top">
+            <h1>出欠管理システム</h1>
+        </div>
+        <div class="infoarea">
+            <div class="namearea">
+            <p id="tNameArea">読込中...</p>
+            </div>
+            <div class="btnarea">
+            <button id="toadminbtn" onclick="countbtn()">管理画面へ</button>
+            </div>
+        </div>
+        <div>
+            <p id="cDayArea">日曜  0限</p>
+            <p id="cNameArea">受付準備中</p>
+            <br>
+            <p id="stdinfo">学生証をタッチしてください</p>
+            
+        </div>
+        <div class="underbar">
+            <p id="datetime">
+                <script src="timeshow.js">
+                </script>
+            </p>
+        </div>
+    </body>
+</html>
