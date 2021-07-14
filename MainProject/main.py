@@ -1,7 +1,13 @@
 import os
+from re import S
+from subprocess import NORMAL_PRIORITY_CLASS
+from time import time
 import eel
 import csv
 import datetime
+import math
+import numpy
+import random
 
 # P000の初期PWは000b
 
@@ -269,28 +275,63 @@ def clidSet(clid):
 date = str(datetime.date.today())
 print(date)
 
+#仮の出席者
+def stdSim(cID):
+    number=range(1,101)
+    rnumber=random.sample(number,len(number)) #学籍番号を(ランダムに)生成
+    temlist=[]
+    for i in rnumber:
+        temNo= "S{:0>3}".format(i)  #"S001" "S012"のように3桁表示
+        temlist.append(temNo) #temlistはS001からS100の100個の要素からなるリスト
+
+    #講義IDに一致した履修者csvを開く
+    stdIDmx = {} #辞書型
+    stdIDm = [] #配列
+    stdcsvName = "./data/履修者-" + cID + ".csv"
+    with open(stdcsvName, "r", encoding="utf_8", errors="", newline="") as p:
+        reader = csv.DictReader(p)
+        for row in reader:
+            stdIDmx[row["学籍番号"]] = row["IDm"]
+        for i in range(len(temlist)):
+            try:
+                IDm = str(stdIDmx[temlist[i]])
+                stdIDm.append(IDm)
+            except KeyError:
+                pass
+            
+    # print(stdcsvName)
+    # print(len(stdIDm))
+    return stdIDm
+
+IOcsvName = "xx"
+
 #出席リストCSV作成
 @eel.expose
 def openIOcsv(cID, cName):
     global date
+    global IOcsvName
 
     stdIDm = stdSim(cID)
-    print(stdIDm)
+    # print(stdIDm)
 
     stdIDx = {}
     stdNamex = {}
     stdID = []
     stdName = []
     print("Preparations are underway: " + cName)
-    IOcsvName = "./Mainproject/IOList/" + cName + date + "出欠リスト.csv"
+    dirName = "./Mainproject/IOList/" + cName
+    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + date + "出欠リスト.csv"
     stdcsvName = "./data/履修者-" + cID + ".csv"
+    if(os.path.exists(dirName) == False):
+        os.mkdir(dirName)
     #履修者のリストを取得
     with open(stdcsvName, "r", encoding="utf_8", errors="", newline="") as stdcsv:
         reader = csv.DictReader(stdcsv)
         for row in reader:
             stdIDx[row["IDm"]] = row["学籍番号"]
             stdNamex[row["IDm"]] = row["名前"]
-    for i in range(len(row)):
+    print("履修者数: " + str(len(stdIDm)))
+    for i in range(len(stdIDm)):
         try:
             try:
                 stdID.append(str(stdIDx[stdIDm[i]]))
@@ -302,25 +343,79 @@ def openIOcsv(cID, cName):
             pass
 
     if(os.path.exists(IOcsvName) == False):
-        IOcsv = open(IOcsvName, "w", encoding="utf_8")
-        IOfieldnames = ["学籍番号", "氏名", "IDm", "入室時刻", "出欠"]
-        writer1 = csv.writer(IOcsv)
-        writer1.writerow(IOfieldnames)
-        os.close
+        with open(IOcsvName, "w", encoding="utf_8") as IOcsv:
+            writer = csv.writer(IOcsv)
+            writer.writerow(["学籍番号", "氏名", "IDm", "入室時刻", "出欠"])
         
+        
+    
     print(stdID)
     print(stdName)
 
     # for in rangeでstdIDとstdNameをJS関数に投げることで出席
-    # 時間は適度な間隔をあけて        
+    # 時間は適度な間隔をあけて
+
+    # カードタッチ間隔
+    timespanx = numpy.random.normal(
+        loc = 7,                    # 平均
+        scale = (len(stdIDm)/6),   # 標準偏差
+        size = 120                  # 出力配列のサイズ
+        )
+    timespan = timespanx
+    tmp = 0
+    for j in range(len(timespanx)):
+        timespan[j] = int(timespan[j])
+        tmp = tmp + timespan[j]
+    print(timespan)
+    print(tmp/60)
+
+    # タッチのトリガー
+    eel.sleep(3)
+    for s in range(len(stdIDm)):
+        if s != (len(stdIDm)-1):
+            if timespan[s]<=0:
+                timespan[s] = (timespan[s] * -1) + 1
+            print(timespan[s], end=" ")
+            print(stdIDm[s])
+            eel.sleep(timespan[s])
+        else:
+            # 遅刻ちゃん
+            num = random.randint(1,10)
+            print(num)
+            if num > 8:
+                eel.sleep(800)
+            elif num > 7:
+                eel.sleep(300)
+            elif num > 4:
+                eel.sleep(60)
+            else:
+                eel.sleep(3)
+            print(stdIDm[s])
+
+@eel.expose
+def generateIOcsvName(clid):
+    global tcName
+    try:
+        if clid == "101":
+            cName = tcName[0]
+        elif clid == "102":
+            cName = tcName[1]
+        elif clid == "103":
+            cName = tcName[2]
+        elif clid == "104":
+            cName = tcName[3]
+        elif clid == "105":
+            cName = tcName[4]
+    except(IndexError):
+        pass
+
+    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + date + "出欠リスト.csv"
+    print(IOcsvName)
+    eel.getIOcsvName(IOcsvName)
+
 
 #出席リスト更新
 
-#臨時の出席者
-def stdSim(cID):
-    print(cID)
-    stdIDm = ["012E44A7A518807A", "012E44A7A5187159", "012E44A7A5187429", "012E44A7A5185260"]
-    return stdIDm
 
 #これがないと動かないんでよ
 while True:
