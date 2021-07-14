@@ -7,8 +7,6 @@ import csv
 import datetime
 import numpy
 import random
-# import importer
-# import exporter
 
 # P000の初期PWは000b
 
@@ -386,7 +384,7 @@ def openIOcsv(cID, cName):
             eel.sleep(timespan[s])
         else:
             # 遅刻ちゃん
-            num = random.randint(0,9)
+            num = random.randint(1,10)
             print(num)
             if num > 8:
                 eel.sleep(800)
