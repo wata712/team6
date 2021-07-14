@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="eel.js"></script>
+        <title>Admin</title>
+        <link rel="stylesheet" href="admin.css">
+        <script>
+            let headtime = 0;
+            function calltName(){
+                eel.picktName();
+                sleep(2, function () {
+                    console.log('2秒経過');
+                    headtime = 2;
+                });
+                
+            }
+
+            function sleep(waitSec, callbackFunc) {
+                var spanedSec = 0;
+                var id = setInterval(function () {
+                    spanedSec++;
+                    // 経過時間 >= 待機時間の場合、待機終了。
+                    if (spanedSec >= waitSec) {
+                        // タイマー停止
+                        clearInterval(id);
+                        // 完了時、コールバック関数を実行
+                        if (callbackFunc) callbackFunc();
+                    }
+                }, 1000);
+            }
+
+            eel.expose(printtName);
+            function printtName(tName){
+                var outputDiv = document.getElementById("tNameArea");
+                console.log(tName);
+                outputDiv.innerHTML = tName;
+                eel.pickcName();
+            }
+
+            function btnctrl(){
+                if(headtime>1){
+                    location.href="login.html"
+                }
+                else{
+                    console.log("btn pass")
+                }
+            }
+
+        </script>
+    </head>
+    <body onload="calltName()">
+        <div id="top">
+        <h1>出欠管理システム</h1>
+        </div>
+        <div class="infoarea">
+            <div class="namearea">
+            <p id="tNameArea">読込中...</p>
+            </div>
+            <div class="btnarea">
+            <button id="tologinbtn" onclick="btnctrl()" >ログアウト</button>
+            </div>
+        </div>
+        <div>
+            <p>
+                <table id="adminTable">
+                    <tr id="clT1"><td width="6%" id="day1" ></td><td width="10%" id="clPeriod1"></td><td width="36%" id="clName1"></td><td width="16%" id="clConfig1"><a href="classConfig.html?clid=101">講義設定</a></td><td width="16%" id="IOList1"><a href="showIOList.html?clid=101">出欠リスト</a></td><td width="16%"  id="clStart1"><a href="checkin.html?clid=101">受付開始</a></td></tr>
+                    <tr id="clT2"><td id="day2"></td><td id="clPeriod2"></td><td id="clName2"></td><td id="clConfig2"><a href="classConfig.html?clid=102">講義設定</a></td><td id="IOList"><a href="showIOList.html?clid=102">出欠リスト</a></td><td id="clStart2"><a href="checkin.html?clid=102">受付開始</a></td></tr>
+                    <tr id="clT3"><td id="day3"></td><td id="clPeriod3"></td><td id="clName3"></td><td id="clConfig3"><a href="classConfig.html?clid=103">講義設定</a></td><td id="IOList"><a href="showIOList.html?clid=103">出欠リスト</a></td><td id="clStart3"><a href="checkin.html?clid=103">受付開始</a></td></tr>
+                    <tr id="clT4"><td id="day4"></td><td id="clPeriod4"></td><td id="clName4"></td><td id="clConfig4"><a href="classConfig.html?clid=104">講義設定</a></td><td id="IOList"><a href="showIOList.html?clid=104">出欠リスト</a></td><td id="clStart4"><a href="checkin.html?clid=104">受付開始</a></td></tr>
+                    <tr id="clT5"><td id="day5"></td><td id="clPeriod5"></td><td id="clName5"></td><td id="clConfig5"><a href="classConfig.html?clid=105">講義設定</a></td><td id="IOList"><a href="showIOList.html?clid=105">出欠リスト</a></td><td id="clStart5"><a href="checkin.html?clid=105">受付開始</a></td></tr>
+                    <!-- <script src="adminTable.js"> -->
+                    <script>
+                    eel.expose(addcData);
+                    function addcData(tc1Name, tc2Name, tcDay, tcPeriod){
+                        //表を作成for{innerHTML}
+                        var cDay1 = document.getElementById("day1");
+                        cDay1.innerHTML = tcDay[0];
+                        var cPeriod1 = document.getElementById("clPeriod1");
+                        cPeriod1.innerHTML = tcPeriod[0];
+                        var cName1 = document.getElementById("clName1");
+                        cName1.innerHTML = tc1Name;
+
+                        var cDay2 = document.getElementById("day2");
+                        cDay2.innerHTML = tcDay[1];
+                        var cPeriod2 = document.getElementById("clPeriod2");
+                        cPeriod2.innerHTML = tcPeriod[1];
+                        var cName2 = document.getElementById("clName2");
+                        cName2.innerHTML = tc2Name;
+                    }
+                    </script>
+                </table>
+            </p>
+            <div class="btnarea2">
+                <button id="tologinbtn" onclick="location.href='setTemporaryClass.html'">臨時の講義を追加</button>
+            </div>
+        </div>
+        <div class="underbar">
+            <p id="datetime">
+                <script src="timeshow.js">
+                </script>
+            </p>
+        </div>
+    </body>
+</html>
