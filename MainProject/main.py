@@ -369,6 +369,10 @@ def openIOcsv(cID, cName):
     print(timespan)
     print(tmp/60)
 
+    #出席リスト更新
+    def touchIDcard(no):
+        eel.showIDinfo(stdID[no], stdName[no])
+
     # タッチのトリガー
     eel.sleep(3)
     for s in range(len(stdIDm)):
@@ -377,6 +381,7 @@ def openIOcsv(cID, cName):
                 timespan[s] = (timespan[s] * -1) + 1
             print(timespan[s], end=" ")
             print(stdIDm[s])
+            touchIDcard(s)
             eel.sleep(timespan[s])
         else:
             # 遅刻ちゃん
@@ -391,6 +396,11 @@ def openIOcsv(cID, cName):
             else:
                 eel.sleep(3)
             print(stdIDm[s])
+            touchIDcard(s)
+
+    
+
+
 
 @eel.expose
 def generateIOcsvName(clid):
@@ -414,7 +424,7 @@ def generateIOcsvName(clid):
     eel.getIOcsvName(IOcsvName)
 
 
-#出席リスト更新
+
 
 
 #これがないと動かないんでよ

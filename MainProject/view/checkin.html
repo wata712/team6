@@ -33,6 +33,14 @@
             eel.openIOcsv(tccID, cConfig);
         }
 
+        eel.expose(showIDinfo);
+        function showIDinfo(stdID, stdName){
+            console.log(stdID);
+            console.log(stdName);
+            var outputcName = document.getElementById("stdinfo");
+            outputcName.innerHTML = stdID + "  " + stdName;
+        }
+
         function getParam(name, url) {
             if (!url) url = window.location.href;
             name = name.replace(/[\[\]]/g, "\\$&");
