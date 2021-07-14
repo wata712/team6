@@ -11,7 +11,7 @@ path="Sample\m"
 os.chdir(path)
 #↑CSVファイルが保管されているディレクトリの指定が必要だった
 
-#こっちに実装用,現在は各生徒ごとに'出席'の数をカウントするようになってます。
+#各生徒ごとに'出席'の数をカウント
 csv_list3=glob.glob("sample_listbox/*.csv")
 for atdlist_csvdata in csv_list3:
     count = {}
@@ -29,7 +29,7 @@ for atdlist_csvdata in csv_list3:
 
     stnumb_list=[]
     atd_count_list=[]
-    list_length=len(stnumb_list)
+    
 
     for key, value in count.items():
         att_counter='{}: {:d}'.format(key,value)
@@ -42,12 +42,13 @@ for atdlist_csvdata in csv_list3:
 
 #人数
 list_length=len(stnumb_list)-1
-#print(list_length)
-w_list_length=list_length*2
-print(w_list_length)
+print(list_length)
+
 #リストの先頭('出席'と出席数)を削除
-stnumb_list.remove('出席')
-atd_count_list.remove(list_length)
+#stnumb_list.remove('出席')
+
+#atd_count_list.remove(list_length)
+
 
 #print(alatd_list)
 print(stnumb_list)
@@ -55,10 +56,10 @@ print(atd_count_list)
 
 #↓ここから横棒グラフ作成
 fig=plt.figure()
+#学生の数,0から連続した整数のリスト
 y_set=list(range(list_length))
 #print(y_set)    
 
 graph1=plt.barh(y_set,atd_count_list,height=0.5)
-
 plt.yticks(y_set,stnumb_list)
 plt.show()
