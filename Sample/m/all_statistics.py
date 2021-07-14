@@ -122,9 +122,9 @@ fig=plt.figure()
 #学生の数,0から連続した整数のリスト
 y_set=list(range(list_length))
 
-graph1=plt.bar(y_set,atd_count_list,align="edge",width=-0.3,color="green")
-graph2=plt.bar(y_set,atd_count_list2,align="center",width=0.2,color="blue")
-graph3=plt.bar(y_set,atd_count_list3,align="edge",width=0.3,color="red")
-
+graph1=plt.bar(y_set,atd_count_list,align="edge",width=-0.5,color="green",label="出席")
+graph2=plt.bar(y_set,atd_count_list2,align="center",width=0.5,color="blue",label="遅刻")
+graph3=plt.bar(y_set,atd_count_list3,align="edge",width=0.5,color="red",label="欠席")
 plt.xticks(y_set,stnumb_list,rotation=90)
+plt.legend()
 plt.show()
