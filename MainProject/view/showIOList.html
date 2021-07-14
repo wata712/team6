@@ -2,24 +2,23 @@
 <html>
     <head>
         <script src="eel.js"></script>
-        <script src="csv2table.js"></script>
+        <script src="csv2table.js" charset="UTF-8"></script>
         <title>showAttendanceList</title>
         <link rel="stylesheet" href="showIOList.css">
     </head>
     <script>
-        eel.expose(getIOcsvName);
-        function getIOcsvName(IOcsvName){
-            console.log(IOcsvName);
-            var tmp = document.getElementsByClassName("csv2table");
-            var val = IOcsvName;
-            tmp[0].setAttribute("data-src",val);
-        }
+        // eel.expose(getIOcsvNamex);
+        // function getIOcsvNamex(IOcsvName){
+        //     console.log(IOcsvName);
+        //     // var tmp = document.getElementsByClassName("csv2table");
+        //     // tmp.setAttribute("data-src",IOcsvName);
+        // }
 
         function calltName(){
             eel.picktName();
             var clid = getParam("clid");
             console.log(clid);
-            eel.generateIOcsvName(clid)
+            eel.generateIOcsvName(clid);
         }
 
         eel.expose(printtName);
@@ -53,7 +52,7 @@
             </div>
         </div>
         <div class="tablecsv">
-            <section class="csv2table" data-label="rice"></section>
+            <section class="csv2table" charset="UTF-8" data-label="rice"></section>
         </div>
         <div class="underbar">
             <p id="datetime">

@@ -1,4 +1,12 @@
 // https://source.sae-suki-blog.net/conoha-to-weblog/csv-to-table-javascript/
+var csvName = "./Mainproject/IOList/保健体育/保健体育2021-07-14出欠リスト.csv"
+eel.expose(getIOcsvName);
+function getIOcsvName(IOcsvName){
+    console.log(IOcsvName);
+    csvName = IOcsvName;
+    // var tmp = document.getElementsByClassName("csv2table");
+    // tmp.setAttribute("data-src",IOcsvName);
+}
 window.addEventListener('load', async () => {
     
     const csv2tableClass = document.getElementsByClassName('csv2table');
@@ -7,8 +15,9 @@ window.addEventListener('load', async () => {
     
     for (let n = 0; n < elements.length; n++) {
         // csv読み込み //////////
-        const src = elements[n].getAttribute('data-src');
-        const text = await (await fetch(src)).text();
+        const src = csvName;
+        console.log(csvName);
+        const text = await (await fetch(csvName)).text();
         
         // セル分割 //////////
         const cells = CSV.parse(text);
