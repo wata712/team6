@@ -347,9 +347,9 @@ def openIOcsv(cID, cName):
         with open(IOcsvName, "w", encoding="utf_8") as IOcsv:
             writer = csv.writer(IOcsv)
             writer.writerow(["学籍番号", "氏名", "IDm", "入室時刻", "出欠"])
-        
-        
-    
+            for k in range(len(stdIDm)):
+                writer.writerow([stdID[k], stdName[k], stdIDm[k], 0000, "欠席"])
+
     print(stdID)
     print(stdName)
 
@@ -359,9 +359,9 @@ def openIOcsv(cID, cName):
     # カードタッチ間隔
     timespanx = numpy.random.normal(
         loc = 7,                    # 平均
-        scale = (len(stdIDm)/6),   # 標準偏差
-        size = 120                  # 出力配列のサイズ
-        )
+        scale = (len(stdIDm)/6),    # 標準偏差
+        size = len(stdIDm)          # 出力配列のサイズ
+    )
     timespan = timespanx
     tmp = 0
     for j in range(len(timespanx)):
