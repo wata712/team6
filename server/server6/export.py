@@ -16,6 +16,7 @@ if rows:
     # ヘッダデータを作る
     for i in cursor.description:
         columnNames.append(i[0])
+    #path変更忘れずに
     with open('C:\\Users\\tkr\\Desktop\\team6\\server\\server6\\test.csv','w',newline='', encoding='utf-8') as csvfile:
         # 辞書順序を指定しておく
         csvwriter = csv.DictWriter(csvfile,columnNames,delimiter=",",quotechar='"')
