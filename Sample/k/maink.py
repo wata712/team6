@@ -7,8 +7,6 @@ import csv
 import datetime
 import numpy
 import random
-import importer
-import exporter
 
 # P000の初期PWは000b
 

@@ -1,0 +1,97 @@
+body{
+    background-color: #06005f;
+    color: #ffffff
+}
+
+h1{
+    font-size: 1.5em;
+}
+
+.infoarea{
+    display: flex;
+}
+.namearea{
+    width: 80%;
+}
+.btnarea{
+    width: 20%;
+    position: absolute;
+    top: 18%;
+    left: 77%;
+}
+.btnarea2{
+    width: 24%;
+    position: absolute;
+    top: 80%;
+    left: 73%;
+}
+
+#tologinbtn{
+    padding: 5px 20px 5px 20px;
+    position: relative;
+    float: right;
+    text-decoration: none;
+    background: #06005f;
+    color: #ffffff;/*文字色*/
+    font-weight: bold;
+    border: solid 2px #67c5ff;
+    border-radius: 3px;
+    transition: .4s;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+}
+#tologinbtn:hover {
+    background: #67c5ff;
+    color: white;
+  }
+#tologinbtn:active {
+    background: #67c5ff;
+    color: white;
+    box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1);
+    transform: translateY(2px);
+  }
+
+.top {
+    background: #06005f;
+  }
+
+.underbar{
+    width: 100%;
+    height: 1.5em;
+    padding-bottom: 0ex;
+    padding-left: 20em;
+    background-color: #67c5ff;
+    position: fixed;
+    bottom: 0em;
+    right: 0;
+}
+
+p#datetime{
+    height: 1.5em;
+    position: relative;
+    top: -15px;
+    left: 10px;
+}
+
+table{
+    table-layout: fixed;
+    width: 100%;
+    /* border: solid 2px #67c5ff; */
+    text-align: center;
+    border-collapse: collapse;
+}
+
+
+tr:nth-child(odd){
+    background-color: #dddddd;
+    color: #000000;
+}
+
+tr:nth-last-child(odd){
+    background-color: #afadc4;
+    color: #000000;
+}
+
+a{
+    color: #333333;
+}
+

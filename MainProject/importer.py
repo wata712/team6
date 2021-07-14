@@ -7,8 +7,7 @@ connection = MySQLdb.connect(db="team6",user="root",passwd="",charset="utf8")
 cursor=connection.cursor()
 
 #ここでは教員・担当科目リスト.csvをMySQLにinsert
-#path変更忘れずに
-f = open("C:\\Users\\tkr\\Desktop\\team6\\server\\server6\\教員・担当科目リスト.csv", "r", encoding="utf-8")
+f = open("教員・担当科目リスト.csv", "r", encoding="utf-8")
 
 reader = csv.reader(f)
 header = next(reader)
