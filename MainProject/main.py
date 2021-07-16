@@ -1,9 +1,14 @@
+### Team6 main.py ###
+### ブラウザウィンドウの推奨アスペクト比 4:3 または 16:9 または 21:9 ###
+
 import os
 from re import S
 from subprocess import NORMAL_PRIORITY_CLASS
 from time import time
 import eel
 import csv
+import sys
+import operator
 import datetime
 import numpy
 import random
@@ -343,13 +348,21 @@ def openIOcsv(cID, cName):
         except(IndexError):
             pass
 
+    #出席リストcsv作成
     if(os.path.exists(IOcsvName) == False):
         with open(IOcsvName, "w", encoding="utf_8") as IOcsv:
             writer = csv.writer(IOcsv)
             writer.writerow(["学籍番号", "氏名", "IDm", "入室時刻", "出欠"])
-        
-        
-    
+            for k in range(len(stdIDm)):
+                writer.writerow([stdID[k], stdName[k], stdIDm[k], 0000, "欠席"])
+        editcsv = csv.reader(open(IOcsvName), encoding="utf_8", delimiter=",")
+        print(editcsv)
+        sortedcsv = sorted(editcsv, key = operator.itemgetter(0))
+        print(sortedcsv)
+
+        # 1行目にヘッダーが存在する場合、nextで読み飛ばす
+        # header = next(file)
+
     print(stdID)
     print(stdName)
 
@@ -359,9 +372,9 @@ def openIOcsv(cID, cName):
     # カードタッチ間隔
     timespanx = numpy.random.normal(
         loc = 7,                    # 平均
-        scale = (len(stdIDm)/6),   # 標準偏差
-        size = 120                  # 出力配列のサイズ
-        )
+        scale = (len(stdIDm)/6),    # 標準偏差
+        size = len(stdIDm)          # 出力配列のサイズ
+    )
     timespan = timespanx
     tmp = 0
     for j in range(len(timespanx)):
