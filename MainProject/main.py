@@ -351,7 +351,7 @@ def openIOcsv(cID, cName):
 
     #出席リストcsv作成
     if(os.path.exists(IOcsvName) == False):
-        with open(IOcsvName, "w", encoding="utf_8") as IOcsv:
+        with open(IOcsvName, "w", encoding="utf_8", newline="") as IOcsv:
             writer = csv.writer(IOcsv)
             writer.writerow(["学籍番号", "氏名", "IDm", "入室時刻", "出欠"])
             for k in range(len(stdIDm)):
@@ -367,10 +367,12 @@ def openIOcsv(cID, cName):
             sortedIOdict = sorted(IOdict, key=lambda x:x["学籍番号"])
             # print(sortedIOdict)
 
-        with open(IOcsvName, "w", encoding="utf_8") as IOcsva:
+        with open(IOcsvName, "w", encoding="utf_8", newline="") as IOcsva:
             writer2 = csv.writer(IOcsva)
+            writer2.writerow(["学籍番号", "氏名", "IDm", "入室時刻", "出欠"])
             for g in range(len(stdIDm)):
-                writer2.writerow(sortedIOdict[g])
+                dictvalues = sortedIOdict[g].values()
+                writer2.writerow(dictvalues)
 
             # for row2 in sortedrow:
             #     print(row2)
