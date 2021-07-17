@@ -5,6 +5,7 @@ import os
 from re import S
 from subprocess import NORMAL_PRIORITY_CLASS
 from time import time
+from bottle import WSGIHeaderDict
 import eel
 import csv
 import sys
@@ -358,9 +359,21 @@ def openIOcsv(cID, cName):
 
         with open(IOcsvName, "r", encoding="utf_8") as IOcsvs:
             reader = csv.DictReader(IOcsvs)
+            IOdict = []
             for row in reader:
                 print(row)
-            # print(reader)
+                IOdict.append(row)
+            # print(IOdict)
+            sortedIOdict = sorted(IOdict, key=lambda x:x["学籍番号"])
+            # print(sortedIOdict)
+
+        with open(IOcsvName, "w", encoding="utf_8") as IOcsva:
+            writer2 = csv.writer(IOcsva)
+            for g in range(len(stdIDm)):
+                writer2.writerow(sortedIOdict[g])
+
+            # for row2 in sortedrow:
+            #     print(row2)
             # sortedreader = sorted(reader.items(), key=lambda x:x[0])
             # print(sortedreader)
         # editcsv = csv.reader(open(IOcsvName), encoding="utf_8", delimiter=",")
