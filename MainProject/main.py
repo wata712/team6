@@ -355,10 +355,18 @@ def openIOcsv(cID, cName):
             writer.writerow(["学籍番号", "氏名", "IDm", "入室時刻", "出欠"])
             for k in range(len(stdIDm)):
                 writer.writerow([stdID[k], stdName[k], stdIDm[k], 0000, "欠席"])
-        editcsv = csv.reader(open(IOcsvName), encoding="utf_8", delimiter=",")
-        print(editcsv)
-        sortedcsv = sorted(editcsv, key = operator.itemgetter(0))
-        print(sortedcsv)
+
+        with open(IOcsvName, "r", encoding="utf_8") as IOcsvs:
+            reader = csv.DictReader(IOcsvs)
+            for row in reader:
+                print(row)
+            # print(reader)
+            # sortedreader = sorted(reader.items(), key=lambda x:x[0])
+            # print(sortedreader)
+        # editcsv = csv.reader(open(IOcsvName), encoding="utf_8", delimiter=",")
+        # print(editcsv)
+        # sortedcsv = sorted(editcsv, key = operator.itemgetter(0))
+        # print(sortedcsv)
 
         # 1行目にヘッダーが存在する場合、nextで読み飛ばす
         # header = next(file)
