@@ -332,7 +332,7 @@ def openIOcsv(cID, cName):
     if(os.path.exists(dirName) == False):
         os.mkdir(dirName)
     #履修者のリストを取得
-    with open(stdcsvName, "r", encoding="utf_8", errors="", newline="") as stdcsv:
+    with open(stdcsvName, "r", encoding="utf_8", errors="") as stdcsv:
         reader = csv.DictReader(stdcsv)
         for row in reader:
             stdIDx[row["IDm"]] = row["学籍番号"]
@@ -349,11 +349,10 @@ def openIOcsv(cID, cName):
         except(IndexError):
             pass
 
-    #出席リストcsv作成
+    #初期出欠リストcsv作成
     if(os.path.exists(IOcsvName) == False):
         with open(IOcsvName, "w", encoding="utf_8", newline="") as IOcsv:
             writer = csv.writer(IOcsv)
-            writer.writerow(["学籍番号", "氏名", "IDm", "入室時刻", "出欠"])
             for k in range(len(stdIDm)):
                 writer.writerow([stdID[k], stdName[k], stdIDm[k], 0000, "欠席"])
 
@@ -361,36 +360,25 @@ def openIOcsv(cID, cName):
             reader = csv.DictReader(IOcsvs)
             IOdict = []
             for row in reader:
-                print(row)
+                # print(row)
                 IOdict.append(row)
             # print(IOdict)
             sortedIOdict = sorted(IOdict, key=lambda x:x["学籍番号"])
             # print(sortedIOdict)
 
-        with open(IOcsvName, "w", encoding="utf_8", newline="") as IOcsva:
-            writer2 = csv.writer(IOcsva)
+        with open(IOcsvName, "w", encoding="utf_8", newline="") as IOcsvw:
+            writer2 = csv.writer(IOcsvw)
             writer2.writerow(["学籍番号", "氏名", "IDm", "入室時刻", "出欠"])
             for g in range(len(stdIDm)):
                 dictvalues = sortedIOdict[g].values()
                 writer2.writerow(dictvalues)
 
-            # for row2 in sortedrow:
-            #     print(row2)
-            # sortedreader = sorted(reader.items(), key=lambda x:x[0])
-            # print(sortedreader)
-        # editcsv = csv.reader(open(IOcsvName), encoding="utf_8", delimiter=",")
-        # print(editcsv)
-        # sortedcsv = sorted(editcsv, key = operator.itemgetter(0))
-        # print(sortedcsv)
 
-        # 1行目にヘッダーが存在する場合、nextで読み飛ばす
-        # header = next(file)
-
-    print(stdID)
-    print(stdName)
+    # print(stdID)
+    # print(stdName)
 
     # for in rangeでstdIDとstdNameをJS関数に投げることで出席
-    # 時間は適度な間隔をあけて
+    # 適度な間隔をあけて
 
     # カードタッチ間隔
     timespanx = numpy.random.normal(
@@ -403,12 +391,17 @@ def openIOcsv(cID, cName):
     for j in range(len(timespanx)):
         timespan[j] = int(timespan[j])
         tmp = tmp + timespan[j]
-    print(timespan)
+    # print(timespan)
     print(tmp/60)
 
     #出席リスト更新
     def touchIDcard(no):
         eel.showIDinfo(stdID[no], stdName[no])
+        with open(stdcsvName, "a", encoding="utf_8", errors="") as stdcsva:
+            readera = csv.DictReader(stdcsva)
+            for row in readera:
+                stdIDx[row["IDm"]] = row["学籍番号"]
+                stdNamex[row["IDm"]] = row["名前"]
 
     # タッチのトリガー
     eel.sleep(3)
