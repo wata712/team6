@@ -10,6 +10,7 @@ import csv
 import sys
 import operator
 import datetime
+from datetime import datetime as dt
 import numpy
 import random
 import matplotlib.pyplot as plt
@@ -281,8 +282,8 @@ def clidSet(clid):
     # eel.initialLT(tccLT1, tccLT2)
     # return tccCT1, tccCT2, tccLT1, tccLT2
 
-date = str(datetime.date.today())
-print(date)
+datew = str(datetime.date.today())
+print(datew)
 
 #仮の出席者
 def stdSim(cID):
@@ -317,8 +318,10 @@ IOcsvName = "xx"
 #出欠リストCSV操作
 @eel.expose
 def openIOcsv(cID, cName):
-    global date
+    global datew
     global IOcsvName
+
+    
 
     tcxCT1 = {}
     tcxCT2 = {}
@@ -336,10 +339,16 @@ def openIOcsv(cID, cName):
     tccCT2 = str(tcxCT2[cName]) + ":00"
     tccLT1 = str(tcxCT1[cName][0:3]) + str(int(tcxCT1[cName][3:5]) + int(tcxLT1[cName])) + ":00"
     tccLT2 = str(tcxCT1[cName][0:3]) + str(int(tcxCT1[cName][3:5]) + int(tcxLT2[cName])) + ":00"
-    print(tccCT1)
-    print(tccCT2)
-    print(tccLT1)
-    print(tccLT2)
+    
+    tccCT1t = dt.strptime(tccCT1, '%H:%M:%S')
+    tccCT2t = dt.strptime(tccCT2, '%H:%M:%S')
+    tccLT1t = dt.strptime(tccLT1, '%H:%M:%S')
+    tccLT2t = dt.strptime(tccLT2, '%H:%M:%S')
+    
+    print(tccCT1t.time)
+    print(tccCT2t.time)
+    print(tccLT1t.time)
+    print(tccLT2t.time)
 
 
     stdIDm = stdSim(cID)
@@ -351,7 +360,7 @@ def openIOcsv(cID, cName):
     stdName = []
     print("Preparations are underway: " + cName)
     dirName = "./Mainproject/IOList/" + cName
-    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + date + "出欠リスト.csv"
+    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
     stdcsvName = "./data/履修者-" + cID + ".csv"
     if(os.path.exists(dirName) == False):
         os.mkdir(dirName)
@@ -361,7 +370,8 @@ def openIOcsv(cID, cName):
         for row in reader:
             stdIDx[row["IDm"]] = row["学籍番号"]
             stdNamex[row["IDm"]] = row["名前"]
-    print("履修者数: " + str(len(stdIDm)))
+    stdlen = len(stdIDm)
+    print("履修者数: " + str(stdlen))
     for i in range(len(stdIDm)):
         try:
             try:
@@ -418,11 +428,17 @@ def openIOcsv(cID, cName):
     print(tmp/60)
 
     #出席リスト更新
-    def touchIDcard(no):
+    def touchIDcard(no, stdlenx):
         dtNow = datetime.datetime.now()
         now = str(dtNow.time())[0:8]
         print(now)
+
+        
+        status = "出席"
+
         eel.showIDinfo(stdID[no], stdName[no])
+        eel.showNo(no + 1, stdlenx)
+        eel.showStatus(status)
 
         f = open(IOcsvName, "r", encoding="utf-8")
         csv_data = csv.reader(f)
@@ -430,12 +446,13 @@ def openIOcsv(cID, cName):
         f.close()
         
         # 更新後のデータ
-        data = [stdID[no], stdName[no], stdIDm[no], now, "出席"]
+        data = [stdID[no], stdName[no], stdIDm[no], now, status]
 
         for i in range(len(list)):
             if list[i][0]==data[0]:
                 list[i] = data
 
+        # csv更新
         with open(IOcsvName, "w", encoding="utf_8", newline="") as f:
             writer = csv.writer(f)
             writer.writerows(list)
@@ -448,7 +465,7 @@ def openIOcsv(cID, cName):
                 timespan[s] = (timespan[s] * -1) + 1
             print(timespan[s], end=" ")
             print(stdIDm[s])
-            touchIDcard(s)
+            touchIDcard(s, stdlen)
             eel.sleep(timespan[s])
         else:
             # 遅刻ちゃん
@@ -463,7 +480,7 @@ def openIOcsv(cID, cName):
             else:
                 eel.sleep(3)
             print(stdIDm[s])
-            touchIDcard(s)
+            touchIDcard(s, stdlen)
 
 
 @eel.expose
@@ -483,15 +500,17 @@ def generateIOcsvName(clid):
     except(IndexError):
         pass
 
-    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + date + "出欠リスト.csv"
+    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
     print(IOcsvName)
+    eel.getcName(cName)
     eel.getIOcsvName(IOcsvName)
 
+@eel.expose
 def createOneClassGraph(cName):
     # 講義回グラフ作成
     # author: kurita
 
-    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + date + "出欠リスト.csv"
+    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
 
     #グラフタイトル用の読み込みです。
     file_path = IOcsvName
@@ -593,11 +612,12 @@ def createOneClassGraph(cName):
     plt.show()
     #ここまでが一つの出席リストをグラフ化するスクリプト
 
+@eel.expose
 def createCumulativeClassGraph(cName):
     # 累積講義グラフ作成
     # author: kurita
 
-    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + date + "出欠リスト.csv"
+    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
 
     #各生徒ごとに'出席'の数をカウント
     csv_list3=glob.glob(IOcsvName)

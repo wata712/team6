@@ -27,6 +27,7 @@ h1{
 }
 
 #toadminbtn{
+    width: 110px;
     padding: 5px 20px 5px 20px;
     position: relative;
     float: right;
@@ -42,7 +43,7 @@ h1{
 #toadminbtn:hover {
     background: #67c5ff;
     color: white;
-  }
+}
 #toadminbtn:active {
     background: #67c5ff;
     color: white;
