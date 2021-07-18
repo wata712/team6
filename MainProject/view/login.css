@@ -35,8 +35,7 @@ form dl dd{
 }
 */
 #loginbtn{
-    width: 110px;
-    padding: 5px 0px 5px 0px;
+    padding: 5px 20px 5px 20px;
     position: relative;
     float: right;
     text-decoration: none;
