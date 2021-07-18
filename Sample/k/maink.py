@@ -7,6 +7,7 @@ import csv
 import datetime
 import numpy
 import random
+import subprocess #ファイル開くのに必要なモジュール
 
 # P000の初期PWは000b
 
@@ -342,7 +343,7 @@ def openIOcsv(cID, cName):
             pass
 
     if(os.path.exists(IOcsvName) == False):
-        with open(IOcsvName, "w", encoding="SJIS") as IOcsv:
+        with open(IOcsvName, "w", encoding="SJIS") as IOcsv: #文字コードをutf-8からSJISにしたところ、csvをExcelで開いた際文字化けがなくなりました
             writer = csv.writer(IOcsv)
             writer.writerow(["学籍番号", "氏名", "IDm", "入室時刻", "出欠"])
         
@@ -422,13 +423,15 @@ def generateIOcsvName(clid):
     print(IOcsvName)
     eel.getIOcsvName(IOcsvName)
 
-    EXCEL = IOcsvName
-    import subprocess
-    subprocess.Popen(['start', EXCEL], shell=True)
 
+    EXCEL = IOcsvName
+    subprocess.Popen(['start', EXCEL], shell=True)
+    #この2行をdef generateIOcsvName(clid):内に入れるとボタンを押した際にExcelファイルが開きます
 
 
 #これがないと動かないんでよ
 while True:
     eel.sleep(2.0)
 
+#変更点（伊藤）
+#10、346、427、428
