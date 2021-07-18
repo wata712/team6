@@ -5,6 +5,7 @@ import os
 from re import S
 from subprocess import NORMAL_PRIORITY_CLASS
 from time import time
+from bottle import WSGIHeaderDict
 import eel
 import csv
 import sys
@@ -331,7 +332,7 @@ def openIOcsv(cID, cName):
     if(os.path.exists(dirName) == False):
         os.mkdir(dirName)
     #履修者のリストを取得
-    with open(stdcsvName, "r", encoding="utf_8", errors="", newline="") as stdcsv:
+    with open(stdcsvName, "r", encoding="utf_8", errors="") as stdcsv:
         reader = csv.DictReader(stdcsv)
         for row in reader:
             stdIDx[row["IDm"]] = row["学籍番号"]
@@ -348,26 +349,35 @@ def openIOcsv(cID, cName):
         except(IndexError):
             pass
 
-    #出席リストcsv作成
+    #初期出欠リストcsv作成
     if(os.path.exists(IOcsvName) == False):
-        with open(IOcsvName, "w", encoding="utf_8") as IOcsv:
+        with open(IOcsvName, "w", encoding="utf_8", newline="") as IOcsv:
             writer = csv.writer(IOcsv)
-            writer.writerow(["学籍番号", "氏名", "IDm", "入室時刻", "出欠"])
+            writer.writerow(["学籍番号", "名前", "IDm", "入室時刻", "出欠"])
             for k in range(len(stdIDm)):
-                writer.writerow([stdID[k], stdName[k], stdIDm[k], 0000, "欠席"])
-        editcsv = csv.reader(open(IOcsvName), encoding="utf_8", delimiter=",")
-        print(editcsv)
-        sortedcsv = sorted(editcsv, key = operator.itemgetter(0))
-        print(sortedcsv)
+                writer.writerow([stdID[k], stdName[k], stdIDm[k], "00:00:00", "欠席"])
 
-        # 1行目にヘッダーが存在する場合、nextで読み飛ばす
-        # header = next(file)
+        # ソート
+        with open(IOcsvName, "r", encoding="utf_8") as IOcsvs:
+            reader = csv.DictReader(IOcsvs)
+            IOdict = []
+            for row in reader:
+                IOdict.append(row)
+            sortedIOdict = sorted(IOdict, key=lambda x:x["学籍番号"])
 
-    print(stdID)
-    print(stdName)
+        with open(IOcsvName, "w", encoding="utf_8", newline="") as IOcsvw:
+            writer2 = csv.writer(IOcsvw)
+            writer2.writerow(["学籍番号", "名前", "IDm", "入室時刻", "出欠"])
+            for g in range(len(stdIDm)):
+                dictvalues = sortedIOdict[g].values()
+                writer2.writerow(dictvalues)
+
+
+    # print(stdID)
+    # print(stdName)
 
     # for in rangeでstdIDとstdNameをJS関数に投げることで出席
-    # 時間は適度な間隔をあけて
+    # 適度な間隔をあけて
 
     # カードタッチ間隔
     timespanx = numpy.random.normal(
@@ -380,12 +390,54 @@ def openIOcsv(cID, cName):
     for j in range(len(timespanx)):
         timespan[j] = int(timespan[j])
         tmp = tmp + timespan[j]
-    print(timespan)
+    # print(timespan)
     print(tmp/60)
 
     #出席リスト更新
     def touchIDcard(no):
+        dtNow = datetime.datetime.now()
+        now = str(dtNow.time())[0:8]
+        print(now)
         eel.showIDinfo(stdID[no], stdName[no])
+
+        # with open(IOcsvName, "w", encoding="utf_8", newline="") as IOcsvw:
+        #     writer2 = csv.writer(IOcsvw)
+        #     writer2.writerow(["学籍番号", "名前", "IDm", "入室時刻", "出欠"])
+        #     for g in range(len(stdIDm)):
+        #         dictvalues = sortedIOdict[g].values()
+        #         writer2.writerow(dictvalues)
+
+
+        stdInTimex = {}
+        stdIOx = {}
+        stdInTime = []
+        stdIO = []
+
+        # lst = []
+        with open(IOcsvName, "a", encoding="utf_8", errors="", newline="") as IOcsva:
+        #     readera = csv.reader(stdcsva)
+        #     lst = [r for r in readera]
+        # IOdata = ([stdID[no], stdName[no], stdIDm[no], now, "出席"])
+        # for row in lst:
+        #     if row[0] == stdID[no]:
+        #         row.clear()
+        #         row.extend(IOdata)
+
+            readera = csv.DictReader(IOcsva)
+            for row in readera:
+                stdInTimex[row["学籍番号"]] = row["入室時刻"]
+                stdIOx[row["学籍番号"]] = row["出欠"]
+        for v in range(len(row)):
+            if v == no:
+                
+
+                stdInTime = str(stdInTimex[stdID[v]])
+                stdIO = str(stdIOx[stdID[v]])
+        print(stdInTime)
+        print(stdIO)
+
+        # with open(IOcsvName, "w", encoding="utf_8", errors="", newline="") as IOcsvc:
+        #     writer3 = csv.writer(IOcsvc)
 
     # タッチのトリガー
     eel.sleep(3)
