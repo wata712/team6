@@ -12,6 +12,9 @@ import operator
 import datetime
 import numpy
 import random
+import matplotlib.pyplot as plt
+import glob
+
 # import importer
 # import exporter
 
@@ -462,9 +465,6 @@ def openIOcsv(cID, cName):
             print(stdIDm[s])
             touchIDcard(s)
 
-    
-
-
 
 @eel.expose
 def generateIOcsvName(clid):
@@ -487,9 +487,235 @@ def generateIOcsvName(clid):
     print(IOcsvName)
     eel.getIOcsvName(IOcsvName)
 
+def createOneClassGraph(cName):
+    # 講義回グラフ作成
+    # author: kurita
+
+    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + date + "出欠リスト.csv"
+
+    #グラフタイトル用の読み込みです。
+    file_path = IOcsvName
+    file_name_path=os.path.basename(file_path)
+
+    #出席,遅刻,欠席のカウント
+    count = {}
+    with open("sample_listbox/保健体育2021-07-07出欠リスト.csv",encoding='UTF8') as fo:
+        atl_reader = csv.reader(fo)
+        atl_header = next(atl_reader)
+        data=fo
+        print(atl_header)
+        for row in atl_reader:
+            data2=row[4]
+            count.setdefault(data2,0)
+            count[data2] +=1
+
+    with open("sample_listbox/保健体育2021-07-07出欠リスト.csv",encoding='UTF8') as fc:
+        line_count=sum([1 for line in fc])
+
+    li_ct=line_count-1
+    print(li_ct)
+    y_list=[]
+    x_label=[]
+    #グラフ保存用
+    fig=plt.figure()
+
+    plt.title(file_name_path)
+    for key, value in count.items():
+        att_counter='{}: {:d}'.format(key,value)
+        #y軸設定用
+        y_list.append(int(value))
+        #x軸の文字ラベル用
+        x_label.append('{}'.format(key))
+
+    #ここでy軸を降順にソート
+    y_list2=sorted(y_list,reverse=True)
+
+    #'遅刻''欠席'が一人もいないとき用の処理(y軸用)
+    if len(y_list2)==2:
+        y_list2.append(0)
+        #要素が2つのとき
+    elif len(y_list2)==1:
+        y_list2.append(0)
+        y_list2.append(0)
+        #要素が1つのとき
+    else:
+        y_list2
+        #要素が3つのとき
+
+    x=[0,1,2]
+
+    #このex_labelで出席遅刻欠席の順番を指定
+    ex_label=['出席','遅刻','欠席']
+
+    #'遅刻''欠席'が一人もいないとき用の処理(x軸用)
+    if len(x_label)==2:
+        if '出席' in x_label:
+            if '遅刻' in x_label:
+                x_label.append('欠席')
+                #'欠席'がないとき
+            else:
+                x_label.append('遅刻')
+                #'遅刻'がないとき
+        else:
+            x_label.append('出席')
+            #'出席'がないとき　←この場合はいらないとは思うが例外から外すために記載
+        #要素が2つのとき    
+    elif len(x_label)==1:
+        if '出席' in x_label:
+            x_label.append('遅刻')
+            x_label.append('欠席')
+            #'遅刻','欠席'がないとき
+        elif '遅刻' in x_label:
+            x_label.append('出席')
+            x_label.append('欠席')
+            #'出席''欠席'がないとき
+        else:
+            x_label.append('出席')
+            x_label.append('遅刻')
+            #'出席''遅刻'がないとき ←この場合はいらないとは思うが例外から外すために記載2
+    else:
+        x_label
+
+    x_label2=sorted(x_label,key=ex_label.index)
+
+    #↓棒グラフ作成
+    print(y_list2)
+    print(x_label2)
+    plt.ylim(0,li_ct)
+    graph=plt.bar(x,y_list2)
+    #棒の上に数値を挿入するための処理
+    height=y_list2
+    for rect in graph:
+        height=rect.get_height()
+        plt.annotate('{}'.format(height),xy=(rect.get_x() + rect.get_width()/2,height),xytext=(0,3),textcoords="offset points",ha='center',va='bottom')
+
+    plt.xticks(x,x_label2)
+    plt.show()
+    #ここまでが一つの出席リストをグラフ化するスクリプト
+
+def createCumulativeClassGraph(cName):
+    # 累積講義グラフ作成
+    # author: kurita
+
+    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + date + "出欠リスト.csv"
+
+    #各生徒ごとに'出席'の数をカウント
+    csv_list3=glob.glob(IOcsvName)
+    count = {}
+    for atdlist_csvdata in csv_list3:
+        
+        with open(atdlist_csvdata,encoding='UTF8') as f3:
+            atl_reader3 = csv.reader(f3)
+            atl_header3 = next(atl_reader3)
+            #print(atl_header3)
+            for row in atl_reader3:
+                data=row[0]
+                data2=row[4]
+                count.setdefault(data,0)
+                if '出席' in data2:
+                    count[data] +=1
+        
+        #alatd_list=[]
+        stnumb_list=[]
+        atd_count_list=[]
+        
+
+        for key, value in count.items():
+            att_counter='{}: {:d}'.format(key,value)
+            #学番と出席数リスト
+            #alatd_list.append(att_counter)
+            #学番リスト
+            stnumb_list.append('{}'.format(key))
+            #出席数リスト
+            atd_count_list.append(int(value))
+        #print(stnumb_list)
+        #print(atd_count_list)
+
+    count2 = {}
+    for atdlist_csvdata in csv_list3:
+        
+        with open(atdlist_csvdata,encoding='UTF8') as f4:
+            atl_reader4 = csv.reader(f4)
+            atl_header4 = next(atl_reader4)
+            #print(atl_header3)
+            for row in atl_reader4:
+                data3=row[0]
+                data4=row[4]
+                count2.setdefault(data3,0)
+                if '遅刻' in data4:
+                    count2[data3] +=1
+        
+        #alatd_list=[]
+        stnumb_list2=[]
+        atd_count_list2=[]
+        
+
+        for key2, value2 in count2.items():
+            att_counter2='{}: {:d}'.format(key2,value2)
+            #学番と出席数リスト
+            #alatd_list.append(att_counter)
+            #学番リスト
+            stnumb_list2.append('{}'.format(key2))
+            #出席数リスト
+            atd_count_list2.append(int(value2))
+        #print(stnumb_list)
+        #print(atd_count_list)
+    count3 = {}
+    for atdlist_csvdata in csv_list3:
+        
+        with open(atdlist_csvdata,encoding='UTF8') as f5:
+            atl_reader5 = csv.reader(f5)
+            atl_header5 = next(atl_reader5)
+            #print(atl_header3)
+            for row in atl_reader5:
+                data5=row[0]
+                data6=row[4]
+                count3.setdefault(data5,0)
+                if '欠席' in data6:
+                    count3[data5] +=1
+        
+        #alatd_list=[]
+        stnumb_list3=[]
+        atd_count_list3=[]
+        
+
+        for key3, value3 in count3.items():
+            att_counter3='{}: {:d}'.format(key3,value3)
+            #学番と出席数リスト
+            #alatd_list.append(att_counter)
+            #学番リスト
+            stnumb_list3.append('{}'.format(key3))
+            #出席数リスト
+            atd_count_list3.append(int(value3))
+        #print(stnumb_list)
+        #print(atd_count_list)
+    #人数
+    list_length=len(stnumb_list)
+    print(list_length)
+
+    #リストの先頭('出席'と出席数)を削除
+    #stnumb_list.remove('出席')
+
+    #atd_count_list.remove(list_length)
 
 
+    #print(alatd_list)
+    #print(stnumb_list)
+    #print(atd_count_list)
+    #print(stnumb_list2)
+    #print(atd_count_list2)
 
+    #↓ここから棒グラフ作成
+    fig=plt.figure()
+    #学生の数,0から連続した整数のリスト
+    y_set=list(range(list_length))
+
+    graph1=plt.bar(y_set,atd_count_list,align="edge",width=-0.5,color="green",label="出席")
+    graph2=plt.bar(y_set,atd_count_list2,align="center",width=0.5,color="blue",label="遅刻")
+    graph3=plt.bar(y_set,atd_count_list3,align="edge",width=0.5,color="red",label="欠席")
+    plt.xticks(y_set,stnumb_list,rotation=90)
+    plt.legend()
+    plt.show()
 
 #これがないと動かないんでよ
 while True:
