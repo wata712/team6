@@ -70,6 +70,30 @@ h1{
     text-align: center;
 }
 
+#sOrderArea{
+    font-size: 1.5em;
+    margin: auto;
+    text-align: center;
+}
+
+#statusArea{
+    width: 26%;
+    /* height: 0.9em; */
+    color: #ffffff;
+    font-size: 3.8em;
+    margin: auto;
+    padding: 0px, 10px, 0px, 10px;
+    text-align: center;
+    background-color: #94d6ff;
+    border: solid 6px #06005f;
+    border-radius: 8px;
+}
+br{
+    display: block;
+    content: "";
+    margin: 2px 0;
+}
+
 .top {
     background: #06005f;
   }

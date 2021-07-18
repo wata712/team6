@@ -42,7 +42,24 @@
             sleep(1, function () {
                 outputcName.innerHTML = "学生証をタッチしてください"
             });
-            
+        }
+
+        eel.expose(showNo);
+        function showNo(no, stdlen){
+            var order = no + " / " + stdlen;
+            var outputDiv = document.getElementById("sOrderArea");
+            console.log(order);
+            outputDiv.innerHTML = order;
+        }
+
+        eel.expose(showStatus);
+        function showStatus(status){
+            var outputDiv = document.getElementById("statusArea");
+            console.log(status);
+            outputDiv.innerHTML = status;
+            sleep(1.6, function () {
+                outputDiv.innerHTML = "";
+            });
         }
 
         function sleep(waitSec, callbackFunc) {
@@ -92,8 +109,10 @@
         <div>
             <p id="cDayArea">日曜  0限</p>
             <p id="cNameArea">受付開始準備中</p>
-            <br>
+            <br id="br">
             <p id="stdinfo">学生証をタッチしてください</p>
+            <p id="sOrderArea"></p>
+            <p id="statusArea"></p>
             
         </div>
         <div class="underbar">

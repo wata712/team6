@@ -12,6 +12,16 @@
             var clid = getParam("clid");
             console.log(clid);
             eel.clidSet(clid);
+            eel.generateIOcsvName(clid);
+        }
+
+        eel.expose(getcName);
+        function getcName(cNamex){
+            var cName = cNamex;
+            cNamePlus = "出欠管理システム  " + cName
+            var outputDivc = document.getElementById("cNameArea");
+            console.log(cName);
+            outputDivc.innerHTML = cNamePlus;
         }
 
         eel.expose(printtName);
@@ -64,7 +74,7 @@
     </script>
     <body onload="calltName()">
         <div id="top">
-            <h1>出欠管理システム</h1>
+            <h1 id="cNameArea">出欠管理システム</h1>
         </div>
         <div class="infoarea">
             <div class="namearea">
