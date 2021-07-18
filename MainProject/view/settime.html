@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="eel.js"></script>
+        <!-- <script src="csv2table.js" charset="UTF-8"></script> -->
+        <title>timeConfiguration</title>
+        <link rel="stylesheet" href="settime.css">
+    </head>
+    <script>
+
+    </script>
+    <body onload="calltName()">
+        <div id="top">
+            <h1>出欠管理システム</h1>
+        </div>
+        <div class="infoarea">
+            <div class="namearea">
+            <p id="tNameArea">時刻設定</p>
+            </div>
+            <div class="btnarea">
+            <button id="toadminbtn" onclick="location.href='admin.html'">管理画面へ</button>
+            </div>
+            <div class="btnarea2">
+                <button id="toadminbtn" onclick="setcConfig()">時刻を適用</button>
+            </div>
+        </div>
+        <div class="underbar">
+            <p id="datetime">
+                <script src="timeshow.js">
+                </script>
+            </p>
+        </div>
+    </body>
+</html>

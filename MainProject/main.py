@@ -19,7 +19,7 @@ import random
 # P000の初期PWは000b
 
 eel.init("MainProject/view")
-eel.start("login.html", block=False)
+eel.start("login.html", size=(800, 480), block=False)
 
 @eel.expose
 def registtData():
@@ -400,6 +400,22 @@ def openIOcsv(cID, cName):
         print(now)
         eel.showIDinfo(stdID[no], stdName[no])
 
+        f = open(IOcsvName, "r", encoding="utf-8")
+        csv_data = csv.reader(f)
+        list = [ e for e in csv_data]
+        f.close()
+        
+        # 更新後のデータ
+        data = [stdID[no], stdName[no], stdIDm[no], now, "出席"]
+
+        for i in range(len(list)):
+            if list[i][0]==data[0]:
+                list[i] = data
+
+        with open(IOcsvName, "w", encoding="utf_8", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerows(list)
+
         # with open(IOcsvName, "w", encoding="utf_8", newline="") as IOcsvw:
         #     writer2 = csv.writer(IOcsvw)
         #     writer2.writerow(["学籍番号", "名前", "IDm", "入室時刻", "出欠"])
@@ -408,13 +424,13 @@ def openIOcsv(cID, cName):
         #         writer2.writerow(dictvalues)
 
 
-        stdInTimex = {}
-        stdIOx = {}
-        stdInTime = []
-        stdIO = []
+        # stdInTimex = {}
+        # stdIOx = {}
+        # stdInTime = []
+        # stdIO = []
 
         # lst = []
-        with open(IOcsvName, "a", encoding="utf_8", errors="", newline="") as IOcsva:
+        # with open(IOcsvName, "a", encoding="utf_8", errors="", newline="") as IOcsva:
         #     readera = csv.reader(stdcsva)
         #     lst = [r for r in readera]
         # IOdata = ([stdID[no], stdName[no], stdIDm[no], now, "出席"])
@@ -423,18 +439,18 @@ def openIOcsv(cID, cName):
         #         row.clear()
         #         row.extend(IOdata)
 
-            readera = csv.DictReader(IOcsva)
-            for row in readera:
-                stdInTimex[row["学籍番号"]] = row["入室時刻"]
-                stdIOx[row["学籍番号"]] = row["出欠"]
-        for v in range(len(row)):
-            if v == no:
+        #     readera = csv.DictReader(IOcsva)
+        #     for row in readera:
+        #         stdInTimex[row["学籍番号"]] = row["入室時刻"]
+        #         stdIOx[row["学籍番号"]] = row["出欠"]
+        # for v in range(len(row)):
+        #     if v == no:
                 
 
-                stdInTime = str(stdInTimex[stdID[v]])
-                stdIO = str(stdIOx[stdID[v]])
-        print(stdInTime)
-        print(stdIO)
+        #         stdInTime = str(stdInTimex[stdID[v]])
+        #         stdIO = str(stdIOx[stdID[v]])
+        # print(stdInTime)
+        # print(stdIO)
 
         # with open(IOcsvName, "w", encoding="utf_8", errors="", newline="") as IOcsvc:
         #     writer3 = csv.writer(IOcsvc)
