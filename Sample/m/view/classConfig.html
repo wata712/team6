@@ -29,7 +29,18 @@
             console.log(cPeriod);
             // gettccT();
         }
-
+        eel.expose(nw_cDataGet);
+        function nw_cDataGet(){
+            var cid_pocket = document.getElementById("day"+"period")
+            var cname_pocket = document.getElementById("valof1");
+            var cday_pocket = document.getElementById("day");
+            var cstarttime_pocket = document.getElementById("valof2")
+            var cendtime_pocket = document.getElementById("valof3")
+            var cattendlimit_pocket = document.getElementById("valof4")
+            var clatelimit_pocket= document.getElementById("valof5")
+            var cdata_pocket = [cid_pocket.value,cname_pocket.value,cday_pocket.value,cstarttime_pocket,cendtime_pocket,cattendlimit_pocket,clatelimit_pocket]
+            return cdata_pocket;
+        }
         // async function gettccT(){
         //     let val = await eel.clidSet()();
         //     console.log(val)
