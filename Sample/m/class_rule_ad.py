@@ -7,7 +7,7 @@ path="Sample\m"
 os.chdir(path)
 #classConfig.htmlの入力情報を習得
 eel.init("Sample/m/view")
-eel.start("classConfig.html",port=8081)
+eel.start("classConfig.html", block=False)
 
 def get_new_cData():
     new_cData=eel.nw_cDataGet()()
@@ -58,3 +58,6 @@ with open('kougi_rule/講義科目ルール.csv','a', encoding="utf_8")as fd:
     csv_add.writerow(new_class_rule)
     print(csv_add)
 
+#これがないと動かないんでよ
+while True:
+    eel.sleep(2.0)

@@ -1,5 +1,4 @@
 ### Team6 main.py ###
-### ブラウザウィンドウの推奨アスペクト比 4:3 または 16:9 または 21:9 ###
 
 import os
 from re import S
