@@ -422,7 +422,9 @@ def generateIOcsvName(clid):
     print(IOcsvName)
     eel.getIOcsvName(IOcsvName)
 
-
+    EXCEL = IOcsvName
+    import subprocess
+    subprocess.Popen(['start', EXCEL], shell=True)
 
 
 
