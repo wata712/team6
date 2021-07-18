@@ -21,7 +21,7 @@ with open('kougi_rule/講義科目ルール.csv','a', encoding="utf_8")as fd:
     csv_add=csv.writer(fd)
     new_class_rule=[]
     #講義ID(1),科目名(2),開始時間(3),終了時間(4),出席限度(分)(5),遅刻限度(分)(6),曜日(7)の順で習得
-    nw_cID,nw_cName,nw_stTime,nw_endTime,nw_atdLimit,nw_latLimit,nw_cDate=get_new_cData()
+    nw_cID,nw_cName,nw_stTime,nw_endTime,nw_atdLimit,nw_latLimit,nw_cID=get_new_cData()
     
     #仮入れ
     tID_f='P001'
@@ -55,5 +55,5 @@ with open('kougi_rule/講義科目ルール.csv','a', encoding="utf_8")as fd:
     csv_add.writerow(new_class_rule)
     print(csv_add)
 
-eel.init("Sample/m/view")
+eel.init("view")
 eel.start("classConfig.html",port=8081)

@@ -31,14 +31,14 @@
         }
         eel.expose(nw_cDataGet);
         function nw_cDataGet(){
-            var cid_pocket = document.getElementById("day"+"period")
+            var cid_pocket = document.getElementById("valof3");
             var cname_pocket = document.getElementById("valof1");
-            var cday_pocket = document.getElementById("day");
-            var cstarttime_pocket = document.getElementById("valof2")
-            var cendtime_pocket = document.getElementById("valof3")
-            var cattendlimit_pocket = document.getElementById("valof4")
-            var clatelimit_pocket= document.getElementById("valof5")
-            var cdata_pocket = [cid_pocket.value,cname_pocket.value,cday_pocket.value,cstarttime_pocket,cendtime_pocket,cattendlimit_pocket,clatelimit_pocket]
+            var cday_pocket = document.getElementById("valof2");
+            var cstarttime_pocket = document.getElementById("valof4");
+            var cendtime_pocket = document.getElementById("valof5");
+            var cattendlimit_pocket = document.getElementById("valof6");
+            var clatelimit_pocket= document.getElementById("valof7");
+            var cdata_pocket = [cid_pocket.value,cname_pocket.value,cday_pocket.value,cstarttime_pocket,cendtime_pocket,cattendlimit_pocket,clatelimit_pocket];
             return cdata_pocket;
         }
         // async function gettccT(){
@@ -86,10 +86,10 @@
             </div>
         </div>
         <div>
-            <p>講義名：<input type="text" name="class"></p>
+            <p>講義名：<input type="text" name="class" id="valof1"></p>
 
             <p>
-                <select name="day">
+                <select name="day" id="valof2">
                 <option value="M" >月曜</option>
                 <option value="Tu">火曜</option>
                 <option value="W" >水曜</option>
@@ -97,7 +97,7 @@
                 <option value="F" >金曜</option>
                 </select>
 
-                <select name="period">
+                <select name="period" id="valof3">
                 <option value="1_">1限</option>
                 <option value="2_">2限</option>
                 <option value="3_">3限</option>
@@ -109,13 +109,13 @@
                 <option value="45_">4,5限</option>
                 </select></p>
 
-            <input type="time" name="PreS">
+            <input type="time" name="PreS" id="valof4">
             から
-            <input type="time" name="PreE">
+            <input type="time" name="PreE" id="valof5">
             まで出席扱い</p>
-            <input type="time" name="LateS">
+            <input type="time" name="LateS" id="valof6">
             から
-            <input type="time" name="LateE">
+            <input type="time" name="LateE" id="valof7">
             まで遅刻扱い</p>
         
             <br>
