@@ -342,7 +342,7 @@ def openIOcsv(cID, cName):
             pass
 
     if(os.path.exists(IOcsvName) == False):
-        with open(IOcsvName, "w", encoding="utf_8") as IOcsv:
+        with open(IOcsvName, "w", encoding="SJIS") as IOcsv:
             writer = csv.writer(IOcsv)
             writer.writerow(["学籍番号", "氏名", "IDm", "入室時刻", "出欠"])
         
