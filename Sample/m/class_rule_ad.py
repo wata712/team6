@@ -50,7 +50,7 @@ with open('kougi_rule/講義科目ルール.csv','a', encoding="utf_8")as fd:
     #履修者数を追加
     new_class_rule.append(regis_f)
     #曜日を追加
-    new_class_rule.append(nw_cDate)
+    new_class_rule.append(nw_cID)
     #新しい講義情報をリストに追加
     csv_add.writerow(new_class_rule)
     print(csv_add)
