@@ -312,11 +312,33 @@ def stdSim(cID):
 
 IOcsvName = "xx"
 
-#出席リストCSV作成
+#出欠リストCSV操作
 @eel.expose
 def openIOcsv(cID, cName):
     global date
     global IOcsvName
+
+    tcxCT1 = {}
+    tcxCT2 = {}
+    tcxLT1 = {}
+    tcxLT2 = {}
+
+    with open("./data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
+        reader = csv.DictReader(p)
+        for row in reader:
+            tcxCT1[row["科目名"]] = row["開始時間"]
+            tcxCT2[row["科目名"]] = row["終了時間"]
+            tcxLT1[row["科目名"]] = row["出席限度(分)"]
+            tcxLT2[row["科目名"]] = row["遅刻限度(分)"]
+    tccCT1 = str(tcxCT1[cName]) + ":00"
+    tccCT2 = str(tcxCT2[cName]) + ":00"
+    tccLT1 = str(tcxCT1[cName][0:3]) + str(int(tcxCT1[cName][3:5]) + int(tcxLT1[cName])) + ":00"
+    tccLT2 = str(tcxCT1[cName][0:3]) + str(int(tcxCT1[cName][3:5]) + int(tcxLT2[cName])) + ":00"
+    print(tccCT1)
+    print(tccCT2)
+    print(tccLT1)
+    print(tccLT2)
+
 
     stdIDm = stdSim(cID)
     # print(stdIDm)
@@ -415,45 +437,6 @@ def openIOcsv(cID, cName):
         with open(IOcsvName, "w", encoding="utf_8", newline="") as f:
             writer = csv.writer(f)
             writer.writerows(list)
-
-        # with open(IOcsvName, "w", encoding="utf_8", newline="") as IOcsvw:
-        #     writer2 = csv.writer(IOcsvw)
-        #     writer2.writerow(["学籍番号", "名前", "IDm", "入室時刻", "出欠"])
-        #     for g in range(len(stdIDm)):
-        #         dictvalues = sortedIOdict[g].values()
-        #         writer2.writerow(dictvalues)
-
-
-        # stdInTimex = {}
-        # stdIOx = {}
-        # stdInTime = []
-        # stdIO = []
-
-        # lst = []
-        # with open(IOcsvName, "a", encoding="utf_8", errors="", newline="") as IOcsva:
-        #     readera = csv.reader(stdcsva)
-        #     lst = [r for r in readera]
-        # IOdata = ([stdID[no], stdName[no], stdIDm[no], now, "出席"])
-        # for row in lst:
-        #     if row[0] == stdID[no]:
-        #         row.clear()
-        #         row.extend(IOdata)
-
-        #     readera = csv.DictReader(IOcsva)
-        #     for row in readera:
-        #         stdInTimex[row["学籍番号"]] = row["入室時刻"]
-        #         stdIOx[row["学籍番号"]] = row["出欠"]
-        # for v in range(len(row)):
-        #     if v == no:
-                
-
-        #         stdInTime = str(stdInTimex[stdID[v]])
-        #         stdIO = str(stdIOx[stdID[v]])
-        # print(stdInTime)
-        # print(stdIO)
-
-        # with open(IOcsvName, "w", encoding="utf_8", errors="", newline="") as IOcsvc:
-        #     writer3 = csv.writer(IOcsvc)
 
     # タッチのトリガー
     eel.sleep(3)
