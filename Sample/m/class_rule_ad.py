@@ -6,6 +6,9 @@ import os
 path="Sample\m"
 os.chdir(path)
 #classConfig.htmlの入力情報を習得
+eel.init("Sample/m/view")
+eel.start("classConfig.html",port=8081)
+
 def get_new_cData():
     new_cData=eel.nw_cDataGet()()
     new_cID=new_cData[0]
@@ -55,5 +58,3 @@ with open('kougi_rule/講義科目ルール.csv','a', encoding="utf_8")as fd:
     csv_add.writerow(new_class_rule)
     print(csv_add)
 
-eel.init("Sample/m/view")
-eel.start("classConfig.html",port=8081)
