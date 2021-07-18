@@ -433,6 +433,7 @@ def openIOcsv(cID, cName):
         now = str(dtNow.time())[0:8]
         print(now)
 
+        
         status = "出席"
 
         eel.showIDinfo(stdID[no], stdName[no])
