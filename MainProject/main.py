@@ -1,4 +1,5 @@
 ### Team6 main.py ###
+### author: tanahashi, kurita, ito ###
 
 import os
 import eel
@@ -8,7 +9,9 @@ from datetime import datetime as dt
 import numpy
 import random
 import matplotlib.pyplot as plt
+import japanize_matplotlib # グラフの日本語表示に必要
 import glob
+from typing import Counter
 
 # import importer
 # import exporter
@@ -310,7 +313,7 @@ def stdSim(cID):
 
 IOcsvName = "xx"
 
-#出欠リストCSV操作
+#出欠リストCSV操作 兼 出席シミュレータ
 @eel.expose
 def openIOcsv(cID, cName):
     global datew
@@ -416,6 +419,9 @@ def openIOcsv(cID, cName):
                 dictvalues = sortedIOdict[g].values()
                 writer2.writerow(dictvalues)
 
+
+    # 偽の出席者
+    # S199,伊知梁頑乎,いじはりがんこ,男,012E44A7A525968D
 
     # print(stdID)
     # print(stdName)
@@ -530,10 +536,13 @@ def createOneClassGraph(cName):
     # 講義回グラフ作成
     # main author: kurita
 
-    path = "./Mainproject/IOList/" + cName
-    IOcsvName = path[0]
+    path = "./Mainproject/IOList/" + cName + "/"
+    IOcsvNames = os.listdir(path)
     print(path)
-    print(IOcsvName)
+    print(IOcsvNames)
+
+    # 最新の出欠リスト
+    IOcsvName = path + IOcsvNames[-1]
 
     #グラフタイトル用の読み込みです。
     file_path = IOcsvName
@@ -541,7 +550,7 @@ def createOneClassGraph(cName):
 
     #出席,遅刻,欠席のカウント
     count = {}
-    with open("sample_listbox/保健体育2021-07-07出欠リスト.csv",encoding='UTF8') as fo:
+    with open(IOcsvName,encoding='UTF8') as fo:
         atl_reader = csv.reader(fo)
         atl_header = next(atl_reader)
         data=fo
@@ -551,7 +560,7 @@ def createOneClassGraph(cName):
             count.setdefault(data2,0)
             count[data2] +=1
 
-    with open("sample_listbox/保健体育2021-07-07出欠リスト.csv",encoding='UTF8') as fc:
+    with open(IOcsvName,encoding='UTF8') as fc:
         line_count=sum([1 for line in fc])
 
     li_ct=line_count-1
@@ -640,10 +649,16 @@ def createCumulativeClassGraph(cName):
     # 累積講義グラフ作成
     # main author: kurita
 
-    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
+    path = "./Mainproject/IOList/" + cName
+    # IOcsvNames = os.listdir(path)
+    # os.chdir(path)
+
+    IOcsvNames = path + "*.csv"
 
     #各生徒ごとに'出席'の数をカウント
-    csv_list3=glob.glob(IOcsvName)
+    stnumb_list=[]
+    atd_count_list=[]
+    csv_list3=glob.glob(IOcsvNames)
     count = {}
     for atdlist_csvdata in csv_list3:
         
@@ -659,8 +674,8 @@ def createCumulativeClassGraph(cName):
                     count[data] +=1
         
         #alatd_list=[]
-        stnumb_list=[]
-        atd_count_list=[]
+        
+        
         
 
         for key, value in count.items():
@@ -675,6 +690,8 @@ def createCumulativeClassGraph(cName):
         #print(atd_count_list)
 
     count2 = {}
+    stnumb_list2=[]
+    atd_count_list2=[]
     for atdlist_csvdata in csv_list3:
         
         with open(atdlist_csvdata,encoding='UTF8') as f4:
@@ -689,8 +706,7 @@ def createCumulativeClassGraph(cName):
                     count2[data3] +=1
         
         #alatd_list=[]
-        stnumb_list2=[]
-        atd_count_list2=[]
+        
         
 
         for key2, value2 in count2.items():
@@ -704,6 +720,8 @@ def createCumulativeClassGraph(cName):
         #print(stnumb_list)
         #print(atd_count_list)
     count3 = {}
+    stnumb_list3=[]
+    atd_count_list3=[]
     for atdlist_csvdata in csv_list3:
         
         with open(atdlist_csvdata,encoding='UTF8') as f5:
@@ -718,8 +736,7 @@ def createCumulativeClassGraph(cName):
                     count3[data5] +=1
         
         #alatd_list=[]
-        stnumb_list3=[]
-        atd_count_list3=[]
+        
         
 
         for key3, value3 in count3.items():

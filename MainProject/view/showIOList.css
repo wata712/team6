@@ -25,10 +25,22 @@ h1{
     top: 80%;
     left: 77%;
 }
+.btnarea5{
+    width: 20%;
+    position: absolute;
+    top: 18%;
+    left: 37%;
+}
+.btnarea6{
+    width: 20%;
+    position: absolute;
+    top: 18%;
+    left: 57%;
+}
 
 #toadminbtn{
     width: 110px;
-    padding: 5px 20px 5px 20px;
+    padding: 5px 0px 5px 0px;
     position: relative;
     float: right;
     text-decoration: none;

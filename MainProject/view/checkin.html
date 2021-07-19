@@ -84,6 +84,26 @@
                     outputDiv.innerHTML = "";
                 });
             }
+            if(status == "NA"){
+                var outputDiv = document.getElementById("statusArea");
+                // "#cc5844"
+                var statusName = '<p id="na">履修登録者のリストにありません</p>';
+                console.log(status);
+                outputDiv.innerHTML = statusName;
+                sleep(1.1, function () {
+                    outputDiv.innerHTML = "";
+                });
+            }
+        }
+        
+        function NAbtn(){
+            var outputDiv = document.getElementById("statusArea");
+            var statusName = '<p id="na">⚠ 履修登録者ではないようです ⚠</p>';
+            console.log(status);
+            outputDiv.innerHTML = statusName;
+            sleep(1.1, function () {
+                outputDiv.innerHTML = "";
+            });
         }
 
         function sleep(waitSec, callbackFunc) {
@@ -127,7 +147,10 @@
             <p id="tNameArea">読込中...</p>
             </div>
             <div class="btnarea">
-            <button id="toadminbtn" onclick="countbtn()">管理画面へ</button>
+                <button id="toadminbtn" onclick="countbtn()">管理画面へ</button>
+            </div>
+            <div class="btnareax">
+                <button id="toadminbtnx" onclick="NAbtn()">偽の出席者</button>
             </div>
         </div>
         <div>

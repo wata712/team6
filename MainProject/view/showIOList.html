@@ -13,6 +13,7 @@
         //     // var tmp = document.getElementsByClassName("csv2table");
         //     // tmp.setAttribute("data-src",IOcsvName);
         // }
+        var cNameOP = ""
 
         var csvName = ""
         eel.expose(getIOcsvName);
@@ -86,10 +87,15 @@
             var outputDivc = document.getElementById("cNameArea");
             console.log(cName);
             outputDivc.innerHTML = cNamePlus;
+            cNameOP = cName;
         }
 
-        function createOneCG(cName){
-            eel.createOneClassGraph(cName);
+        function createOneCG(){
+            eel.createOneClassGraph(cNameOP);
+        }
+
+        function createCumCG(){
+            eel.createCumulativeClassGraph(cNameOP);
         }
 
         function calltName(){
@@ -127,6 +133,12 @@
             </div>
             <div class="btnarea">
             <button id="toadminbtn" onclick="location.href='admin.html'">管理画面へ</button>
+            </div>
+            <div class="btnarea5">
+                <button id="toadminbtn" onclick=createOneCG()>各回の統計</button>
+            </div>
+            <div class="btnarea6">
+                <button id="toadminbtn" onclick=createCumCG()>通算の統計</button>
             </div>
         </div>
         <div class="tablecsv">
