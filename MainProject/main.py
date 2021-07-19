@@ -1,14 +1,8 @@
 ### Team6 main.py ###
 
 import os
-from re import S
-from subprocess import NORMAL_PRIORITY_CLASS
-from time import time
-from bottle import WSGIHeaderDict
 import eel
 import csv
-import sys
-import operator
 import datetime
 from datetime import datetime as dt
 import numpy
@@ -285,7 +279,8 @@ def clidSet(clid):
 datew = str(datetime.date.today())
 print(datew)
 
-#仮の出席者
+# 仮の出席者
+# main author: ito
 def stdSim(cID):
     number=range(1,101)
     rnumber=random.sample(number,len(number)) #学籍番号を(ランダムに)生成
@@ -533,9 +528,12 @@ def generateIOcsvName(clid):
 @eel.expose
 def createOneClassGraph(cName):
     # 講義回グラフ作成
-    # author: kurita
+    # main author: kurita
 
-    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
+    path = "./Mainproject/IOList/" + cName
+    IOcsvName = path[0]
+    print(path)
+    print(IOcsvName)
 
     #グラフタイトル用の読み込みです。
     file_path = IOcsvName
@@ -640,7 +638,7 @@ def createOneClassGraph(cName):
 @eel.expose
 def createCumulativeClassGraph(cName):
     # 累積講義グラフ作成
-    # author: kurita
+    # main author: kurita
 
     IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
 
