@@ -342,7 +342,7 @@ def openIOcsv(cID, cName):
             pass
 
     if(os.path.exists(IOcsvName) == False):
-        with open(IOcsvName, "w", encoding="SJIS") as IOcsv: #文字コードをutf-8からSJISにしたところ、csvをExcelで開いた際文字化けがなくなりました
+        with open(IOcsvName, "w", encoding="utf-8") as IOcsv: #文字コードをutf-8からSJISにしたところ、csvをExcelで開いた際文字化けがなくなりました
             writer = csv.writer(IOcsv)
             writer.writerow(["学籍番号", "氏名", "IDm", "入室時刻", "出欠"])
         

@@ -78,6 +78,7 @@
             //     }
                 
             // }, false);
+            
         }
 
         eel.expose(getcName);
@@ -141,6 +142,25 @@
                 <button id="toadminbtn" onclick=createCumCG()>通算の統計</button>
             </div>
         </div>
+        <table border="3" cellpadding="5">
+            <tr>
+              <th>学籍番号</th>
+              <th>氏名</th>
+              <th>IDm</th>
+              <th>入室時刻</th>
+              <th>出欠</th>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+        </table>
+        <table>
+            <tbody id="output_csv"></tbody>
+        </table>
         <div class="tablecsv">
             <section class="csv2table" charset="UTF-8" data-label="IOList"></section>
         </div>

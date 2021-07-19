@@ -1,4 +1,4 @@
-const outputElement = document.getElementById('outputcsv');
+const outputElement = document.getElementById('output_csv');
 var dataPath;
 // dataPath = eel.sendIOcsvName()();
 
@@ -35,4 +35,6 @@ function convertArray(data) {
     });
     outputElement.innerHTML = insertElement;
 }
+
+getCsvData('IOcsvName');
 
