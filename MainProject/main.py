@@ -565,6 +565,14 @@ def generateIOcsvName(clid):
     eel.getIOcsvName(IOcsvName)
 
 @eel.expose
+def updateIOcsv(cDataPockets):
+    newcData = cDataPockets
+    print(newcData[0])
+    print(newcData[1])
+    print(newcData[2])
+    print(newcData[3])
+
+@eel.expose
 def createOneClassGraph(cName):
     # 講義回グラフ作成
     # main author: kurita
