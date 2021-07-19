@@ -13,7 +13,7 @@ f = open("C:\\Users\\tkr\\Desktop\\team6\\data\\履修者-W3_2.csv", "r", encodi
 reader = csv.reader(f)
 header = next(reader)
 for row in reader:
-  sql = "INSERT IGNORE INTO w3-2 values(%s,%s,%s,%s,%s)"
+  sql = "INSERT IGNORE INTO w3_2 values(%s,%s,%s,%s,%s)"
   cursor.execute(sql, (row[0], row[1], row[2],row[3],row[4]))
 f.close()
 

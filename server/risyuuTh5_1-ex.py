@@ -13,7 +13,7 @@ f = open("C:\\Users\\tkr\\Desktop\\team6\\data\\履修者-Th5_1.csv", "r", encod
 reader = csv.reader(f)
 header = next(reader)
 for row in reader:
-  sql = "INSERT IGNORE INTO th5-1 values(%s,%s,%s,%s,%s)"
+  sql = "INSERT IGNORE INTO th5_1 values(%s,%s,%s,%s,%s)"
   cursor.execute(sql, (row[0], row[1], row[2],row[3],row[4]))
 f.close()
 

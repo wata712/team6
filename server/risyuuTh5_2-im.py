@@ -5,7 +5,7 @@ import csv
 db=pymysql.connect(host="localhost", user="watanabe", password="team6pass" , cursorclass=pymysql.cursors.DictCursor)
 cursor=db.cursor()
 cursor.execute("USE team6")
-sql=('SELECT * FROM th5-2')
+sql=('SELECT * FROM th5_2')
 cursor.execute(sql)
 rows=cursor.fetchall()
 cursor.close()
