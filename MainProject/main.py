@@ -18,6 +18,8 @@ from typing import Counter
 
 # P000の初期PWは000b
 
+print("404 Not Found エラーが出た場合、VSCodeでこのファイルを開いてから実行してみてください。")
+
 eel.init("MainProject/view")
 eel.start("login.html", size=(800, 480), block=False)
 
@@ -298,10 +300,15 @@ def clidSet(clid):
     tccLT1 = str(tccLT1t.time())
     tccLT2 = str(tccLT2t.time())
 
-    print("授業開始: " + str(tccCT1))
-    print("授業終了: " + str(tccCT2))
-    print("以降遅刻: " + str(tccLT1))
-    print("以降欠席: " + str(tccLT2))
+    tccCT1 = tccCT1[0:5]
+    tccCT2 = tccCT2[0:5]
+    tccLT1 = tccLT1[0:5]
+    tccLT2 = tccLT2[0:5]
+
+    # print("授業開始: " + str(tccCT1))
+    # print("授業終了: " + str(tccCT2))
+    # print("以降遅刻: " + str(tccLT1))
+    # print("以降欠席: " + str(tccLT2))
     
     eel.initialID(cConfig, tccID, cDay, cPeriod, tccCT1, tccCT2, tccLT1, tccLT2)
     # eel.initialCT(tccCT1, tccCT2)
