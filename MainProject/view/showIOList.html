@@ -77,6 +77,7 @@
             //     }
                 
             // }, false);
+            
         }
 
         eel.expose(getcName);
@@ -129,6 +130,36 @@
             <button id="toadminbtn" onclick="location.href='admin.html'">管理画面へ</button>
             </div>
         </div>
+        <table border="3" cellpadding="5">
+            <tr>
+              <th>学籍番号</th>
+              <th>氏名</th>
+              <th>IDm</th>
+              <th>入室時刻</th>
+              <th>出欠</th>
+            </tr>
+            <tr>
+              <td>東京都</td>
+              <td>東京</td>
+              <td>2,187.65km²</td>
+              <td>13,044,818人</td>
+            </tr>
+            <tr>
+              <td>千葉県</td>
+              <td>千葉市</td>
+              <td>5,156.60km²</td>
+              <td>6,200,335人</td>
+            </tr>
+            <tr>
+              <td>埼玉県</td>
+              <td>さいたま市</td>
+              <td>3,797.25km²</td>
+              <td>7,189,176人</td>
+            </tr>
+        </table>
+        <table>
+            <tbody id="output_csv"></tbody>
+        </table>
         <div class="tablecsv">
             <section class="csv2table" charset="UTF-8" data-label="IOList"></section>
         </div>
