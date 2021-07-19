@@ -345,10 +345,15 @@ def openIOcsv(cID, cName):
     tccLT1t = dt.strptime(tccLT1, '%H:%M:%S')
     tccLT2t = dt.strptime(tccLT2, '%H:%M:%S')
     
-    print(tccCT1t.time)
-    print(tccCT2t.time)
-    print(tccLT1t.time)
-    print(tccLT2t.time)
+    tccCT1t = tccCT1t.time()
+    tccCT2t = tccCT2t.time()
+    tccLT1t = tccLT1t.time()
+    tccLT2t = tccLT2t.time()
+
+    print("授業開始: " + tccCT1t)
+    print("授業終了: " + tccCT2t)
+    print("以降遅刻: " + tccLT1t)
+    print("以降欠席: " + tccLT2t)
 
 
     stdIDm = stdSim(cID)
