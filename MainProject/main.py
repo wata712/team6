@@ -449,9 +449,6 @@ def openIOcsv(cID, cName):
                 writer2.writerow(dictvalues)
 
 
-    # 偽の出席者
-    # S199,伊知梁頑乎,いじはりがんこ,男,012E44A7A525968D
-
     # print(stdID)
     # print(stdName)
 

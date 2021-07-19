@@ -30,7 +30,7 @@ h1{
     width: 20%;
     position: absolute;
     top: 80%;
-    left: 3%;
+    left: 1%;
 }
 
 #toadminbtn{
@@ -162,7 +162,7 @@ h1{
 }
 
 #na{
-    width: 62%;
+    width: 550px;
     /* height: 0.9em; */
     color: #ffffff;
     font-size: 2em;

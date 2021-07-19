@@ -27,10 +27,10 @@
             console.log(cDay);
             console.log(cPeriod);
             var outputcName = document.getElementById("cNameArea");
-            outputcName.innerHTML = cConfig;
+            outputcName.innerHTML = cName;
             var outputcDay = document.getElementById("cDayArea");
             outputcDay.innerHTML = cDay + "曜  " + cPeriod;
-            eel.openIOcsv(tccID, cConfig);
+            eel.openIOcsv(cID, cName);
         }
 
         eel.expose(showIDinfo);
@@ -78,16 +78,6 @@
                 var outputDiv = document.getElementById("statusArea");
                 // "#cc5844"
                 var statusName = '<p id="absence">欠席</p>';
-                console.log(status);
-                outputDiv.innerHTML = statusName;
-                sleep(1.1, function () {
-                    outputDiv.innerHTML = "";
-                });
-            }
-            if(status == "NA"){
-                var outputDiv = document.getElementById("statusArea");
-                // "#cc5844"
-                var statusName = '<p id="na">履修登録者のリストにありません</p>';
                 console.log(status);
                 outputDiv.innerHTML = statusName;
                 sleep(1.1, function () {
