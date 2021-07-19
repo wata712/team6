@@ -7,7 +7,6 @@ import csv
 import datetime
 import numpy
 import random
-import subprocess #ファイル開くのに必要なモジュール
 
 # P000の初期PWは000b
 
@@ -424,14 +423,14 @@ def generateIOcsvName(clid):
     eel.getIOcsvName(IOcsvName)
 
 
-    EXCEL = IOcsvName
-    subprocess.Popen(['start', EXCEL], shell=True)
-    #この2行をdef generateIOcsvName(clid):内に入れるとボタンを押した際にExcelファイルが開きます
+    file =IOcsvName
+    with open(file,'r') as f:
+        rows=csv.reader(f)
+        for row in rows:
+            print(row)
 
 
 #これがないと動かないんでよ
 while True:
     eel.sleep(2.0)
 
-#変更点（伊藤）
-#10、346、427、428
