@@ -7,6 +7,10 @@ h1{
     font-size: 1.5em;
 }
 
+div p {
+    display: inline-block;
+}
+
 .infoarea{
     display: flex;
 }
@@ -77,14 +81,27 @@ h1{
   }
 
 input{
-    height: 28px;
+    font-size: 1.5em;
+    height: 36px;
+    width: 100px;
+    background-color: #d6d4e7;
+    border: 0;
+    border-radius: 3px;
+}
+
+input#cNameText{
+    font-size: 1.3em;
+    height: 36px;
+    width: 270px;
     background-color: #d6d4e7;
     border: 0;
     border-radius: 3px;
 }
 
 select{
-    height: 28px;
+    font-size: 1.3em;
+    height: 36px;
+    width: 100px;
     background-color: #d6d4e7;
     border: 0;
     border-radius: 3px;

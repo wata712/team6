@@ -22,6 +22,8 @@
             var outputDivc = document.getElementById("cNameArea");
             console.log(cName);
             outputDivc.innerHTML = cNamePlus;
+            var outputDivcnt = document.getElementById("cNameText");
+            outputDivcnt.innerHTML = '講義名：<input id="cNameText" type="text" name="class" value=' + cName + '>';
         }
 
         eel.expose(printtName);
@@ -33,29 +35,75 @@
         }
 
         eel.expose(initialID);
-        function initialID(cConfig, cDay, cPeriod){
-            console.log(cConfig);
+        function initialID(cName, cID, cDay, cPeriod, CT1, CT2, LT1, LT2){
+            console.log(cName);
             console.log(cDay);
             console.log(cPeriod);
-            // gettccT();
+            var outputDivD = document.getElementById("daySelect");
+            var outputDivP = document.getElementById("periodSelect");
+            var outputDivCT1 = document.getElementById("CT1Input");
+            var outputDivCT2 = document.getElementById("CT21Input");
+            var outputDivLT1 = document.getElementById("LT1Input");
+            var outputDivLT2 = document.getElementById("LT2Input");
+            if(cDay == "月"){
+                var cDayName = '<select name="day"><option value="M" selected>月曜</option><option value="Tu">火曜</option><option value="W">水曜</option><option value="Th">木曜</option><option value="F">金曜</option></select>'
+                outputDivD.innerHTML = cDayName;
+            }
+            if(cDay == "火"){
+                var cDayName = '<select name="day"><option value="M">月曜</option><option value="Tu" selected>火曜</option><option value="W">水曜</option><option value="Th">木曜</option><option value="F">金曜</option></select>'
+                outputDivD.innerHTML = cDayName;
+            }
+            if(cDay == "水"){
+                var cDayName = '<select name="day"><option value="M">月曜</option><option value="Tu">火曜</option><option value="W" selected>水曜</option><option value="Th">木曜</option><option value="F">金曜</option></select>'
+                outputDivD.innerHTML = cDayName;
+            }
+            if(cDay == "木"){
+                var cDayName = '<select name="day"><option value="M">月曜</option><option value="Tu">火曜</option><option value="W">水曜</option><option value="Th" selected>木曜</option><option value="F">金曜</option></select>'
+                outputDivD.innerHTML = cDayName;
+            }
+            if(cDay == "金"){
+                var cDayName = '<select name="day"><option value="M">月曜</option><option value="Tu">火曜</option><option value="W">水曜</option><option value="Th">木曜</option><option value="F" selected>金曜</option></select>'
+                outputDivD.innerHTML = cDayName;
+            }
+
+            if(cPeriod == "1,2限"){
+                var cPeriodName = '<select name="period"><option value="1_">1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_" selected>1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
+                outputDivP.innerHTML = cPeriodName;
+            }
+            if(cPeriod == "2,3限"){
+                var cPeriodName = '<select name="period"><option value="1_">1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_" selected>2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
+                outputDivP.innerHTML = cPeriodName;
+            }
+            if(cPeriod == "3,4限"){
+                var cPeriodName = '<select name="period"><option value="1_">1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_" selected>3,4限</option><option value="45_">4,5限</option></select>'
+                outputDivP.innerHTML = cPeriodName;
+            }
+            if(cPeriod == "4,5限"){
+                var cPeriodName = '<select name="period"><option value="1_">1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_" selected>4,5限</option></select>'
+                outputDivP.innerHTML = cPeriodName;
+            }
+            if(cPeriod == "1限"){
+                var cPeriodName = '<select name="period"><option value="1_" selected>1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
+                outputDivP.innerHTML = cPeriodName;
+            }
+            if(cPeriod == "2限"){
+                var cPeriodName = '<select name="period"><option value="1_">1限</option><option value="2_" selected>2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
+                outputDivP.innerHTML = cPeriodName;
+            }
+            if(cPeriod == "3限"){
+                var cPeriodName = '<select name="period"><option value="1_">1限</option><option value="2_">2限</option><option value="3_" selected>3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
+                outputDivP.innerHTML = cPeriodName;
+            }
+            if(cPeriod == "4限"){
+                var cPeriodName = '<select name="period"><option value="1_">1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_" selected>4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
+                outputDivP.innerHTML = cPeriodName;
+            }
+            if(cPeriod == "5限"){
+                var cPeriodName = '<select name="period"><option value="1_">1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_" selected>5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
+                outputDivP.innerHTML = cPeriodName;
+            }
+            
         }
-
-        // async function gettccT(){
-        //     let val = await eel.clidSet()();
-        //     console.log(val)
-        // }
-
-        // eel.expose(initialCT);
-        // function initialCT(tccCT1, tccCT2){
-        //     cosole.log(tccCT1);
-        //     cosole.log(tccCT2);
-        // }
-
-        // eel.expose(initialLT);
-        // function initialLT(tccLT1, tccLT2){
-        //     cosole.log(tccLT1);
-        //     cosole.log(tccLT2);
-        // }
         
         function getParam(name, url){
             if (!url) url = window.location.href;
@@ -85,37 +133,51 @@
             </div>
         </div>
         <div>
-            <p>講義名：<input type="text" name="class"></p>
-
-            <p>
-                <select name="day">
-                <option value="M" >月曜</option>
-                <option value="Tu">火曜</option>
-                <option value="W" >水曜</option>
-                <option value="Th">木曜</option>
-                <option value="F" >金曜</option>
-                </select>
-
-                <select name="period">
-                <option value="1_">1限</option>
-                <option value="2_">2限</option>
-                <option value="3_">3限</option>
-                <option value="4_">4限</option>
-                <option value="5_">5限</option>
-                <option value="12_">1,2限</option>
-                <option value="23_">2,3限</option>
-                <option value="34_">3,4限</option>
-                <option value="45_">4,5限</option>
-                </select></p>
-
-            <input type="time" name="PreS">
-            から
-            <input type="time" name="PreE">
-            まで出席扱い</p>
-            <input type="time" name="LateS">
-            から
-            <input type="time" name="LateE">
-            まで遅刻扱い</p>
+            <p id="cNameText">講義名：<input type="text" name="class"></p>
+            <div>
+                <p id="daySelect">
+                    <select name="day">
+                    <option value="M" >月曜</option>
+                    <option value="Tu">火曜</option>
+                    <option value="W" >水曜</option>
+                    <option value="Th">木曜</option>
+                    <option value="F" >金曜</option>
+                    </select>
+                </p>
+                <p id="periodSelect">
+                    <select name="period">
+                    <option value="1_">1限</option>
+                    <option value="2_">2限</option>
+                    <option value="3_">3限</option>
+                    <option value="4_">4限</option>
+                    <option value="5_">5限</option>
+                    <option value="12_">1,2限</option>
+                    <option value="23_">2,3限</option>
+                    <option value="34_">3,4限</option>
+                    <option value="45_">4,5限</option>
+                    </select>
+                </p>
+            </div>
+            <div>
+                <p id="CT1Input">
+                    <input type="time" name="PreS">
+                    から
+                </p>
+                <p id="CT2Input">
+                    <input type="time" name="PreE">
+                    まで出席扱い
+                </p>
+            </div>
+            <div>
+                <p id="LT1Input">
+                    <input type="time" name="LateS">
+                    から
+                </p>
+                <p id="LT2Input">
+                    <input type="time" name="LateE">
+                    まで遅刻扱い
+                </p>
+            </div>
         
             <br>
             <div class="btnarea2">

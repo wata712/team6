@@ -273,8 +273,37 @@ def clidSet(clid):
     print("End:   " + tccCT2)
     print("Limit1:" + tccLT1)
     print("Limit2:" + tccLT2)
+
+    tccCT1 = str(tcxCT1[cConfig]) + ":00"
+    tccCT2 = str(tcxCT2[cConfig]) + ":00"
+    tccLT1 = str(tcxCT1[cConfig][0:5]) + ":00"
+    tccLT2 = str(tcxCT1[cConfig][0:5]) + ":00"
     
-    eel.initialID(cConfig, tccID, cDay, cPeriod)
+    tcxLT1m = int(tcxLT1[cConfig])
+    tcxLT2m = int(tcxLT2[cConfig])
+
+    # tcxLT1m = dt.strptime(tcxLT1m, '%H:%M:%S')
+    # tcxLT2m = dt.strptime(tcxLT2m, '%H:%M:%S')
+
+    tccCT1t = dt.strptime(tccCT1, '%H:%M:%S')
+    tccCT2t = dt.strptime(tccCT2, '%H:%M:%S')
+    tccLT1t = dt.strptime(tccLT1, '%H:%M:%S')
+    tccLT2t = dt.strptime(tccLT2, '%H:%M:%S')
+
+    tccLT1t = tccLT1t + datetime.timedelta(minutes=tcxLT1m)
+    tccLT2t = tccLT2t + datetime.timedelta(minutes=tcxLT2m)
+
+    tccCT1 = str(tccCT1t.time())
+    tccCT2 = str(tccCT2t.time())
+    tccLT1 = str(tccLT1t.time())
+    tccLT2 = str(tccLT2t.time())
+
+    # print("授業開始: " + str(tccCT1t))
+    # print("授業終了: " + str(tccCT2t))
+    # print("以降遅刻: " + str(tccLT1t))
+    # print("以降欠席: " + str(tccLT2t))
+    
+    eel.initialID(cConfig, tccID, cDay, cPeriod, tccCT1, tccCT2, tccLT1, tccLT2)
     # eel.initialCT(tccCT1, tccCT2)
     # eel.initialLT(tccLT1, tccLT2)
     # return tccCT1, tccCT2, tccLT1, tccLT2
