@@ -337,24 +337,34 @@ def openIOcsv(cID, cName):
             tcxLT2[row["科目名"]] = row["遅刻限度(分)"]
     tccCT1 = str(tcxCT1[cName]) + ":00"
     tccCT2 = str(tcxCT2[cName]) + ":00"
-    tccLT1 = str(tcxCT1[cName][0:3]) + str(int(tcxCT1[cName][3:5]) + int(tcxLT1[cName])) + ":00"
-    tccLT2 = str(tcxCT1[cName][0:3]) + str(int(tcxCT1[cName][3:5]) + int(tcxLT2[cName])) + ":00"
+    tccLT1 = str(tcxCT1[cName][0:5]) + ":00"
+    tccLT2 = str(tcxCT1[cName][0:5]) + ":00"
     
+    tcxLT1m = int(tcxLT1[cName])
+    tcxLT2m = int(tcxLT2[cName])
+
+    # tcxLT1m = dt.strptime(tcxLT1m, '%H:%M:%S')
+    # tcxLT2m = dt.strptime(tcxLT2m, '%H:%M:%S')
+
     tccCT1t = dt.strptime(tccCT1, '%H:%M:%S')
     tccCT2t = dt.strptime(tccCT2, '%H:%M:%S')
     tccLT1t = dt.strptime(tccLT1, '%H:%M:%S')
     tccLT2t = dt.strptime(tccLT2, '%H:%M:%S')
-    
+
+    tccLT1t = tccLT1t + datetime.timedelta(minutes=tcxLT1m)
+    tccLT2t = tccLT2t + datetime.timedelta(minutes=tcxLT2m)
+
     tccCT1t = tccCT1t.time()
     tccCT2t = tccCT2t.time()
     tccLT1t = tccLT1t.time()
     tccLT2t = tccLT2t.time()
 
-    print("授業開始: " + tccCT1t)
-    print("授業終了: " + tccCT2t)
-    print("以降遅刻: " + tccLT1t)
-    print("以降欠席: " + tccLT2t)
+    print("授業開始: " + str(tccCT1t))
+    print("授業終了: " + str(tccCT2t))
+    print("以降遅刻: " + str(tccLT1t))
+    print("以降欠席: " + str(tccLT2t))
 
+    LimitTime = [tccCT1t, tccCT2t, tccLT1t, tccLT2t]
 
     stdIDm = stdSim(cID)
     # print(stdIDm)
@@ -433,13 +443,23 @@ def openIOcsv(cID, cName):
     print(tmp/60)
 
     #出席リスト更新
-    def touchIDcard(no, stdlenx):
+    def touchIDcard(no, stdlenx, LimitTime):
         dtNow = datetime.datetime.now()
-        now = str(dtNow.time())[0:8]
+        now = dtNow.time()
         print(now)
 
-        
         status = "出席"
+
+        if now < LimitTime[2]:
+            status = "出席"
+        elif now < LimitTime[3]:
+            status = "遅刻"
+        elif now < LimitTime[1]:
+            status = "欠席"
+        else:
+            status = "欠席"
+
+        print(status)
 
         eel.showIDinfo(stdID[no], stdName[no])
         eel.showNo(no + 1, stdlenx)
@@ -470,7 +490,7 @@ def openIOcsv(cID, cName):
                 timespan[s] = (timespan[s] * -1) + 1
             print(timespan[s], end=" ")
             print(stdIDm[s])
-            touchIDcard(s, stdlen)
+            touchIDcard(s, stdlen, LimitTime)
             eel.sleep(timespan[s])
         else:
             # 遅刻ちゃん
@@ -485,7 +505,7 @@ def openIOcsv(cID, cName):
             else:
                 eel.sleep(3)
             print(stdIDm[s])
-            touchIDcard(s, stdlen)
+            touchIDcard(s, stdlen, LimitTime)
 
 
 @eel.expose

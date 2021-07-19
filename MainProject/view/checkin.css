@@ -75,7 +75,11 @@ h1{
     text-align: center;
 }
 
-#statusArea{
+/* #statusArea{
+    
+} */
+
+.attendance{
     width: 26%;
     /* height: 0.9em; */
     color: #ffffff;
@@ -87,6 +91,33 @@ h1{
     border: solid 6px #06005f;
     border-radius: 10px;
 }
+
+.tardiness{
+    width: 26%;
+    /* height: 0.9em; */
+    color: #ffffff;
+    font-size: 3.8em;
+    margin: auto;
+    padding: 0px, 10px, 0px, 10px;
+    text-align: center;
+    background-color: #44cca3;
+    border: solid 6px #06005f;
+    border-radius: 10px;
+}
+
+.absence{
+    width: 26%;
+    /* height: 0.9em; */
+    color: #ffffff;
+    font-size: 3.8em;
+    margin: auto;
+    padding: 0px, 10px, 0px, 10px;
+    text-align: center;
+    background-color: #44cca3;
+    border: solid 6px #06005f;
+    border-radius: 10px;
+}
+
 br{
     display: block;
     content: "";

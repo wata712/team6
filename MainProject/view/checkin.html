@@ -54,12 +54,36 @@
 
         eel.expose(showStatus);
         function showStatus(status){
-            var outputDiv = document.getElementById("statusArea");
-            console.log(status);
-            outputDiv.innerHTML = status;
-            sleep(1.4, function () {
-                outputDiv.innerHTML = "";
-            });
+            if(status == "出席"){
+                var outputDiv = document.getElementById("statusArea");
+                // "#44cca3"
+                var statusName = '<p id="attendance">出席</p>';
+                console.log(status);
+                outputDiv.innerHTML = statusName;
+                sleep(1.4, function () {
+                    outputDiv.innerHTML = "";
+                });
+            }
+            if(status == "遅刻"){
+                var outputDiv = document.getElementById("statusArea");
+                // "#c3cc44"
+                var statusName = '<p id="tardiness">遅刻</p>';
+                console.log(status);
+                outputDiv.innerHTML = statusName;
+                sleep(1.4, function () {
+                    outputDiv.innerHTML = "";
+                });
+            }
+            if(status == "欠席"){
+                var outputDiv = document.getElementById("statusArea");
+                // "#cc5844"
+                var statusName = '<p id="absence">欠席</p>';
+                console.log(status);
+                outputDiv.innerHTML = statusName;
+                sleep(1.4, function () {
+                    outputDiv.innerHTML = "";
+                });
+            }
         }
 
         function sleep(waitSec, callbackFunc) {
@@ -112,7 +136,8 @@
             <br id="br">
             <p id="stdinfo">学生証をタッチしてください</p>
             <p id="sOrderArea"></p>
-            <p id="statusArea"></p>
+            <div id="statusArea"></div>
+            
             
         </div>
         <div class="underbar">
