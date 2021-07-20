@@ -11,6 +11,9 @@ rows=cursor.fetchall()
 cursor.close()
 db.close()
 
+#もしテーブルが存在しない場合は作成
+cursor.execute("CREATE TABLE IF NOT EXISTS scale(Scale TEXT, Root TEXT, I TEXT, IIm TEXT, IIIm TEXT, IV TEXT, V TEXT, VIm TEXT, VIIm TEXT)")
+
 if rows:
     columnNames = list()
     # ヘッダデータを作る
