@@ -37,17 +37,17 @@
         eel.expose(showErrorInfo);
         function showErrorInfo(){
             var outputErrorInfo = document.getElementById("errorInfo");
-            outputErrorInfo.innerHTML = '出席扱い時刻または遅刻扱い時刻が無効です'
+            outputErrorInfo.innerHTML = '出席上限時刻または遅刻上限時刻が無効です'
         }
-        
+
         var cNameq = "";
 
         eel.expose(initialID);
         function initialID(cName, cID, cDay, cPeriod, CT1, CT2, LT1, LT2){
             cNameq = cName;
             console.log(cName);
-            console.log(cDay);
-            console.log(cPeriod);
+            console.log(LT1);
+            console.log(LT2);
             let CT12 = document.getElementById("showCT")
             var outputDivD = document.getElementById("daySelect");
             var outputDivP = document.getElementById("periodSelect");
@@ -79,47 +79,47 @@
             if(cPeriod == "1,2限"){
                 var cPeriodName = '<select name="period" id="cPerix"><option value="1_">1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_" selected>1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
                 outputDivP.innerHTML = cPeriodName;
-                CT12.innerHTML = newCT1 + "09:00 - 12:10"
+                CT12.innerHTML = "09:00 - 12:10"
             }
             if(cPeriod == "2,3限"){
                 var cPeriodName = '<select name="period" id="cPerix"><option value="1_">1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_" selected>2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
                 outputDivP.innerHTML = cPeriodName;
-                CT12.innerHTML = newCT1 + "10:40 - 14:30"
+                CT12.innerHTML = "10:40 - 14:30"
             }
             if(cPeriod == "3,4限"){
                 var cPeriodName = '<select name="period" id="cPerix"><option value="1_">1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_" selected>3,4限</option><option value="45_">4,5限</option></select>'
                 outputDivP.innerHTML = cPeriodName;
-                CT12.innerHTML = newCT1 + "13:00 - 14:30"
+                CT12.innerHTML = "13:00 - 14:30"
             }
             if(cPeriod == "4,5限"){
                 var cPeriodName = '<select name="period" id="cPerix"><option value="1_">1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_" selected>4,5限</option></select>'
                 outputDivP.innerHTML = cPeriodName;
-                CT12.innerHTML = newCT1 + "14:40 - 16:10"
+                CT12.innerHTML = "14:40 - 16:10"
             }
             if(cPeriod == "1限"){
                 var cPeriodName = '<select name="period" id="cPerix"><option value="1_" selected>1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
                 outputDivP.innerHTML = cPeriodName;
-                CT12.innerHTML = newCT1 + "09:00 - 10:30"
+                CT12.innerHTML = "09:00 - 10:30"
             }
             if(cPeriod == "2限"){
                 var cPeriodName = '<select name="period" id="cPerix"><option value="1_">1限</option><option value="2_" selected>2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
                 outputDivP.innerHTML = cPeriodName;
-                CT12.innerHTML = newCT1 + "10:40 - 12:10"
+                CT12.innerHTML = "10:40 - 12:10"
             }
             if(cPeriod == "3限"){
                 var cPeriodName = '<select name="period" id="cPerix"><option value="1_">1限</option><option value="2_">2限</option><option value="3_" selected>3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
                 outputDivP.innerHTML = cPeriodName;
-                CT12.innerHTML = newCT1 + "13:00 - 14:30"
+                CT12.innerHTML = "13:00 - 14:30"
             }
             if(cPeriod == "4限"){
                 var cPeriodName = '<select name="period" id="cPerix"><option value="1_">1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_" selected>4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
                 outputDivP.innerHTML = cPeriodName;
-                CT12.innerHTML = newCT1 + "14:40 - 16:10"
+                CT12.innerHTML = "14:40 - 16:10"
             }
             if(cPeriod == "5限"){
                 var cPeriodName = '<select name="period" id="cPerix"><option value="1_">1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_" selected>5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
                 outputDivP.innerHTML = cPeriodName;
-                CT12.innerHTML = newCT1 + "16:20 - 17:50"
+                CT12.innerHTML = "16:20 - 17:50"
             }
             
             outputDivCT2.innerHTML = '<input type="time" name="PreE"  id="LT1x" value=' + LT1 + '>まで<b>出席</b>扱い';
@@ -137,13 +137,14 @@
         }
 
         function setcConfig(){
-            // var cNamePocket = document.getElementById('cNameText');
+            var cNamePocket = document.getElementById('cNameText');
             var cDayPocket = document.getElementById("cDayx");
             var cPeriPocket = document.getElementById("cPerix");
             var cLT1Pocket = document.getElementById("LT1x");
             var cLT2Pocket = document.getElementById("LT2x");
             var cDataPockets = [cNameq, cDayPocket.value, cPeriPocket.value, cLT1Pocket.value, cLT2Pocket.value];
-            console.log(cNameq);
+            console.log(cNamePocket.value);
+            // alert(cNameq)
             eel.updateIOcsv(cDataPockets);
             location.href="admin.html";
         }

@@ -305,10 +305,10 @@ def clidSet(clid):
     tccLT1 = tccLT1[0:5]
     tccLT2 = tccLT2[0:5]
 
-    # print("授業開始: " + str(tccCT1))
-    # print("授業終了: " + str(tccCT2))
-    # print("以降遅刻: " + str(tccLT1))
-    # print("以降欠席: " + str(tccLT2))
+    print("授業開始: " + tccCT1)
+    print("授業終了: " + tccCT2)
+    print("以降遅刻: " + tccLT1)
+    print("以降欠席: " + tccLT2)
     
     eel.initialID(cConfig, tccID, cDay, cPeriod, tccCT1, tccCT2, tccLT1, tccLT2)
     # eel.initialCT(tccCT1, tccCT2)
@@ -636,9 +636,11 @@ def updateIOcsv(cDataPockets):
     newLT1t = dt.strptime(newLT1, '%H:%M')
     newLT2t = dt.strptime(newLT2, '%H:%M')
 
-    newLT1t = newLT1 - newCT1t
-    newLT2t = newLT2 - newCT2t
+    newLT1t = newLT1t - newCT1t
+    newLT2t = newLT2t - newCT1t
 
+    print(newLT1t)
+    print(newLT2t)
     # tccLT1t = tccLT1t.time()
     # tccLT2t = tccLT2t.time()
     
