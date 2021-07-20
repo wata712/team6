@@ -191,58 +191,7 @@
                     09:00 - 10:30
                 </p>
             </div>
-            <script>
-                function inputChange(event){
-                    let CT12 = document.getElementById("showCT")
-
-                    let newcPeri = event.currentTarget.value
-                    let newCT1 = "00:00"
-                    let newCT2 = "00:00"
-
-                    if(newcPeri == "1_"){
-                        newCT1 = "09:00"
-                        newCT2 = "10:30"
-                    }
-                    if(newcPeri == "2_"){
-                        newCT1 = "10:40"
-                        newCT2 = "12:10"
-                    }
-                    if(newcPeri == "3_"){
-                        newCT1 = "13:00"
-                        newCT2 = "14:30"
-                    }
-                    if(newcPeri == "4_"){
-                        newCT1 = "14:40"
-                        newCT2 = "16:10"
-                    }
-                    if(newcPeri == "5_"){
-                        newCT1 = "16:20"
-                        newCT2 = "17:50"
-                    }
-                    if(newcPeri == "12_"){
-                        newCT1 = "09:00"
-                        newCT2 = "12:10"
-                    }
-                    if(newcPeri == "23_"){
-                        newCT1 = "10:40"
-                        newCT2 = "14:30"
-                    }
-                    if(newcPeri == "34_"){
-                        newCT1 = "13:00"
-                        newCT2 = "16:10"
-                    }
-                    if(newcPeri == "45_"){
-                        newCT1 = "14:40"
-                        newCT2 = "17:50"
-                    }
-
-                    CT12.innerHTML = newCT1 + " - " + newCT2
-                    console.log(newcPeri);
-                }
-
-                let newcPeri = document.getElementById("cPerix");
-                newcPeri.addEventListener("change", inputChange);
-            </script>
+            
 
             <div>
                 <!-- <p id="CT1Input">
@@ -274,6 +223,58 @@
                 <button id="toadminbtn" onclick="setcConfig()">規則を適用</button>
             </div>
         </div>
+        <script>
+            function inputChange(event){
+                let CT12 = document.getElementById("showCT")
+
+                let newcPeri = event.currentTarget.value
+                let newCT1 = "00:00"
+                let newCT2 = "00:00"
+
+                if(newcPeri == "1_"){
+                    newCT1 = "09:00"
+                    newCT2 = "10:30"
+                }
+                if(newcPeri == "2_"){
+                    newCT1 = "10:40"
+                    newCT2 = "12:10"
+                }
+                if(newcPeri == "3_"){
+                    newCT1 = "13:00"
+                    newCT2 = "14:30"
+                }
+                if(newcPeri == "4_"){
+                    newCT1 = "14:40"
+                    newCT2 = "16:10"
+                }
+                if(newcPeri == "5_"){
+                    newCT1 = "16:20"
+                    newCT2 = "17:50"
+                }
+                if(newcPeri == "12_"){
+                    newCT1 = "09:00"
+                    newCT2 = "12:10"
+                }
+                if(newcPeri == "23_"){
+                    newCT1 = "10:40"
+                    newCT2 = "14:30"
+                }
+                if(newcPeri == "34_"){
+                    newCT1 = "13:00"
+                    newCT2 = "16:10"
+                }
+                if(newcPeri == "45_"){
+                    newCT1 = "14:40"
+                    newCT2 = "17:50"
+                }
+
+                CT12.innerHTML = newCT1 + " - " + newCT2
+                console.log(newcPeri);
+            }
+
+            let newcPeri = document.getElementById("cPerix");
+            newcPeri.addEventListener("change", inputChange);
+        </script>
         <div class="underbar">
             <p id="datetime">
                 <script src="timeshow.js">
