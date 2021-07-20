@@ -571,6 +571,94 @@ def updateIOcsv(cDataPockets):
     print(newcData[1])
     print(newcData[2])
     print(newcData[3])
+    print(newcData[4])
+
+    cName = newcData[0]
+    newcDay = newcData[1]
+    newcPeri = newcData[2]
+    newLT1 = newcData[3]
+    newLT2 = newcData[4]
+
+    f = open("./data/講義科目ルール.csv", "r", encoding="utf-8")
+    csv_data = csv.reader(f)
+    list = [ e for e in csv_data]
+    f.close()
+
+    # print(list)
+
+    # newcID
+    for s in range(len(list)):
+        if list[s][1]==cName:
+            basecID = list[s][0]
+    newcID = newcDay + newcPeri
+    if basecID[-1:] == 1:
+        newcID = newcID + "1"
+    if basecID[-1:] == 2:
+        newcID = newcID + "2"
+    if basecID[-1:] == 3:
+        newcID = newcID + "3"
+    if basecID[-1:] == 4:
+        newcID = newcID + "4"
+
+    # newCT1, newCT2 (授業開始、終了時刻)
+    if newcPeri == "1_":
+        newCT1 = "09:00"
+        newCT2 = "10:30"
+    if newcPeri == "2_":
+        newCT1 = "10:40"
+        newCT2 = "12:10"
+    if newcPeri == "3_":
+        newCT1 = "13:00"
+        newCT2 = "14:30"
+    if newcPeri == "4_":
+        newCT1 = "14:40"
+        newCT2 = "16:10"
+    if newcPeri == "5_":
+        newCT1 = "16:20"
+        newCT2 = "17:50"
+    if newcPeri == "12_":
+        newCT1 = "09:00"
+        newCT2 = "12:10"
+    if newcPeri == "23_":
+        newCT1 = "10:40"
+        newCT2 = "14:30"
+    if newcPeri == "34_":
+        newCT1 = "13:00"
+        newCT2 = "16:10"
+    if newcPeri == "45_":
+        newCT1 = "14:40"
+        newCT2 = "17:50"
+
+    # newLT1 (出席限度)
+    newCT1t = dt.strptime(newCT1, '%H:%M')
+    newCT2t = dt.strptime(newCT2, '%H:%M')
+
+    newLT1t = dt.strptime(newLT1, '%H:%M')
+    newLT2t = dt.strptime(newLT2, '%H:%M')
+
+    newLT1t = newLT1 - newCT1t
+    newLT2t = newLT2 - newCT2t
+
+    # tccLT1t = tccLT1t.time()
+    # tccLT2t = tccLT2t.time()
+    
+    # exam
+    exam = list[8]
+
+    # sNo
+    sNo = list[9]
+    
+    # 更新後のデータ
+    data = [newcID, cName, tID, newCT1, newCT2, newLT1, newLT2, exam, sNo]
+
+    # for i in range(len(list)):
+    #     if list[i][0]==data[1]:
+    #         list[i] = data
+
+    # # csv更新
+    # with open(".data/講義科目ルール.csv", "w", encoding="utf_8", newline="") as f:
+    #     writer = csv.writer(f)
+    #     writer.writerows(list)
 
 @eel.expose
 def createOneClassGraph(cName):

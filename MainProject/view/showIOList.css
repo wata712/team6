@@ -84,3 +84,22 @@ p#datetime{
     top: -15px;
     left: 10px;
 }
+
+table{
+    table-layout: fixed;
+    width: 100%;
+    /* border: solid 2px #67c5ff; */
+    text-align: center;
+    border-collapse: collapse;
+}
+
+
+tr:nth-child(odd){
+    background-color: #dddddd;
+    color: #000000;
+}
+
+tr:nth-last-child(odd){
+    background-color: #afadc4;
+    color: #000000;
+}
