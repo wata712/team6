@@ -13,8 +13,8 @@ f = open("C:\\Users\\tkr\\Desktop\\team6\data\\学生リスト.csv", "r", encodi
 reader = csv.reader(f)
 header = next(reader)
 for row in reader:
-  sql = "INSERT IGNORE INTO gakusei values(%s,%s,%s,%s,%s,%s)"
-  cursor.execute(sql, (row[0], row[1], row[2],row[3],row[4],row[5]))
+  sql = "INSERT IGNORE INTO gakusei values(%s,%s,%s,%s,%s)"
+  cursor.execute(sql, (row[0], row[1], row[2],row[3],row[4]))
 f.close()
 
 connection.commit()
