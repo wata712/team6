@@ -6,15 +6,17 @@ import csv
 #http://localhost:5000/login
 #上のリンクに飛ぶ
 
+#ユーザファイル読み込み
 user_file = open('C:/user.csv','r')
 user_reader = csv.reader(user_file)
+user_line = [row for row in user_reader]
 
+#パスワード読み込み
 pass_file = open('C:/pass.csv','r')
 pass_reader = csv.reader(pass_file)
-
-user_line = [row for row in user_reader]
 pass_line = [row for row in pass_reader]
- 
+
+#ログイン画面
 @route("/login")
 def login():
     return """
@@ -25,9 +27,11 @@ def login():
     </form>
     """
 
+#ログイン動作
 @route("/login", method="POST")
 def do_login():
     username = [request.forms.get("username")]
+    #range()の()内の数字は利用者数に合わせる．
     for i in range(3):
         if username == user_line[i]:
             return do_login_pass(i)
