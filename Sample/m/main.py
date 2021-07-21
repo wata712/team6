@@ -736,13 +736,13 @@ def createOneClassGraph(cName, iNo):
     # 講義回グラフ作成
     # main author: kurita
 
-    path = "./Sample/m/IOList/" + cName + "/"
-    IOcsvNames = os.listdir(path)
+    path = "./Sample/m/IOList/" + cName +"/"
+    IOcsvNames1 = os.listdir(path)
     print(path)
-    print(IOcsvNames)
+    #print(IOcsvNames)
 
     # 最新の出欠リスト
-    IOcsvName = path + IOcsvNames[int(iNo)]
+    IOcsvName = path + IOcsvNames1[int(iNo)]
 
     #グラフタイトル用の読み込みです。
     file_path = IOcsvName
@@ -850,17 +850,20 @@ def createCumulativeClassGraph(cName):
     # main author: kurita
 
     path = "./Sample/m/IOList/" + cName
-    # IOcsvNames = os.listdir(path)
-    # os.chdir(path)
+    IOcsvNames = os.listdir(path)
+    os.chdir(path)
 
-    IOcsvNames = path + "*.csv"
+    #IOcsvNames = path + "/*.csv"
 
     #各生徒ごとに'出席'の数をカウント
     stnumb_list=[]
     atd_count_list=[]
-    csv_list3=glob.glob(IOcsvNames)
+    csv_list3=glob.glob("/*.csv")
+    #csv_list3
+    print(IOcsvNames)
+    print(csv_list3)
     count1 = {}
-    for atdlist_csvdata in csv_list3:
+    for atdlist_csvdata in IOcsvNames:
         
         with open(atdlist_csvdata,encoding='UTF8') as f3:
             atl_reader3 = csv.reader(f3)
@@ -892,7 +895,7 @@ def createCumulativeClassGraph(cName):
     count2 = {}
     stnumb_list2=[]
     atd_count_list2=[]
-    for atdlist_csvdata in csv_list3:
+    for atdlist_csvdata in IOcsvNames:
         
         with open(atdlist_csvdata,encoding='UTF8') as f4:
             atl_reader4 = csv.reader(f4)
@@ -922,7 +925,7 @@ def createCumulativeClassGraph(cName):
     count3 = {}
     stnumb_list3=[]
     atd_count_list3=[]
-    for atdlist_csvdata in csv_list3:
+    for atdlist_csvdata in IOcsvNames:
         
         with open(atdlist_csvdata,encoding='UTF8') as f5:
             atl_reader5 = csv.reader(f5)
@@ -966,15 +969,22 @@ def createCumulativeClassGraph(cName):
     #print(atd_count_list2)
 
     #↓ここから棒グラフ作成
-    fig=plt.figure()
+    fig=plt.figure(figsize=(25,4))
     #学生の数,0から連続した整数のリスト
     y_set=list(range(list_length))
-    print(y_set)
-    graph1=plt.bar(y_set,atd_count_list,align="edge",width=-0.5,color="green",label="出席")
-    graph2=plt.bar(y_set,atd_count_list2,align="center",width=0.5,color="blue",label="遅刻")
-    graph3=plt.bar(y_set,atd_count_list3,align="edge",width=0.5,color="red",label="欠席")
-    plt.xticks(y_set,stnumb_list,rotation=90)
+    
+    #print(y_set2)
+    #グラフ色
+    color_set1="green"
+    color_set2="blue"
+    color_set3="red"
+
+    graph1=plt.bar(y_set,atd_count_list,align="edge",width=-0.5,color=color_set1,label="出席")
+    graph2=plt.bar(y_set,atd_count_list2,align="center",width=0.5,color=color_set2,label="遅刻")
+    graph3=plt.bar(y_set,atd_count_list3,align="edge",width=0.5,color=color_set3,label="欠席")
+    plt.xticks(y_set,stnumb_list,rotation=90,fontsize=6)
     plt.legend()
+    plt.subplots_adjust(left=0.1,right=0.95,bottom=0.1,top=0.95)
     plt.show()
 
 #これがないと動かないんでよ

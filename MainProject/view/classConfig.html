@@ -37,7 +37,12 @@
         eel.expose(showErrorInfo);
         function showErrorInfo(){
             var outputErrorInfo = document.getElementById("errorInfo");
-            outputErrorInfo.innerHTML = '出席上限時刻または遅刻上限時刻が無効です'
+            outputErrorInfo.innerHTML = '⚠ 出席上限時刻または遅刻上限時刻が無効です'
+        }
+
+        eel.expose(toAdmin);
+        function toAdmin(){
+            location.href="admin.html";
         }
 
         var cNameq = "";
@@ -189,14 +194,19 @@
         function setcConfig(){
             var cNamePocket = document.getElementById('cNameText');
             var cDayPocket = document.getElementById("cDayx");
-            var cPeriPocket = document.getElementById("cPerix");
+            var cPeriPocket = document.getElementById("cPeriex");
             var cLT1Pocket = document.getElementById("LT1x");
             var cLT2Pocket = document.getElementById("LT2x");
-            var cDataPockets = [cNameq, cDayPocket.value, cPeriPocket.value, cLT1Pocket.value, cLT2Pocket.value];
-            console.log(cNamePocket.value);
+            console.log(cNameq);
+            console.log(cDayPocket.value);
+            console.log(cPeriPocket.value);
+            console.log(cLT1Pocket.value);
+            console.log(cLT2Pocket.value);
             // alert(cNameq)
+            var cDataPockets = [cNameq, cDayPocket.value, cPeriPocket.value, cLT1Pocket.value, cLT2Pocket.value];
+            
             eel.updateIOcsv(cDataPockets);
-            location.href="admin.html";
+            
         }
 
     </script>

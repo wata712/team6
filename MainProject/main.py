@@ -660,6 +660,19 @@ def updateIOcsv(cDataPockets):
     newLT1t = dt.strptime(newLT1, '%H:%M')
     newLT2t = dt.strptime(newLT2, '%H:%M')
 
+    if newLT1t<newCT1t:
+        eel.showErrorInfo()
+        return
+    if newLT2t<newCT1t:
+        eel.showErrorInfo()
+        return
+    if newLT2t<newLT1t:
+        eel.showErrorInfo()
+        return
+    if newCT2t<newLT2t:
+        eel.showErrorInfo()
+        return
+
     newLT1t = newLT1t - newCT1t
     newLT2t = newLT2t - newCT1t
 
@@ -669,14 +682,13 @@ def updateIOcsv(cDataPockets):
     print(newLT1)
     print(newLT2)
 
-    if newLT1 == "d":
-        newLT1 = "0"
-    if newLT2 == "d":
-        newLT1 = "0"
-
-
     newLT1 = newLT1[2:4]
     newLT2 = newLT2[2:4]
+
+    if newLT1 == " d":
+        newLT1 = "00"
+    if newLT2 == " d":
+        newLT2 = "00"
     
     # 更新後のデータ
     data = [newcID, cName, tID, tName, newCT1, newCT2, newLT1, newLT2, exam, sNo]
@@ -691,11 +703,17 @@ def updateIOcsv(cDataPockets):
         writer = csv.writer(f)
         writer.writerows(list)
 
+    eel.toAdmin()
+
 #出欠リスト表示用
 @eel.expose
 def chooseIOList(cName, iNo):
     path = "./Mainproject/IOList/" + cName + "/"
-    IOcsvNames = os.listdir(path)
+    try:
+        IOcsvNames = os.listdir(path)
+    except(FileNotFoundError):
+        eel.showNameError()
+        return
     
     csvNo = len(IOcsvNames)
     listS = []
@@ -703,7 +721,7 @@ def chooseIOList(cName, iNo):
     
     for c in range(csvNo):
         IOcsvNamepath = path + IOcsvNames[c]
-        # print(IOcsvNamepath)
+        print(IOcsvNamepath)
         f = open(IOcsvNamepath, "r", encoding="utf-8")
         csv_data = csv.reader(f)
         listS = [ o for o in csv_data]
@@ -754,7 +772,7 @@ def chooseIOList(cName, iNo):
         sStatusValApnd = 0
         sStatusValLate = 0
         sStatusValAbsc = 0
-    print(sStatusRates)
+    # print(sStatusRates)
 
     # print(list)
 
