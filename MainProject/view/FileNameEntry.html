@@ -1,0 +1,64 @@
+
+<!doctype html>
+<html>
+    <head>
+        <script src="eel.js"></script>
+        <title>Log In</title>
+        <link rel="stylesheet" href="login.css">
+        <script>
+            
+            function sendtData(){
+                //tIDとtPWが一致した時にページ遷移
+                console.log('potato!!!!!!!!!!!!!!')
+                console.log(eel.registtData()())
+                async function tDataDeci(){
+                    let val = await eel.registtData()();
+                    console.log(val)
+
+                    if(val == "tomato"){      
+                        console.log('log in success')
+                        var tID = document.getElementById("id-input");
+                        location.href="admin.html";
+                    }else{
+                        console.log('value error')
+                        var outputDiv = document.getElementById("result");
+                        outputDiv.innerHTML = "IDとパスワードが一致しません";
+                    }
+                }
+               tDataDeci();
+
+            }
+
+            //tID,tPWをmain.pyに渡す
+            eel.expose(sendtDatatoPy)
+            function sendtDatatoPy(){
+                var tIDp = document.getElementById("id-input");
+                var tPWp = document.getElementById("pw-input");
+                var tData = [tIDp.value, tPWp.value];
+                return tData;
+            }
+
+            
+        </script>
+    </head>
+    <body>
+        <h1>出欠管理システム</h1>
+        <!-- <h2>カードをタッチしてください</h2> -->
+        <h2>IDとパスワードを入力してください</h2>
+
+        <div class="loginbox">
+            <p>            
+                <form class="loginform">
+                    <dl>
+                        <dt>教員ID</dt>
+                        <dd><input id="id-input" type="text"></dd>
+                        <dt>パスワード</dt>
+                        <dd><input id="pw-input" type="password"></dd>
+                    </dl>
+                </form>
+                <button id="loginbtn" onclick="sendtData()">ログイン</button>
+                <div id="result"></div>
+            </p>
+        </div>
+    </body>
+</html>
