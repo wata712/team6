@@ -71,6 +71,7 @@ cursor=connection.cursor()
 #ここでは教員・担当科目リスト.csvをMySQLにinsert
 #path変更忘れずに
 Name = ""
+Name2 = ""
 files = glob.glob("C:\\Users\\tkr\\Desktop\\team6\\MainProject\\IOList\\**\\"+word+".csv")
 for file in files:
   print(file)
@@ -83,7 +84,7 @@ reader = csv.reader(f)
 header = next(reader)
 for row in reader:
   sql = "INSERT IGNORE INTO "+word+" values(%s,%s,%s,%s,%s)"
-  cursor.execute(sql, (row[0],row[1],row[2],row[3],row[4]))
+  cursor.execute(sql, (row[0], row[1], row[2], row[3], row[4]))
 f.close()
 
 connection.commit()
