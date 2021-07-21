@@ -37,7 +37,12 @@
         eel.expose(showErrorInfo);
         function showErrorInfo(){
             var outputErrorInfo = document.getElementById("errorInfo");
-            outputErrorInfo.innerHTML = '出席上限時刻または遅刻上限時刻が無効です'
+            outputErrorInfo.innerHTML = '⚠ 出席上限時刻または遅刻上限時刻が無効です'
+        }
+
+        eel.expose(toAdmin);
+        function toAdmin(){
+            location.href="admin.html";
         }
 
         var cNameq = "";
@@ -201,7 +206,7 @@
             var cDataPockets = [cNameq, cDayPocket.value, cPeriPocket.value, cLT1Pocket.value, cLT2Pocket.value];
             
             eel.updateIOcsv(cDataPockets);
-            location.href="admin.html";
+            
         }
 
     </script>
