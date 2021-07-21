@@ -315,7 +315,8 @@ def clidSet(clid):
     # eel.initialLT(tccLT1, tccLT2)
     # return tccCT1, tccCT2, tccLT1, tccLT2
 
-datew = str(datetime.date.today())
+datew = datetime.date.today()
+datew = datew.strftime("%Y_%m_%d")
 print(datew)
 
 # 仮の出席者
@@ -668,14 +669,13 @@ def updateIOcsv(cDataPockets):
     print(newLT1)
     print(newLT2)
 
-    if newLT1 == "d":
-        newLT1 = "0"
-    if newLT2 == "d":
-        newLT1 = "0"
-
-
     newLT1 = newLT1[2:4]
     newLT2 = newLT2[2:4]
+
+    if newLT1 == " d":
+        newLT1 = "00"
+    if newLT2 == " d":
+        newLT2 = "00"
     
     # 更新後のデータ
     data = [newcID, cName, tID, tName, newCT1, newCT2, newLT1, newLT2, exam, sNo]
@@ -702,7 +702,7 @@ def chooseIOList(cName, iNo):
     
     for c in range(csvNo):
         IOcsvNamepath = path + IOcsvNames[c]
-        # print(IOcsvNamepath)
+        print(IOcsvNamepath)
         f = open(IOcsvNamepath, "r", encoding="utf-8")
         csv_data = csv.reader(f)
         listS = [ o for o in csv_data]

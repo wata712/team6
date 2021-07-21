@@ -1,7 +1,11 @@
+# -*- coding: utf-8 -*-
+
+import glob
 import mysql.connector
-import pymysql.cursors
 import csv
 import tkinter as tk
+import MySQLdb
+
 
 root = tk.Tk()
 root.geometry("300x100")
@@ -60,3 +64,29 @@ finally:
     if cnx is not None and cnx.is_connected():
         cnx.close()
 
+
+connection = MySQLdb.connect(db="team6",user="root",passwd="",charset="utf8")
+cursor=connection.cursor()
+
+#ここでは教員・担当科目リスト.csvをMySQLにinsert
+#path変更忘れずに
+Name = ""
+files = glob.glob("C:\\Users\\tkr\\Desktop\\team6\\MainProject\\IOList\\**\\"+word+".csv")
+for file in files:
+  print(file)
+  Name = file
+  Name2 = Name.replace("\\","\\\\")
+  print(Name2)
+f = open(Name2, "r", encoding="utf-8")
+
+reader = csv.reader(f)
+header = next(reader)
+for row in reader:
+  sql = "INSERT IGNORE INTO "+word+" values(%s,%s,%s,%s,%s)"
+  cursor.execute(sql, (row[0],row[1],row[2],row[3],row[4]))
+f.close()
+
+connection.commit()
+
+cursor.close()
+connection.close()
