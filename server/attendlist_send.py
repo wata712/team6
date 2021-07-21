@@ -72,7 +72,7 @@ cursor=connection.cursor()
 #path変更忘れずに
 Name = ""
 Name2 = ""
-files = glob.glob("C:\\Users\\tkr\\Desktop\\team6\\MainProject\\IOList\\**\\"+word+".csv")
+files = glob.glob("C:\\Users\\tkr\\Desktop\\team6\\MainProject\\IOList\\**\\"+ word+ ".csv")
 for file in files:
   print(file)
   Name = file
