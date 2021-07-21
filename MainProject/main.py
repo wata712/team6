@@ -723,7 +723,7 @@ def chooseIOList(cName, iNo):
         sIntime.append(list[i+1][3])
         sStatus.append(list[i+1][4])
 
-    # for x in range(sNo):
+    # for x in range(csvNo):
     #     if 
 
 

@@ -98,7 +98,7 @@
         function createIOTable(sID, sName, sIDm, sIntime, sStatus, sStatusVal, sNo, nIOcsvName, csvNo, IOcsvNames){
             var outputIOcsvName = document.getElementById("csvName");
             var outputTable = document.getElementById("IOTable");
-            var IOFamily = '<table cellpadding="1"><tr><th width="14%">学籍番号</th><th width="18%">氏名</th><th width="30%">IDm</th><th width="15%">入室時刻</th><th width="11%">出欠</th><th width="12%">出席率</th></tr>'
+            var IOFamily = '<table cellpadding="1"><tr><th width="14%">学籍番号</th><th width="18%">氏名</th><th width="28%">IDm</th><th width="15%">入室時刻</th><th width="11%">出欠</th><th width="14%">出席率</th></tr>'
             for(let i=0; i<sNo; i++){
                 var IOFamilyBase = '<tr><td>' + sID[i] + '</td><td>' + sName[i] + '</td><td>' + sIDm[i] + '</td><td>' + sIntime[i] + '</td><td>' + sStatus[i] + '</td><td>' + sStatusVal[i] + '</td></tr>';
                 IOFamily = IOFamily + IOFamilyBase;
@@ -181,11 +181,9 @@
             <p id="csvName"></p>
             <p id="IOTable"></p>
         </div>
-        <table>
-            <tbody id="output_csv"></tbody>
-        </table>
+        
         <div class="tablecsv">
-            <section class="csv2table" charset="UTF-8" data-label="IOList"></section>
+            <p><br></p>
         </div>
         <div class="underbar">
             <p id="datetime">
