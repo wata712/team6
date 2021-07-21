@@ -25,9 +25,22 @@ h1{
     top: 80%;
     left: 77%;
 }
+.btnarea5{
+    width: 20%;
+    position: absolute;
+    top: 18%;
+    left: 37%;
+}
+.btnarea6{
+    width: 20%;
+    position: absolute;
+    top: 18%;
+    left: 57%;
+}
 
 #toadminbtn{
-    padding: 5px 20px 5px 20px;
+    width: 110px;
+    padding: 5px 0px 5px 0px;
     position: relative;
     float: right;
     text-decoration: none;
@@ -70,4 +83,34 @@ p#datetime{
     position: relative;
     top: -15px;
     left: 10px;
+}
+
+table{
+    table-layout: fixed;
+    width: 100%;
+    /* border: solid 2px #67c5ff; */
+    text-align: center;
+    border-collapse: collapse;
+}
+
+select{
+    font-size: 1em;
+    height: 30px;
+    width: 380px;
+    background-color: #d6d4e7;
+    margin: 10px 0px;
+    padding-left: 18px;
+    border: 0;
+    border-radius: 3px;
+}
+
+
+tr:nth-child(odd){
+    background-color: #dddddd;
+    color: #000000;
+}
+
+tr:nth-child(even){
+    background-color: #afadc4;
+    color: #000000;
 }

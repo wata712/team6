@@ -76,41 +76,54 @@
         </div>
         <div>
             <p>講義名：<input type="text" name="class"></p>
-
-            <p>
-                <select name="day">
-                <option value="M" >月曜</option>
-                <option value="Tu">火曜</option>
-                <option value="W" >水曜</option>
-                <option value="Th">木曜</option>
-                <option value="F" >金曜</option>
-                </select>
-
-                <select name="period">
-                <option value="1_">1限</option>
-                <option value="2_">2限</option>
-                <option value="3_">3限</option>
-                <option value="4_">4限</option>
-                <option value="5_">5限</option>
-                <option value="12_">1,2限</option>
-                <option value="23_">2,3限</option>
-                <option value="34_">3,4限</option>
-                <option value="45_">4,5限</option>
-                </select></p>
-
-            <input type="time" name="PreS">
-            から
-            <input type="time" name="PreE">
-            まで出席扱い</p>
-            <input type="time" name="LateS">
-            から
-            <input type="time" name="LateE">
-            まで遅刻扱い</p>
-        
-            <br>
-            <div class="btnarea2">
-                <button id="toadminbtn" onclick="setcConfig()">臨時の講義を作成</button>
+            <div>
+                <p id="daySelect">
+                    <select name="day" id="cDayx">
+                    <option value="M" >月曜</option>
+                    <option value="Tu">火曜</option>
+                    <option value="W" >水曜</option>
+                    <option value="Th">木曜</option>
+                    <option value="F" >金曜</option>
+                    </select>
+                </p>
+                <p id="periodSelect">
+                    <select name="period" id="cPerix">
+                    <option value="1_">1限</option>
+                    <option value="2_">2限</option>
+                    <option value="3_">3限</option>
+                    <option value="4_">4限</option>
+                    <option value="5_">5限</option>
+                    <option value="12_">1,2限</option>
+                    <option value="23_">2,3限</option>
+                    <option value="34_">3,4限</option>
+                    <option value="45_">4,5限</option>
+                    </select>
+                </p>
             </div>
+            <div>
+                <!-- <p id="CT1Input">
+                    <input type="time" name="PreS">
+                    から
+                </p> -->
+                <p id="CT2Input">
+                    <input type="time" name="PreE" id="LT1x">
+                    まで<b>出席</b>扱い  
+                </p>
+                <!-- <p id="LT1Input">
+                    <input type="time" name="LateS">
+                    から
+                </p> -->
+                <p id="LT2Input">
+                    <input type="time" name="LateE" id="LT2x">
+                    まで<b>遅刻</b>扱い  
+                </p>
+                <p>
+                    以降<b>欠席</b>扱い
+                </p>
+            </div>
+        </div>
+        <div class="btnarea2">
+            <button id="toadminbtn2" onclick="setcConfig()">臨時の講義を作成</button>
         </div>
         <div class="underbar">
             <p id="datetime">
