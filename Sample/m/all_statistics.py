@@ -1,5 +1,4 @@
 #全体の統計用,とりあえず今は読み込み確認に別のスクリプト入れてます。
-from typing import Counter
 import matplotlib.pyplot as plt
 import japanize_matplotlib
 import os
@@ -99,8 +98,8 @@ for atdlist_csvdata in csv_list3:
         stnumb_list3.append('{}'.format(key3))
         #出席数リスト
         atd_count_list3.append(int(value3))
-    #print(stnumb_list)
-    #print(atd_count_list)
+    print(stnumb_list3)
+    print(atd_count_list)
 #人数
 list_length=len(stnumb_list)
 print(list_length)
