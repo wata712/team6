@@ -749,7 +749,7 @@ def createOneClassGraph(cName, iNo):
     file_name_path=os.path.basename(file_path)
 
     #出席,遅刻,欠席のカウント
-    count = {}
+    count0 = {}
     with open(IOcsvName,encoding='UTF8') as fo:
         atl_reader = csv.reader(fo)
         atl_header = next(atl_reader)
@@ -757,8 +757,8 @@ def createOneClassGraph(cName, iNo):
         print(atl_header)
         for row in atl_reader:
             data2=row[4]
-            count.setdefault(data2,0)
-            count[data2] +=1
+            count0.setdefault(data2,0)
+            count0[data2] +=1
 
     with open(IOcsvName,encoding='UTF8') as fc:
         line_count=sum([1 for line in fc])
@@ -771,12 +771,12 @@ def createOneClassGraph(cName, iNo):
     fig=plt.figure()
 
     plt.title(file_name_path)
-    for key, value in count.items():
-        att_counter='{}: {:d}'.format(key,value)
+    for key0, value0 in count0.items():
+        att_counter='{}: {:d}'.format(key0,value0)
         #y軸設定用
-        y_list.append(int(value))
+        y_list.append(int(value0))
         #x軸の文字ラベル用
-        x_label.append('{}'.format(key))
+        x_label.append('{}'.format(key0))
 
     #ここでy軸を降順にソート
     y_list2=sorted(y_list,reverse=True)
@@ -859,7 +859,7 @@ def createCumulativeClassGraph(cName):
     stnumb_list=[]
     atd_count_list=[]
     csv_list3=glob.glob(IOcsvNames)
-    count = {}
+    count1 = {}
     for atdlist_csvdata in csv_list3:
         
         with open(atdlist_csvdata,encoding='UTF8') as f3:
@@ -869,23 +869,23 @@ def createCumulativeClassGraph(cName):
             for row in atl_reader3:
                 data=row[0]
                 data2=row[4]
-                count.setdefault(data,0)
+                count1.setdefault(data,0)
                 if '出席' in data2:
-                    count[data] +=1
+                    count1[data] +=1
         
         #alatd_list=[]
         
         
         
 
-        for key, value in count.items():
-            att_counter='{}: {:d}'.format(key,value)
+        for key1, value1 in count1.items():
+            att_counter='{}: {:d}'.format(key1,value1)
             #学番と出席数リスト
             #alatd_list.append(att_counter)
             #学番リスト
-            stnumb_list.append('{}'.format(key))
+            stnumb_list.append('{}'.format(key1))
             #出席数リスト
-            atd_count_list.append(int(value))
+            atd_count_list.append(int(value1))
         #print(stnumb_list)
         #print(atd_count_list)
 
