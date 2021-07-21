@@ -315,7 +315,8 @@ def clidSet(clid):
     # eel.initialLT(tccLT1, tccLT2)
     # return tccCT1, tccCT2, tccLT1, tccLT2
 
-datew = str(datetime.date.today())
+datew = datetime.date.today()
+datew = datew.strftime("%Y_%m_%d")
 print(datew)
 
 # 仮の出席者
