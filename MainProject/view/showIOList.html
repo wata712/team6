@@ -89,6 +89,19 @@
             console.log(cName);
             outputDivc.innerHTML = cNamePlus;
             cNameOP = cName;
+            eel.chooseIOList(cName);
+        }
+
+        eel.expose(createIOTable);
+        function createIOTable(sID, sName, sIDm, sIntime, sStatus, sNo){
+            var outputTable = document.getElementById("IOTable");
+            var IOFamily = '<table cellpadding="1"><tr><th width="15%">学籍番号</th><th width="17%">氏名</th><th width="29%">IDm</th><th width="29%">入室時刻</th><th width="10%">出欠</th></tr>'
+            for(let i=0; i<sNo; i++){
+                var IOFamilyBase = '<tr><td>' + sID[i] + '</td><td>' + sName[i] + '</td><td>' + sIDm[i] + '</td><td>' + sIntime[i] + '</td><td>' + sStatus[i] + '</td></tr>';
+                IOFamily = IOFamily + IOFamilyBase;
+            }
+            
+            outputTable.innerHTML = IOFamily + '</table>';
         }
 
         function createOneCG(){
@@ -143,24 +156,7 @@
             </div>
         </div>
         <div>
-            <p>
-                <table cellpadding="1">
-                    <tr>
-                        <th>学籍番号</th>
-                        <th>氏名</th>
-                        <th>IDm</th>
-                        <th>入室時刻</th>
-                        <th>出欠</th>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    
-                </table>
+            <p id="IOTable">
             </p>
         </div>
         <table>

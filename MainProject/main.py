@@ -687,6 +687,38 @@ def updateIOcsv(cDataPockets):
         writer = csv.writer(f)
         writer.writerows(list)
 
+#出欠リスト表示用
+@eel.expose
+def chooseIOList(cName):
+    path = "./Mainproject/IOList/" + cName + "/"
+    IOcsvNames = os.listdir(path)
+    # 最新の出欠リスト
+    IOcsvName = path + IOcsvNames[-1]
+
+    f = open(IOcsvName, "r", encoding="utf-8")
+    csv_data = csv.reader(f)
+    list = [ e for e in csv_data]
+    f.close()
+
+    sID = []
+    sName = []
+    sIDm = []
+    sIntime = []
+    sStatus = []
+    sNo = len(list)-1
+
+    for i in range(sNo):
+        sID.append(list[i+1][0])
+        sName.append(list[i+1][1])
+        sIDm.append(list[i+1][2])
+        sIntime.append(list[i+1][3])
+        sStatus.append(list[i+1][4])
+
+
+    # print(list)
+
+    eel.createIOTable(sID, sName, sIDm, sIntime, sStatus, sNo)
+
 @eel.expose
 def createOneClassGraph(cName):
     # 講義回グラフ作成
