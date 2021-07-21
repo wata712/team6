@@ -695,11 +695,25 @@ def updateIOcsv(cDataPockets):
 def chooseIOList(cName, iNo):
     path = "./Mainproject/IOList/" + cName + "/"
     IOcsvNames = os.listdir(path)
+    
+    csvNo = len(IOcsvNames)
+    listS = []
+    sStatusVal = []
+    
+    for c in range(csvNo):
+        IOcsvNamepath = path + IOcsvNames[c]
+        # print(IOcsvNamepath)
+        f = open(IOcsvNamepath, "r", encoding="utf-8")
+        csv_data = csv.reader(f)
+        listS = [ o for o in csv_data]
+        f.close()
+        # print(listS)
+        sStatusVal.append(listS)
+
     # 最新の出欠リスト
     IOcsvNamepath = path + IOcsvNames[int(iNo)]
     nIOcsvName = IOcsvNames[int(iNo)]
-    csvNo = len(IOcsvNames)
-
+    
     print(IOcsvNamepath)
 
     f = open(IOcsvNamepath, "r", encoding="utf-8")
@@ -712,8 +726,10 @@ def chooseIOList(cName, iNo):
     sIDm = []
     sIntime = []
     sStatus = []
-    sStatusVal = []
     sStatusValApnd = 0
+    sStatusValLate = 0
+    sStatusValAbsc = 0
+    sStatusRates = []
     sNo = len(list)-1
 
     for i in range(sNo):
@@ -723,13 +739,25 @@ def chooseIOList(cName, iNo):
         sIntime.append(list[i+1][3])
         sStatus.append(list[i+1][4])
 
-    # for x in range(csvNo):
-    #     if 
-
+        for x in range(csvNo):
+            if sStatusVal[x][i+1][4] == "出席":
+                sStatusValApnd += 1
+            elif sStatusVal[x][i+1][4] == "遅刻":
+                sStatusValLate += 1
+            elif sStatusVal[x][i+1][4] == "欠席":
+                sStatusValAbsc += 1
+        rate = (sStatusValApnd/(sStatusValApnd + sStatusValLate + sStatusValAbsc)) * 100
+        rate = round(rate)
+        rate = str(rate) + "%"
+        sStatusRates.append(rate)
+        sStatusValApnd = 0
+        sStatusValLate = 0
+        sStatusValAbsc = 0
+    print(sStatusRates)
 
     # print(list)
 
-    eel.createIOTable(sID, sName, sIDm, sIntime, sStatus, sStatusVal, sNo, nIOcsvName, csvNo, IOcsvNames)
+    eel.createIOTable(sID, sName, sIDm, sIntime, sStatus, sStatusRates, sNo, nIOcsvName, csvNo, IOcsvNames)
 
 @eel.expose
 def createOneClassGraph(cName, iNo):
