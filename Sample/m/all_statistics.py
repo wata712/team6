@@ -13,7 +13,7 @@ os.chdir(path)
 
 #各生徒ごとに'出席'の数をカウント
 csv_list3=glob.glob("sample_listbox/*.csv")
-count = {}
+count1 = {}
 for atdlist_csvdata in csv_list3:
     
     with open(atdlist_csvdata,encoding='UTF8') as f3:
@@ -23,23 +23,23 @@ for atdlist_csvdata in csv_list3:
         for row in atl_reader3:
             data=row[0]
             data2=row[4]
-            count.setdefault(data,0)
+            count1.setdefault(data,0)
             if '出席' in data2:
-                count[data] +=1
+                count1[data] +=1
     
     #alatd_list=[]
     stnumb_list=[]
     atd_count_list=[]
     
 
-    for key, value in count.items():
-        att_counter='{}: {:d}'.format(key,value)
+    for key1, value1 in count1.items():
+        att_counter='{}: {:d}'.format(key1,value1)
         #学番と出席数リスト
         #alatd_list.append(att_counter)
         #学番リスト
-        stnumb_list.append('{}'.format(key))
+        stnumb_list.append('{}'.format(key1))
         #出席数リスト
-        atd_count_list.append(int(value))
+        atd_count_list.append(int(value1))
     #print(stnumb_list)
     #print(atd_count_list)
 
