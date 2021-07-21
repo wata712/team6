@@ -20,7 +20,7 @@ from typing import Counter
 
 print("404 Not Found エラーが出た場合、VSCodeでこのファイルを開いてから実行してみてください。")
 
-eel.init("MainProject/view")
+eel.init("Sample/m/view")
 eel.start("login.html", size=(800, 480), block=False)
 
 @eel.expose
@@ -408,8 +408,8 @@ def openIOcsv(cID, cName):
     stdID = []
     stdName = []
     print("Preparations are underway: " + cName)
-    dirName = "./Mainproject/IOList/" + cName
-    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
+    dirName = "./Sample/m/IOList/" + cName
+    IOcsvName = "./Sample/m/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
     stdcsvName = "./data/履修者-" + cID + ".csv"
     if(os.path.exists(dirName) == False):
         os.mkdir(dirName)
@@ -562,7 +562,7 @@ def generateIOcsvName(clid):
     except(IndexError):
         pass
 
-    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
+    IOcsvName = "./Sample/m/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
     print(IOcsvName)
     eel.getcName(cName)
     eel.getIOcsvName(IOcsvName)
@@ -693,7 +693,7 @@ def updateIOcsv(cDataPockets):
 #出欠リスト表示用
 @eel.expose
 def chooseIOList(cName, iNo):
-    path = "./Mainproject/IOList/" + cName + "/"
+    path = "./Sample/m/IOList/" + cName + "/"
     IOcsvNames = os.listdir(path)
     # 最新の出欠リスト
     IOcsvNamepath = path + IOcsvNames[int(iNo)]
@@ -736,7 +736,7 @@ def createOneClassGraph(cName, iNo):
     # 講義回グラフ作成
     # main author: kurita
 
-    path = "./Mainproject/IOList/" + cName + "/"
+    path = "./Sample/m/IOList/" + cName + "/"
     IOcsvNames = os.listdir(path)
     print(path)
     print(IOcsvNames)
@@ -849,7 +849,7 @@ def createCumulativeClassGraph(cName):
     # 累積講義グラフ作成
     # main author: kurita
 
-    path = "./Mainproject/IOList/" + cName
+    path = "./Sample/m/IOList/" + cName
     # IOcsvNames = os.listdir(path)
     # os.chdir(path)
 
