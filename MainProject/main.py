@@ -712,6 +712,8 @@ def chooseIOList(cName, iNo):
     sIDm = []
     sIntime = []
     sStatus = []
+    sStatusVal = []
+    sStatusValApnd = 0
     sNo = len(list)-1
 
     for i in range(sNo):
@@ -721,13 +723,16 @@ def chooseIOList(cName, iNo):
         sIntime.append(list[i+1][3])
         sStatus.append(list[i+1][4])
 
+    # for x in range(sNo):
+    #     if 
+
 
     # print(list)
 
-    eel.createIOTable(sID, sName, sIDm, sIntime, sStatus, sNo, nIOcsvName, csvNo, IOcsvNames)
+    eel.createIOTable(sID, sName, sIDm, sIntime, sStatus, sStatusVal, sNo, nIOcsvName, csvNo, IOcsvNames)
 
 @eel.expose
-def createOneClassGraph(cName):
+def createOneClassGraph(cName, iNo):
     # 講義回グラフ作成
     # main author: kurita
 
@@ -737,7 +742,7 @@ def createOneClassGraph(cName):
     print(IOcsvNames)
 
     # 最新の出欠リスト
-    IOcsvName = path + IOcsvNames[-1]
+    IOcsvName = path + IOcsvNames[int(iNo)]
 
     #グラフタイトル用の読み込みです。
     file_path = IOcsvName

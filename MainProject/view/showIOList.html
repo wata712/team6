@@ -95,12 +95,12 @@
         }
 
         eel.expose(createIOTable);
-        function createIOTable(sID, sName, sIDm, sIntime, sStatus, sNo, nIOcsvName, csvNo, IOcsvNames){
+        function createIOTable(sID, sName, sIDm, sIntime, sStatus, sStatusVal, sNo, nIOcsvName, csvNo, IOcsvNames){
             var outputIOcsvName = document.getElementById("csvName");
             var outputTable = document.getElementById("IOTable");
-            var IOFamily = '<table cellpadding="1"><tr><th width="15%">学籍番号</th><th width="20%">氏名</th><th width="34%">IDm</th><th width="21%">入室時刻</th><th width="18%">出欠</th></tr>'
+            var IOFamily = '<table cellpadding="1"><tr><th width="14%">学籍番号</th><th width="18%">氏名</th><th width="30%">IDm</th><th width="15%">入室時刻</th><th width="11%">出欠</th><th width="12%">出席率</th></tr>'
             for(let i=0; i<sNo; i++){
-                var IOFamilyBase = '<tr><td>' + sID[i] + '</td><td>' + sName[i] + '</td><td>' + sIDm[i] + '</td><td>' + sIntime[i] + '</td><td>' + sStatus[i] + '</td></tr>';
+                var IOFamilyBase = '<tr><td>' + sID[i] + '</td><td>' + sName[i] + '</td><td>' + sIDm[i] + '</td><td>' + sIntime[i] + '</td><td>' + sStatus[i] + '</td><td>' + sStatusVal[i] + '</td></tr>';
                 IOFamily = IOFamily + IOFamilyBase;
             }
             var option = '<select id="listcsvName">'
@@ -118,13 +118,16 @@
             outputListIOcsvName.addEventListener("change", inputChange);
         }
 
+        var newcsvNo = -1
+
         function inputChange(event){
-            let newcsvNo = event.currentTarget.value;
+            newcsvNo = event.currentTarget.value;
             eel.chooseIOList(cName, newcsvNo)
         }
 
         function createOneCG(){
-            eel.createOneClassGraph(cNameOP);
+            console.log(newcsvNo);
+            eel.createOneClassGraph(cNameOP, newcsvNo);
         }
 
         function createCumCG(){
@@ -168,7 +171,7 @@
             <button id="toadminbtn" onclick="location.href='admin.html'">管理画面へ</button>
             </div>
             <div class="btnarea5">
-                <button id="toadminbtn" onclick=createOneCG()>各回の統計</button>
+                <button id="toadminbtn" onclick=createOneCG()>今回の統計</button>
             </div>
             <div class="btnarea6">
                 <button id="toadminbtn" onclick=createCumCG()>通算の統計</button>
