@@ -503,6 +503,9 @@ def openIOcsv(cID, cName):
         csv_data = csv.reader(f)
         list = [ e for e in csv_data]
         f.close()
+
+        now = str(now)
+        now = now[0:8]
         
         # 更新後のデータ
         data = [stdID[no], stdName[no], stdIDm[no], now, status]
@@ -689,13 +692,17 @@ def updateIOcsv(cDataPockets):
 
 #出欠リスト表示用
 @eel.expose
-def chooseIOList(cName):
+def chooseIOList(cName, iNo):
     path = "./Mainproject/IOList/" + cName + "/"
     IOcsvNames = os.listdir(path)
     # 最新の出欠リスト
-    IOcsvName = path + IOcsvNames[-1]
+    IOcsvNamepath = path + IOcsvNames[int(iNo)]
+    nIOcsvName = IOcsvNames[int(iNo)]
+    csvNo = len(IOcsvNames)
 
-    f = open(IOcsvName, "r", encoding="utf-8")
+    print(IOcsvNamepath)
+
+    f = open(IOcsvNamepath, "r", encoding="utf-8")
     csv_data = csv.reader(f)
     list = [ e for e in csv_data]
     f.close()
@@ -717,7 +724,7 @@ def chooseIOList(cName):
 
     # print(list)
 
-    eel.createIOTable(sID, sName, sIDm, sIntime, sStatus, sNo)
+    eel.createIOTable(sID, sName, sIDm, sIntime, sStatus, sNo, nIOcsvName, csvNo, IOcsvNames)
 
 @eel.expose
 def createOneClassGraph(cName):

@@ -93,6 +93,17 @@ table{
     border-collapse: collapse;
 }
 
+select{
+    font-size: 1em;
+    height: 30px;
+    width: 380px;
+    background-color: #d6d4e7;
+    margin: 10px 0px;
+    padding-left: 18px;
+    border: 0;
+    border-radius: 3px;
+}
+
 
 tr:nth-child(odd){
     background-color: #dddddd;

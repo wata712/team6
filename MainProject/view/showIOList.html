@@ -13,9 +13,10 @@
         //     // var tmp = document.getElementsByClassName("csv2table");
         //     // tmp.setAttribute("data-src",IOcsvName);
         // }
-        var cNameOP = ""
+        var cNameOP = "";
 
-        var csvName = ""
+        var csvName = "";
+        var cName = "";
         eel.expose(getIOcsvName);
         function getIOcsvName(IOcsvName){
             console.log(IOcsvName);
@@ -83,25 +84,43 @@
 
         eel.expose(getcName);
         function getcName(cNamex){
-            var cName = cNamex;
+            cName = cNamex;
             cNamePlus = "出欠管理システム  " + cName + "【出欠リスト】"
             var outputDivc = document.getElementById("cNameArea");
             console.log(cName);
             outputDivc.innerHTML = cNamePlus;
             cNameOP = cName;
-            eel.chooseIOList(cName);
+            let iNo = -1;
+            eel.chooseIOList(cName, iNo);
         }
 
         eel.expose(createIOTable);
-        function createIOTable(sID, sName, sIDm, sIntime, sStatus, sNo){
+        function createIOTable(sID, sName, sIDm, sIntime, sStatus, sNo, nIOcsvName, csvNo, IOcsvNames){
+            var outputIOcsvName = document.getElementById("csvName");
             var outputTable = document.getElementById("IOTable");
-            var IOFamily = '<table cellpadding="1"><tr><th width="15%">学籍番号</th><th width="17%">氏名</th><th width="29%">IDm</th><th width="29%">入室時刻</th><th width="10%">出欠</th></tr>'
+            var IOFamily = '<table cellpadding="1"><tr><th width="15%">学籍番号</th><th width="20%">氏名</th><th width="34%">IDm</th><th width="21%">入室時刻</th><th width="18%">出欠</th></tr>'
             for(let i=0; i<sNo; i++){
                 var IOFamilyBase = '<tr><td>' + sID[i] + '</td><td>' + sName[i] + '</td><td>' + sIDm[i] + '</td><td>' + sIntime[i] + '</td><td>' + sStatus[i] + '</td></tr>';
                 IOFamily = IOFamily + IOFamilyBase;
             }
-            
+            var option = '<select id="listcsvName">'
+            for(let j=0; j<csvNo; j++){
+                if(IOcsvNames[j] == nIOcsvName){
+                    option = option + '<option value="' + j + '" selected>' + IOcsvNames[j] + '</option>'
+                }
+                else{
+                    option = option + '<option value="' + j + '" >' + IOcsvNames[j] + '</option>'
+                }
+            }
+            outputIOcsvName.innerHTML = option + '</select>';
             outputTable.innerHTML = IOFamily + '</table>';
+            var outputListIOcsvName = document.getElementById("listcsvName");
+            outputListIOcsvName.addEventListener("change", inputChange);
+        }
+
+        function inputChange(event){
+            let newcsvNo = event.currentTarget.value;
+            eel.chooseIOList(cName, newcsvNo)
         }
 
         function createOneCG(){
@@ -156,8 +175,8 @@
             </div>
         </div>
         <div>
-            <p id="IOTable">
-            </p>
+            <p id="csvName"></p>
+            <p id="IOTable"></p>
         </div>
         <table>
             <tbody id="output_csv"></tbody>

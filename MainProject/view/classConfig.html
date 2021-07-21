@@ -129,52 +129,52 @@
         }
 
         function inputChange(event){
-                let CT12 = document.getElementById("showCT")
+            let CT12 = document.getElementById("showCT")
 
-                let newcPeri = event.currentTarget.value
-                let newCT1 = "00:00"
-                let newCT2 = "00:00"
+            let newcPeri = event.currentTarget.value
+            let newCT1 = "00:00"
+            let newCT2 = "00:00"
 
-                if(newcPeri == "1_"){
-                    newCT1 = "09:00"
-                    newCT2 = "10:30"
-                }
-                if(newcPeri == "2_"){
-                    newCT1 = "10:40"
-                    newCT2 = "12:10"
-                }
-                if(newcPeri == "3_"){
-                    newCT1 = "13:00"
-                    newCT2 = "14:30"
-                }
-                if(newcPeri == "4_"){
-                    newCT1 = "14:40"
-                    newCT2 = "16:10"
-                }
-                if(newcPeri == "5_"){
-                    newCT1 = "16:20"
-                    newCT2 = "17:50"
-                }
-                if(newcPeri == "12_"){
-                    newCT1 = "09:00"
-                    newCT2 = "12:10"
-                }
-                if(newcPeri == "23_"){
-                    newCT1 = "10:40"
-                    newCT2 = "14:30"
-                }
-                if(newcPeri == "34_"){
-                    newCT1 = "13:00"
-                    newCT2 = "16:10"
-                }
-                if(newcPeri == "45_"){
-                    newCT1 = "14:40"
-                    newCT2 = "17:50"
-                }
-
-                CT12.innerHTML = newCT1 + " - " + newCT2
-                console.log(newcPeri);
+            if(newcPeri == "1_"){
+                newCT1 = "09:00"
+                newCT2 = "10:30"
             }
+            if(newcPeri == "2_"){
+                newCT1 = "10:40"
+                newCT2 = "12:10"
+            }
+            if(newcPeri == "3_"){
+                newCT1 = "13:00"
+                newCT2 = "14:30"
+            }
+            if(newcPeri == "4_"){
+                newCT1 = "14:40"
+                newCT2 = "16:10"
+            }
+            if(newcPeri == "5_"){
+                newCT1 = "16:20"
+                newCT2 = "17:50"
+            }
+            if(newcPeri == "12_"){
+                newCT1 = "09:00"
+                newCT2 = "12:10"
+            }
+            if(newcPeri == "23_"){
+                newCT1 = "10:40"
+                newCT2 = "14:30"
+            }
+            if(newcPeri == "34_"){
+                newCT1 = "13:00"
+                newCT2 = "16:10"
+            }
+            if(newcPeri == "45_"){
+                newCT1 = "14:40"
+                newCT2 = "17:50"
+            }
+
+            CT12.innerHTML = newCT1 + " - " + newCT2
+            console.log(newcPeri);
+        }
         
         function getParam(name, url){
             if (!url) url = window.location.href;
