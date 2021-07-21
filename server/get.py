@@ -1,10 +1,10 @@
+import mysql.connector
 import pymysql.cursors
 import csv
 import tkinter as tk
 
 root = tk.Tk()
 root.geometry("300x100")
-root.title("ファイルの名前入力")
 
 entry = tk.Entry()
 entry.place(x=20, y=30)
@@ -12,7 +12,10 @@ entry.place(x=20, y=30)
 button = tk.Button(text="OK")
 button.place(x=150, y=26)
 
+word = ""
+
 def click():
+    global word
     word = entry.get()
     entry.delete(0, tk.END)
     label = tk.Label(text=word)
@@ -22,36 +25,38 @@ button["command"] = click    #関数と関連付ける
 
 root.mainloop()
 
+cnx = None
 
-#接続する
-connect = pymysql.connector.connect(
-user='watanabe',
-password='team6pass',
-host='localhost',
-database='team6')
+try:
+    cnx = mysql.connector.connect(
+        user='watanabe',  # ユーザー名
+        password='team6pass',  # パスワード
+        host='localhost',  # ホスト名(IPアドレス）
+        database='team6'  # データベース名
+    )
 
-#カーソルを作成
-cursor = connect.cursor()
+    cursor = cnx.cursor()
 
-#もしテーブルが存在しない場合は作成
-cursor.execute("CREATE TABLE IF NOT EXISTS (Scale TEXT, Root TEXT, I TEXT, IIm TEXT, IIIm TEXT, IV TEXT, V TEXT, VIm TEXT, VIIm TEXT)")
-#
+    sql = '''
+    CREATE TABLE ''' + word + '''(
+        学籍番号 VARCHAR(255) NULL,
+        氏名 VARCHAR(255) NULL,
+        IDm VARCHAR(255) NULL,
+        入室時刻 VARCHAR(255) NULL,
+        出席 VARCHAR(255) NULL
+    )'''
 
-with open("scale.csv", "r") as file:
-rows = csv.reader(file)
-for row in rows:
-#最初の行は取り除く
-#データの挿入
-cursor.execute('INSERT INTO scale (Scale, Root, I, IIm, IIIm, IV, V, VIm, VIIm) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)', row)
+    cursor.execute(sql)
 
+    cursor.execute("SHOW TABLES")
+    print(cursor.fetchall())
 
-#変更を反映させる
-connect.commit()
+    cursor.close()
 
-#中身を確認する
-# cursor.execute('select * from scale')
-# result = cursor.fetchall()
-# print(result)
+except Exception as e:
+    print(f"Error Occurred: {e}")
 
-cursor.close()
-connect.close()
+finally:
+    if cnx is not None and cnx.is_connected():
+        cnx.close()
+
