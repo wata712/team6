@@ -68,6 +68,8 @@ finally:
 connection = MySQLdb.connect(db="team6",user="root",passwd="",charset="utf8")
 cursor=connection.cursor()
 
+cursor.execute("DELETE FROM " + word)
+
 #ここでは教員・担当科目リスト.csvをMySQLにinsert
 #path変更忘れずに
 Name = ""
