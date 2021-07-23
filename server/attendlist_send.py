@@ -43,11 +43,11 @@ try:
 
     sql = '''
     CREATE TABLE ''' + word + '''(
-        学籍番号 VARCHAR(255) NULL,
-        氏名 VARCHAR(255) NULL,
-        IDm VARCHAR(255) NULL,
-        入室時刻 VARCHAR(255) NULL,
-        出欠 VARCHAR(255) NULL
+        学籍番号 VARCHAR(255) NOT NULL,
+        氏名 VARCHAR(255) NOT NULL,
+        IDm VARCHAR(255) NOT NULL,
+        入室時刻 VARCHAR(255) NOT NULL,
+        出欠 VARCHAR(255) NOT NULL
     )'''
 
     cursor.execute(sql)
@@ -86,7 +86,7 @@ reader = csv.reader(f)
 header = next(reader)
 for row in reader:
   sql = "INSERT IGNORE INTO "+word+" values(%s,%s,%s,%s,%s)"
-  cursor.execute(sql, (row[0], row[1], row[2], row[3], row[4]))
+  cursor.execute(sql, (row[0], row[1], row[2],row[3],row[4]))
   print(row)
 f.close()
 
@@ -94,3 +94,4 @@ connection.commit()
 
 cursor.close()
 connection.close()
+
