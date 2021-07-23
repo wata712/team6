@@ -123,6 +123,16 @@ tr:nth-child(even){
     color: #000000;
 }
 
+/* tr:nth-child(odd)#xfont{
+    background-color: #dddddd;
+    color: #dddddd;
+}
+
+tr:nth-child(even)#xfont{
+    background-color: #afadc4;
+    color: #afadc4;
+} */
+
 a{
     color: #333333;
 }
