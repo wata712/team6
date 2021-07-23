@@ -10,7 +10,6 @@ import numpy
 import random
 import matplotlib.pyplot as plt
 import japanize_matplotlib # グラフの日本語表示に必要
-import glob
 from typing import Counter
 
 # import importer

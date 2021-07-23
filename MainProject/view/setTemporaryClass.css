@@ -92,6 +92,15 @@ input{
 input#cNameText{
     font-size: 1.3em;
     height: 36px;
+    width: 300px;
+    background-color: #d6d4e7;
+    border: 0;
+    border-radius: 3px;
+}
+
+input#cNameText{
+    font-size: 1.3em;
+    height: 36px;
     width: 270px;
     background-color: #d6d4e7;
     border: 0;
@@ -103,6 +112,21 @@ select{
     height: 36px;
     width: 100px;
     background-color: #d6d4e7;
+    margin: 10px 0px;
+    padding-left: 18px;
+    border: 0;
+    border-radius: 3px;
+}
+
+#showCT{
+    height: 33px;
+    width: 185px;
+    color: #000000;
+    font-size: 1.3em;
+    background-color: #d6d4e7;
+    margin: 10px 0px;
+    padding-top: 3px;
+    padding-left: 30px;
     border: 0;
     border-radius: 3px;
 }
