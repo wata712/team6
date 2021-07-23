@@ -849,9 +849,9 @@ def createCumulativeClassGraph(cName):
     # 累積講義グラフ作成
     # main author: kurita
 
-    path = "./Sample/m/IOList/" + cName
-    IOcsvNames = os.listdir(path)
-    os.chdir(path)
+    path1 = "./Sample/m/IOList/" + cName
+    IOcsvNames = os.listdir(path1)
+    os.chdir(path1)
 
     #IOcsvNames = path + "/*.csv"
 
