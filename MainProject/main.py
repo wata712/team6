@@ -177,6 +177,7 @@ def pickcName():
             tcDay[n] = '金'
         else:
             tcDay[n] = ''
+            tcName[1] = "undefined"
             print('Day config error')
 
         if('12_' in cID[n]):
@@ -205,12 +206,17 @@ def pickcName():
             print(tcDay[n] + tcPeriod[n])
         except(TypeError):
             pass
+        except(IndexError):
+            pass
         n = n+1
 
     tc1Name = tcName[0]
     tc2Name = tcName[1]
 
-    eel.addcData(tc1Name, tc2Name, tcDay, tcPeriod)
+    tclen = len(tcName)
+    tclen = 5
+
+    eel.addcData(tcName, tclen, tcDay, tcPeriod)
 
 #adminでの分岐用
 @eel.expose
@@ -765,9 +771,9 @@ def chooseIOList(cName, iNo):
                 sStatusValLate += 1
             elif sStatusVal[x][i+1][4] == "欠席":
                 sStatusValAbsc += 1
-        rate = (sStatusValApnd/(sStatusValApnd + sStatusValLate + sStatusValAbsc)) * 100
-        rate = round(rate)
-        rate = str(rate) + "%"
+        rate = str(sStatusValApnd) + "/" + str(sStatusValApnd + sStatusValLate + sStatusValAbsc)
+        # rate = round(rate)
+        # rate = str(rate) + "%"
         sStatusRates.append(rate)
         sStatusValApnd = 0
         sStatusValLate = 0
@@ -796,16 +802,16 @@ def createOneClassGraph(cName, iNo):
     file_name_path=os.path.basename(file_path)
 
     #出席,遅刻,欠席のカウント
-    count = {}
+    count0 = {}
     with open(IOcsvName,encoding='UTF8') as fo:
         atl_reader = csv.reader(fo)
         atl_header = next(atl_reader)
-        data=fo
+        # data=fo
         print(atl_header)
         for row in atl_reader:
-            data2=row[4]
-            count.setdefault(data2,0)
-            count[data2] +=1
+            data0=row[4]
+            count0.setdefault(data0,0)
+            count0[data0] +=1
 
     with open(IOcsvName,encoding='UTF8') as fc:
         line_count=sum([1 for line in fc])
@@ -818,12 +824,12 @@ def createOneClassGraph(cName, iNo):
     fig=plt.figure()
 
     plt.title(file_name_path)
-    for key, value in count.items():
-        att_counter='{}: {:d}'.format(key,value)
+    for key0, value0 in count0.items():
+        att_counter='{}: {:d}'.format(key0,value0)
         #y軸設定用
-        y_list.append(int(value))
+        y_list.append(int(value0))
         #x軸の文字ラベル用
-        x_label.append('{}'.format(key))
+        x_label.append('{}'.format(key0))
 
     #ここでy軸を降順にソート
     y_list2=sorted(y_list,reverse=True)
@@ -896,20 +902,19 @@ def createCumulativeClassGraph(cName):
     # 累積講義グラフ作成
     # main author: kurita
 
-    path = "./Mainproject/IOList/" + cName
-    # IOcsvNames = os.listdir(path)
-    # os.chdir(path)
-
-    IOcsvNames = path + "*.csv"
+    path = "./Mainproject/IOList/" + cName + "/"
+    csv_list3 = os.listdir(path)
+    os.chdir(path)
 
     #各生徒ごとに'出席'の数をカウント
     stnumb_list=[]
     atd_count_list=[]
-    csv_list3=glob.glob(IOcsvNames)
+    # csv_list3=glob.glob(IOcsvNames)
     count = {}
-    for atdlist_csvdata in csv_list3:
+    for n in range(len(csv_list3)):
+        print(csv_list3[n])
         
-        with open(atdlist_csvdata,encoding='UTF8') as f3:
+        with open(csv_list3[n],encoding='UTF8') as f3:
             atl_reader3 = csv.reader(f3)
             atl_header3 = next(atl_reader3)
             #print(atl_header3)
@@ -939,9 +944,9 @@ def createCumulativeClassGraph(cName):
     count2 = {}
     stnumb_list2=[]
     atd_count_list2=[]
-    for atdlist_csvdata in csv_list3:
+    for m in range(len(csv_list3)):
         
-        with open(atdlist_csvdata,encoding='UTF8') as f4:
+        with open(csv_list3[m],encoding='UTF8') as f4:
             atl_reader4 = csv.reader(f4)
             atl_header4 = next(atl_reader4)
             #print(atl_header3)
@@ -969,9 +974,9 @@ def createCumulativeClassGraph(cName):
     count3 = {}
     stnumb_list3=[]
     atd_count_list3=[]
-    for atdlist_csvdata in csv_list3:
+    for l in range(len(csv_list3)):
         
-        with open(atdlist_csvdata,encoding='UTF8') as f5:
+        with open(csv_list3[l],encoding='UTF8') as f5:
             atl_reader5 = csv.reader(f5)
             atl_header5 = next(atl_reader5)
             #print(atl_header3)
