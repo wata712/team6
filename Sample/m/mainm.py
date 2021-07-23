@@ -735,7 +735,6 @@ def chooseIOList(cName, iNo):
 def createOneClassGraph(cName, iNo):
     # 講義回グラフ作成
     # main author: kurita
-
     path = "./Sample/m/IOList/" + cName +"/"
     IOcsvNames1 = os.listdir(path)
     print(path)
@@ -852,7 +851,6 @@ def createCumulativeClassGraph(cName):
     path1 = "./Sample/m/IOList/" + cName
     IOcsvNames = os.listdir(path1)
     os.chdir(path1)
-
     #IOcsvNames = path + "/*.csv"
 
     #各生徒ごとに'出席'の数をカウント
@@ -986,6 +984,8 @@ def createCumulativeClassGraph(cName):
     plt.legend()
     plt.subplots_adjust(left=0.1,right=0.95,bottom=0.1,top=0.95)
     plt.show()
+    
+    
 
 #これがないと動かないんでよ
 while True:
