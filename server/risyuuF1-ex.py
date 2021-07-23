@@ -17,7 +17,6 @@ header = next(reader)
 for row in reader:
   sql = "INSERT IGNORE INTO f1 values(%s,%s,%s,%s,%s)"
   cursor.execute(sql, (row[0], row[1], row[2],row[3],row[4]))
-  print(row)
 f.close()
 
 connection.commit()

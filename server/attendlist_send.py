@@ -86,7 +86,7 @@ reader = csv.reader(f)
 header = next(reader)
 for row in reader:
   sql = "INSERT IGNORE INTO "+word+" values(%s,%s,%s,%s,%s)"
-  cursor.execute(sql, (row[0], row[1], row[2], row[3], row[4]))
+  cursor.execute(sql, (row[0], row[1], row[2],row[3],row[4]))
   print(row)
 f.close()
 
@@ -94,3 +94,4 @@ connection.commit()
 
 cursor.close()
 connection.close()
+
