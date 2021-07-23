@@ -43,11 +43,11 @@ try:
 
     sql = '''
     CREATE TABLE ''' + word + '''(
-        学籍番号 VARCHAR(255) NULL,
-        氏名 VARCHAR(255) NULL,
-        IDm VARCHAR(255) NULL,
-        入室時刻 VARCHAR(255) NULL,
-        出欠 VARCHAR(255) NULL
+        学籍番号 VARCHAR(255) NOT NULL,
+        氏名 VARCHAR(255) NOT NULL,
+        IDm VARCHAR(255) NOT NULL,
+        入室時刻 VARCHAR(255) NOT NULL,
+        出欠 VARCHAR(255) NOT NULL
     )'''
 
     cursor.execute(sql)
