@@ -29,7 +29,7 @@ def login():
 @route("/login", method="POST")
 def do_login():
     username = [request.forms.get("username")]
-    for i in range(3):
+    for i in range(12):
         #rangeの()内はユーザの人数を入れる
         if username == user_line[i]:
             return do_login_pass(i)
