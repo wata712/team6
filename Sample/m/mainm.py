@@ -910,9 +910,7 @@ def createCumulativeClassGraph(cName):
     csv_list3 = os.listdir(path)
     os.chdir(path)
 
-    #各生徒ごとに'出席'の数をカウント
-    stnumb_list=[]
-    atd_count_list=[]
+    
     #csv_list3=glob.glob("/*.csv")
     #csv_list3
     #print(IOcsvNames)
