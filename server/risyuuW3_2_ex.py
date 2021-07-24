@@ -3,19 +3,19 @@
 import csv
 import MySQLdb
 
-connection = MySQLdb.connect(db="team6",user="root",passwd="",charset="utf8")
+connection = MySQLdb.connect(host="localhost",db="team6",user="root",passwd="",charset="utf8")
 cursor=connection.cursor()
 
-cursor.execute("DELETE FROM gakusei")
+cursor.execute("DELETE FROM w3_2")
 
 #ここでは教員・担当科目リスト.csvをMySQLにinsert
 #path変更忘れずに
-f = open("C:\\Users\\tkr\\Desktop\\team6\data\\学生リスト.csv", "r", encoding="utf-8")
+f = open("C:\\Users\\tkr\\Desktop\\team6\\data\\履修者-W3_2.csv", "r", encoding="utf-8")
 
 reader = csv.reader(f)
 header = next(reader)
 for row in reader:
-  sql = "INSERT IGNORE INTO gakusei values(%s,%s,%s,%s,%s)"
+  sql = "INSERT IGNORE INTO w3_2 values(%s,%s,%s,%s,%s)"
   cursor.execute(sql, (row[0], row[1], row[2],row[3],row[4]))
 f.close()
 

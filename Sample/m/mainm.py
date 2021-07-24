@@ -10,7 +10,6 @@ import numpy
 import random
 import matplotlib.pyplot as plt
 import japanize_matplotlib # グラフの日本語表示に必要
-import glob
 from typing import Counter
 
 # import importer
@@ -20,7 +19,7 @@ from typing import Counter
 
 print("404 Not Found エラーが出た場合、VSCodeでこのファイルを開いてから実行してみてください。")
 
-eel.init("Sample/m/view")
+eel.init("MainProject/view")
 eel.start("login.html", size=(800, 480), block=False)
 
 @eel.expose
@@ -80,16 +79,21 @@ def tIDtPWverify(tID,tPW):
 #管理モードで教員氏名を表示
 @eel.expose
 def picktName():
-    global tID
-    tnamecsv = {}
-    with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            tnamecsv[row["ID"]] = row["氏名"]
-    #print(tnamecsv[tID])
-    tName = str(tnamecsv[tID])
-    print("user: " + tName)
-    eel.printtName(tName)
+    try:
+        global tID
+        tnamecsv = {}
+        with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                tnamecsv[row["ID"]] = row["氏名"]
+        #print(tnamecsv[tID])
+        tName = str(tnamecsv[tID])
+        print("user: " + tName)
+        eel.printtName(tName)
+    except(FileNotFoundError):
+        os.getcwd()
+        os.chdir("./team6/MainProject/") 
+        picktName()
 
 # reader = "x"
 
@@ -177,6 +181,7 @@ def pickcName():
             tcDay[n] = '金'
         else:
             tcDay[n] = ''
+            tcName[1] = "undefined"
             print('Day config error')
 
         if('12_' in cID[n]):
@@ -205,12 +210,17 @@ def pickcName():
             print(tcDay[n] + tcPeriod[n])
         except(TypeError):
             pass
+        except(IndexError):
+            pass
         n = n+1
 
     tc1Name = tcName[0]
     tc2Name = tcName[1]
 
-    eel.addcData(tc1Name, tc2Name, tcDay, tcPeriod)
+    tclen = len(tcName)
+    tclen = 5
+
+    eel.addcData(tcName, tclen, tcDay, tcPeriod)
 
 #adminでの分岐用
 @eel.expose
@@ -315,7 +325,8 @@ def clidSet(clid):
     # eel.initialLT(tccLT1, tccLT2)
     # return tccCT1, tccCT2, tccLT1, tccLT2
 
-datew = str(datetime.date.today())
+datew = datetime.date.today()
+datew = datew.strftime("%Y_%m_%d")
 print(datew)
 
 # 仮の出席者
@@ -408,8 +419,8 @@ def openIOcsv(cID, cName):
     stdID = []
     stdName = []
     print("Preparations are underway: " + cName)
-    dirName = "./Sample/m/IOList/" + cName
-    IOcsvName = "./Sample/m/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
+    dirName = "./Mainproject/IOList/" + cName
+    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
     stdcsvName = "./data/履修者-" + cID + ".csv"
     if(os.path.exists(dirName) == False):
         os.mkdir(dirName)
@@ -562,7 +573,7 @@ def generateIOcsvName(clid):
     except(IndexError):
         pass
 
-    IOcsvName = "./Sample/m/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
+    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
     print(IOcsvName)
     eel.getcName(cName)
     eel.getIOcsvName(IOcsvName)
@@ -659,6 +670,19 @@ def updateIOcsv(cDataPockets):
     newLT1t = dt.strptime(newLT1, '%H:%M')
     newLT2t = dt.strptime(newLT2, '%H:%M')
 
+    if newLT1t<newCT1t:
+        eel.showErrorInfo()
+        return
+    if newLT2t<newCT1t:
+        eel.showErrorInfo()
+        return
+    if newLT2t<newLT1t:
+        eel.showErrorInfo()
+        return
+    if newCT2t<newLT2t:
+        eel.showErrorInfo()
+        return
+
     newLT1t = newLT1t - newCT1t
     newLT2t = newLT2t - newCT1t
 
@@ -668,14 +692,13 @@ def updateIOcsv(cDataPockets):
     print(newLT1)
     print(newLT2)
 
-    if newLT1 == "d":
-        newLT1 = "0"
-    if newLT2 == "d":
-        newLT1 = "0"
-
-
     newLT1 = newLT1[2:4]
     newLT2 = newLT2[2:4]
+
+    if newLT1 == " d":
+        newLT1 = "00"
+    if newLT2 == " d":
+        newLT2 = "00"
     
     # 更新後のデータ
     data = [newcID, cName, tID, tName, newCT1, newCT2, newLT1, newLT2, exam, sNo]
@@ -690,16 +713,36 @@ def updateIOcsv(cDataPockets):
         writer = csv.writer(f)
         writer.writerows(list)
 
+    eel.toAdmin()
+
 #出欠リスト表示用
 @eel.expose
 def chooseIOList(cName, iNo):
-    path = "./Sample/m/IOList/" + cName + "/"
-    IOcsvNames = os.listdir(path)
+    path = "./Mainproject/IOList/" + cName + "/"
+    try:
+        IOcsvNames = os.listdir(path)
+    except(FileNotFoundError):
+        eel.showNameError()
+        return
+    
+    csvNo = len(IOcsvNames)
+    listS = []
+    sStatusVal = []
+    
+    for c in range(csvNo):
+        IOcsvNamepath = path + IOcsvNames[c]
+        print(IOcsvNamepath)
+        f = open(IOcsvNamepath, "r", encoding="utf-8")
+        csv_data = csv.reader(f)
+        listS = [ o for o in csv_data]
+        f.close()
+        # print(listS)
+        sStatusVal.append(listS)
+
     # 最新の出欠リスト
     IOcsvNamepath = path + IOcsvNames[int(iNo)]
     nIOcsvName = IOcsvNames[int(iNo)]
-    csvNo = len(IOcsvNames)
-
+    
     print(IOcsvNamepath)
 
     f = open(IOcsvNamepath, "r", encoding="utf-8")
@@ -712,8 +755,10 @@ def chooseIOList(cName, iNo):
     sIDm = []
     sIntime = []
     sStatus = []
-    sStatusVal = []
     sStatusValApnd = 0
+    sStatusValLate = 0
+    sStatusValAbsc = 0
+    sStatusRates = []
     sNo = len(list)-1
 
     for i in range(sNo):
@@ -723,25 +768,38 @@ def chooseIOList(cName, iNo):
         sIntime.append(list[i+1][3])
         sStatus.append(list[i+1][4])
 
-    # for x in range(sNo):
-    #     if 
-
+        for x in range(csvNo):
+            if sStatusVal[x][i+1][4] == "出席":
+                sStatusValApnd += 1
+            elif sStatusVal[x][i+1][4] == "遅刻":
+                sStatusValLate += 1
+            elif sStatusVal[x][i+1][4] == "欠席":
+                sStatusValAbsc += 1
+        rate = str(sStatusValApnd) + "/" + str(sStatusValApnd + sStatusValLate + sStatusValAbsc)
+        # rate = round(rate)
+        # rate = str(rate) + "%"
+        sStatusRates.append(rate)
+        sStatusValApnd = 0
+        sStatusValLate = 0
+        sStatusValAbsc = 0
+    # print(sStatusRates)
 
     # print(list)
 
-    eel.createIOTable(sID, sName, sIDm, sIntime, sStatus, sStatusVal, sNo, nIOcsvName, csvNo, IOcsvNames)
+    eel.createIOTable(sID, sName, sIDm, sIntime, sStatus, sStatusRates, sNo, nIOcsvName, csvNo, IOcsvNames)
 
 @eel.expose
 def createOneClassGraph(cName, iNo):
     # 講義回グラフ作成
     # main author: kurita
-    path = "./Sample/m/IOList/" + cName +"/"
-    IOcsvNames1 = os.listdir(path)
+
+    path = "./Mainproject/IOList/" + cName + "/"
+    IOcsvNames = os.listdir(path)
     print(path)
-    #print(IOcsvNames)
+    print(IOcsvNames)
 
     # 最新の出欠リスト
-    IOcsvName = path + IOcsvNames1[int(iNo)]
+    IOcsvName = path + IOcsvNames[int(iNo)]
 
     #グラフタイトル用の読み込みです。
     file_path = IOcsvName
@@ -752,7 +810,7 @@ def createOneClassGraph(cName, iNo):
     with open(IOcsvName,encoding='UTF8') as fo:
         atl_reader = csv.reader(fo)
         atl_header = next(atl_reader)
-        
+        # data=fo
         print(atl_header)
         for row in atl_reader:
             data0=row[4]
@@ -848,22 +906,24 @@ def createCumulativeClassGraph(cName):
     # 累積講義グラフ作成
     # main author: kurita
 
-    path1 = "./Sample/m/IOList/" + cName
-    IOcsvNames = os.listdir(path1)
-    os.chdir(path1)
-    #IOcsvNames = path + "/*.csv"
+    path = "./Mainproject/IOList/" + cName + "/"
+    csv_list3 = os.listdir(path)
+    os.chdir(path)
 
     #各生徒ごとに'出席'の数をカウント
     stnumb_list=[]
     atd_count_list=[]
     #csv_list3=glob.glob("/*.csv")
     #csv_list3
-    print(IOcsvNames)
-    #print(csv_list3)
+    #print(IOcsvNames)
+    print(csv_list3)
     count1 = {}
-    for atdlist_csvdata in IOcsvNames:
+    # csv_list3=glob.glob(IOcsvNames)
+    
+    for n in range(len(csv_list3)):
+        print(csv_list3[n])
         
-        with open(atdlist_csvdata,encoding='UTF8') as f3:
+        with open(csv_list3[n],encoding='UTF8') as f3:
             atl_reader3 = csv.reader(f3)
             atl_header3 = next(atl_reader3)
             #print(atl_header3)
@@ -881,22 +941,23 @@ def createCumulativeClassGraph(cName):
         atd_count_list=[]
         
 
-        for key1, value1 in count1.items():
-            att_counter='{}: {:d}'.format(key1,value1)
+        for key, value in count1.items():
+            att_counter='{}: {:d}'.format(key,value)
             #学番と出席数リスト
             #alatd_list.append(att_counter)
             #学番リスト
-            stnumb_list.append('{}'.format(key1))
+            stnumb_list.append('{}'.format(key))
             #出席数リスト
-            atd_count_list.append(int(value1))
+            atd_count_list.append(int(value))
         #print(stnumb_list)
         #print(atd_count_list)
 
     count2 = {}
     
-    for atdlist_csvdata in IOcsvNames:
+    
+    for m in range(len(csv_list3)):
         
-        with open(atdlist_csvdata,encoding='UTF8') as f4:
+        with open(csv_list3[m],encoding='UTF8') as f4:
             atl_reader4 = csv.reader(f4)
             atl_header4 = next(atl_reader4)
             #print(atl_header3)
@@ -920,13 +981,15 @@ def createCumulativeClassGraph(cName):
             stnumb_list2.append('{}'.format(key2))
             #出席数リスト
             atd_count_list2.append(int(value2))
-        print(stnumb_list2)
-        print(atd_count_list2)
+        #print(stnumb_list)
+        #print(atd_count_list)
     count3 = {}
     
-    for atdlist_csvdata in IOcsvNames:
+    
+    
+    for l in range(len(csv_list3)):
         
-        with open(atdlist_csvdata,encoding='UTF8') as f5:
+        with open(csv_list3[l],encoding='UTF8') as f5:
             atl_reader5 = csv.reader(f5)
             atl_header5 = next(atl_reader5)
             #print(atl_header3)
@@ -969,25 +1032,19 @@ def createCumulativeClassGraph(cName):
     #print(atd_count_list2)
 
     #↓ここから棒グラフ作成
-    fig=plt.figure(figsize=(25,4))
+    fig=plt.figure()
     #学生の数,0から連続した整数のリスト
     y_set=list(range(list_length))
-    
-    #print(y_set2)
-    #グラフ色
-    color_set1="green"
-    color_set2="blue"
-    color_set3="red"
 
-    graph1=plt.bar(y_set,atd_count_list,align="edge",width=-0.5,color=color_set1,label="出席")
-    graph2=plt.bar(y_set,atd_count_list2,align="center",width=0.5,color=color_set2,label="遅刻")
-    graph3=plt.bar(y_set,atd_count_list3,align="edge",width=0.5,color=color_set3,label="欠席")
-    plt.xticks(y_set,stnumb_list,rotation=90,fontsize=6)
+    graph1=plt.bar(y_set,atd_count_list,align="edge",width=-0.5,color="#44cca3",label="出席")
+    graph2=plt.bar(y_set,atd_count_list2,align="center",width=0.5,color="#c3cc44",label="遅刻")
+    graph3=plt.bar(y_set,atd_count_list3,align="edge",width=0.5,color="#cc5844",label="欠席")
+    plt.xticks(y_set,stnumb_list,rotation=90)
     plt.legend()
-    plt.subplots_adjust(left=0.1,right=0.95,bottom=0.1,top=0.95)
     plt.show()
-    
-    
+
+    print(os.getcwd())
+    os.chdir("./team6/MainProject/") 
 
 #これがないと動かないんでよ
 while True:
