@@ -856,10 +856,10 @@ def createCumulativeClassGraph(cName):
     #各生徒ごとに'出席'の数をカウント
     stnumb_list=[]
     atd_count_list=[]
-    csv_list3=glob.glob("/*.csv")
+    #csv_list3=glob.glob("/*.csv")
     #csv_list3
     print(IOcsvNames)
-    print(csv_list3)
+    #print(csv_list3)
     count1 = {}
     for atdlist_csvdata in IOcsvNames:
         
@@ -876,7 +876,9 @@ def createCumulativeClassGraph(cName):
         
         #alatd_list=[]
         
-        
+        #各生徒ごとに'出席'の数をカウント
+        stnumb_list=[]
+        atd_count_list=[]
         
 
         for key1, value1 in count1.items():
@@ -891,8 +893,7 @@ def createCumulativeClassGraph(cName):
         #print(atd_count_list)
 
     count2 = {}
-    stnumb_list2=[]
-    atd_count_list2=[]
+    
     for atdlist_csvdata in IOcsvNames:
         
         with open(atdlist_csvdata,encoding='UTF8') as f4:
@@ -908,7 +909,8 @@ def createCumulativeClassGraph(cName):
         
         #alatd_list=[]
         
-        
+        stnumb_list2=[]
+        atd_count_list2=[]
 
         for key2, value2 in count2.items():
             att_counter2='{}: {:d}'.format(key2,value2)
@@ -921,8 +923,7 @@ def createCumulativeClassGraph(cName):
         print(stnumb_list2)
         print(atd_count_list2)
     count3 = {}
-    stnumb_list3=[]
-    atd_count_list3=[]
+    
     for atdlist_csvdata in IOcsvNames:
         
         with open(atdlist_csvdata,encoding='UTF8') as f5:
@@ -937,7 +938,8 @@ def createCumulativeClassGraph(cName):
                     count3[data5] +=1
         
         #alatd_list=[]
-        
+        stnumb_list3=[]
+        atd_count_list3=[]
         
 
         for key3, value3 in count3.items():
