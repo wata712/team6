@@ -953,8 +953,6 @@ def createCumulativeClassGraph(cName):
         #print(atd_count_list)
 
     count2 = {}
-    
-    
     for m in range(len(csv_list3)):
         
         with open(csv_list3[m],encoding='UTF8') as f4:
@@ -983,10 +981,8 @@ def createCumulativeClassGraph(cName):
             atd_count_list2.append(int(value2))
         #print(stnumb_list)
         #print(atd_count_list)
+    
     count3 = {}
-    
-    
-    
     for l in range(len(csv_list3)):
         
         with open(csv_list3[l],encoding='UTF8') as f5:
@@ -1044,9 +1040,8 @@ def createCumulativeClassGraph(cName):
     plt.show()
 
     print(os.getcwd())
-    os.chdir("./team6/MainProject/") 
+    os.chdir("./team6/MainProject/")
 
 #これがないと動かないんでよ
 while True:
     eel.sleep(2.0)
-
