@@ -3,6 +3,8 @@
 import csv
 import MySQLdb
 
+
+
 connection = MySQLdb.connect(db="team6",user="root",passwd="",charset="utf8")
 cursor=connection.cursor()
 
