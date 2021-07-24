@@ -3,7 +3,7 @@
 import csv
 import MySQLdb
 
-connection = MySQLdb.connect(db="team6",user="root",passwd="",charset="utf8")
+connection = MySQLdb.connect(host="localhost",db="team6",user="root",passwd="",charset="utf8")
 cursor=connection.cursor()
 
 cursor.execute("DELETE FROM tu3_1")
