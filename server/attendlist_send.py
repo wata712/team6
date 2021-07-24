@@ -74,20 +74,22 @@ cursor.execute("DELETE FROM " + word)
 #path変更忘れずに
 Name = ""
 Name2 = ""
-files = glob.glob("C:\\Users\\tkr\\Desktop\\team6\\MainProject\\IOList\\**\\"+ word+ ".csv")
+files = glob.glob(".\\MainProject\\IOList\\**\\"+ word+ ".csv")
 for file in files:
   print(file)
   Name = file
   Name2 = Name.replace("\\","\\\\")
   print(Name2)
-f = open(Name2, "r", encoding="utf-8")
 
+f = open(Name2, "r", encoding="utf-8")
 reader = csv.reader(f)
 header = next(reader)
 for row in reader:
+  print(type(row))
+  print(row)
   sql = "INSERT IGNORE INTO "+word+" values(%s,%s,%s,%s,%s)"
   cursor.execute(sql, (row[0], row[1], row[2],row[3],row[4]))
-  print(row)
+  
 f.close()
 
 connection.commit()
