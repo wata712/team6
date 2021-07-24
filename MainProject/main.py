@@ -79,16 +79,21 @@ def tIDtPWverify(tID,tPW):
 #管理モードで教員氏名を表示
 @eel.expose
 def picktName():
-    global tID
-    tnamecsv = {}
-    with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            tnamecsv[row["ID"]] = row["氏名"]
-    #print(tnamecsv[tID])
-    tName = str(tnamecsv[tID])
-    print("user: " + tName)
-    eel.printtName(tName)
+    try:
+        global tID
+        tnamecsv = {}
+        with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                tnamecsv[row["ID"]] = row["氏名"]
+        #print(tnamecsv[tID])
+        tName = str(tnamecsv[tID])
+        print("user: " + tName)
+        eel.printtName(tName)
+    except(FileNotFoundError):
+        os.getcwd()
+        os.chdir("./team6/MainProject/") 
+        picktName()
 
 # reader = "x"
 
@@ -1021,12 +1026,15 @@ def createCumulativeClassGraph(cName):
     #学生の数,0から連続した整数のリスト
     y_set=list(range(list_length))
 
-    graph1=plt.bar(y_set,atd_count_list,align="edge",width=-0.5,color="green",label="出席")
-    graph2=plt.bar(y_set,atd_count_list2,align="center",width=0.5,color="blue",label="遅刻")
-    graph3=plt.bar(y_set,atd_count_list3,align="edge",width=0.5,color="red",label="欠席")
+    graph1=plt.bar(y_set,atd_count_list,align="edge",width=-0.5,color="#44cca3",label="出席")
+    graph2=plt.bar(y_set,atd_count_list2,align="center",width=0.5,color="#c3cc44",label="遅刻")
+    graph3=plt.bar(y_set,atd_count_list3,align="edge",width=0.5,color="#cc5844",label="欠席")
     plt.xticks(y_set,stnumb_list,rotation=90)
     plt.legend()
     plt.show()
+
+    print(os.getcwd())
+    os.chdir("./team6/MainProject/") 
 
 #これがないと動かないんでよ
 while True:
