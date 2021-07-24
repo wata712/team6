@@ -7,12 +7,12 @@ import csv
 #上のリンクに飛ぶ
 
 #ユーザ情報の読み込み
-user_file = open('C:/Users/浅田恒樹/server/user.csv','r')
+user_file = open('C:/user.csv','r')
 user_reader = csv.reader(user_file)
 user_line = [row for row in user_reader]
 
 #パスワード情報の読み込み
-pass_file = open('C:/Users/浅田恒樹/server/pass.csv','r')
+pass_file = open('C:/pass.csv','r')
 pass_reader = csv.reader(pass_file)
 pass_line = [row for row in pass_reader]
 
