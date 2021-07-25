@@ -2,6 +2,7 @@
 ### author: tanahashi, kurita, ito ###
 
 import os
+from server.tanntou_kyouinn_im import fsync
 import eel
 import csv
 import datetime
@@ -1128,9 +1129,11 @@ def createCumulativeClassGraph(cName):
 # from server import risyuuW12_im
 # from server import tanntou_kyouinn_ex
 # from server import tanntou_kyouinn_im
+from server import app
 
-# @eel.expose
-# def syncData():
+@eel.expose
+def syncData():
+    app.fsync()
 #     gakusei_ex.fsync()
 #     risyuuF1_ex.fsync()
 #     risyuuF2_ex.fsync()
