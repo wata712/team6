@@ -12,7 +12,7 @@ def fsync():
 
   #ここでは教員・担当科目リスト.csvをMySQLにinsert
   #path変更忘れずに
-  f = open("C:\\Users\\tkr\\Desktop\\team6\\data\\履修者-Tu5_.csv", "r", encoding="utf-8")
+  f = open(".\\MainProject\\data\\履修者-Tu5_.csv", "r", encoding="utf-8")
 
   reader = csv.reader(f)
   header = next(reader)
