@@ -1,0 +1,3 @@
+デバイス側
+・まだ使用端末にpythonライブラリのeel,numpy,matplotlib,japanize-matplotlib がインストールされていない場合,pip installでそれらをインストールしてください。
+・MainProjectディレクトリ内にあるmain.pyを実行することで出席管理システムを起動することができる。
