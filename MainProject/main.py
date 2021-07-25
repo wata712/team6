@@ -57,14 +57,14 @@ def registtDatatoPy():
 def tIDtPWverify(tID,tPW):
     tID, tPW = gettData()
     tnamecsv = {}
-    with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
+    with open("./MainProject/data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
         reader = csv.DictReader(f)
         for row in reader:
             tnamecsv[row["ID"]] = row["氏名"]
     print(tnamecsv[tID])
 
     tpwcsv = {}
-    with open("./data/tPW.csv","r")as p:
+    with open("./MainProject/data/tPW.csv","r")as p:
         reader = csv.DictReader(p)
         for prow in reader:
             tpwcsv[prow["tID"]] = prow["tPW"]
@@ -82,7 +82,7 @@ def picktName():
     try:
         global tID
         tnamecsv = {}
-        with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
+        with open("./MainProject/data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
             reader = csv.DictReader(f)
             for row in reader:
                 tnamecsv[row["ID"]] = row["氏名"]
@@ -127,7 +127,7 @@ def pickcName():
     tc1csv = {}
     tc2csv = {}
     tcName = ["name", "name"]
-    with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
+    with open("./MainProject/data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
         reader = csv.DictReader(f)
         for row in reader:
             tc1csv[row["ID"]] = row["担当科目1"]
@@ -150,7 +150,7 @@ def pickcName():
 
     tc1xID = {}
     tc2xID = {}
-    with open("./data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
+    with open("./MainProject/data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
         reader = csv.DictReader(p)
         for row in reader:
             tc1xID[row["科目名"]] = row["講義ID"]
@@ -265,7 +265,7 @@ def clidSet(clid):
     tcxLT1 = {}
     tcxLT2 = {}
 
-    with open("./data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
+    with open("./MainProject/data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
         reader = csv.DictReader(p)
         for row in reader:
             tcxID[row["科目名"]] = row["講義ID"]
@@ -342,7 +342,7 @@ def stdSim(cID):
     #講義IDに一致した履修者csvを開く
     stdIDmx = {} #辞書型
     stdIDm = [] #配列
-    stdcsvName = "./data/履修者-" + cID + ".csv"
+    stdcsvName = "./MainProject/data/履修者-" + cID + ".csv"
     with open(stdcsvName, "r", encoding="utf_8", errors="", newline="") as p:
         reader = csv.DictReader(p)
         for row in reader:
@@ -373,7 +373,7 @@ def openIOcsv(cID, cName):
     tcxLT1 = {}
     tcxLT2 = {}
 
-    with open("./data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
+    with open("./MainProject/data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
         reader = csv.DictReader(p)
         for row in reader:
             tcxCT1[row["科目名"]] = row["開始時間"]
@@ -419,7 +419,7 @@ def openIOcsv(cID, cName):
     stdID = []
     stdName = []
     print("Preparations are underway: " + cName)
-    dirName = "./Mainproject/IOList/" + cName
+    dirName = "./MainProject/Mainproject/IOList/" + cName
     IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
     stdcsvName = "./data/履修者-" + cID + ".csv"
     if(os.path.exists(dirName) == False):
@@ -573,7 +573,7 @@ def generateIOcsvName(clid):
     except(IndexError):
         pass
 
-    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
+    IOcsvName = "./MainProject/Mainproject/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
     print(IOcsvName)
     eel.getcName(cName)
     eel.getIOcsvName(IOcsvName)
@@ -593,7 +593,7 @@ def updateIOcsv(cDataPockets):
     newLT1 = newcData[3]
     newLT2 = newcData[4]
 
-    f = open("./data/講義科目ルール.csv", "r", encoding="utf-8")
+    f = open("./MainProject/data/講義科目ルール.csv", "r", encoding="utf-8")
     csv_data = csv.reader(f)
     list = [ e for e in csv_data]
     f.close()
@@ -709,7 +709,7 @@ def updateIOcsv(cDataPockets):
             list[i] = data
 
     # csv更新
-    with open("./data/講義科目ルール.csv", "w", encoding="utf_8", newline="") as f:
+    with open("./MainProject/data/講義科目ルール.csv", "w", encoding="utf_8", newline="") as f:
         writer = csv.writer(f)
         writer.writerows(list)
 
