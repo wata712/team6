@@ -910,11 +910,14 @@ def createCumulativeClassGraph(cName):
     csv_list3 = os.listdir(path)
     os.chdir(path)
 
-    #各生徒ごとに'出席'の数をカウント
-    stnumb_list=[]
-    atd_count_list=[]
+    
+    #csv_list3=glob.glob("/*.csv")
+    #csv_list3
+    #print(IOcsvNames)
+    print(csv_list3)
+    count1 = {}
     # csv_list3=glob.glob(IOcsvNames)
-    count = {}
+    
     for n in range(len(csv_list3)):
         print(csv_list3[n])
         
@@ -925,16 +928,18 @@ def createCumulativeClassGraph(cName):
             for row in atl_reader3:
                 data=row[0]
                 data2=row[4]
-                count.setdefault(data,0)
+                count1.setdefault(data,0)
                 if '出席' in data2:
-                    count[data] +=1
+                    count1[data] +=1
         
         #alatd_list=[]
         
-        
+        #各生徒ごとに'出席'の数をカウント
+        stnumb_list=[]
+        atd_count_list=[]
         
 
-        for key, value in count.items():
+        for key, value in count1.items():
             att_counter='{}: {:d}'.format(key,value)
             #学番と出席数リスト
             #alatd_list.append(att_counter)
@@ -946,8 +951,6 @@ def createCumulativeClassGraph(cName):
         #print(atd_count_list)
 
     count2 = {}
-    stnumb_list2=[]
-    atd_count_list2=[]
     for m in range(len(csv_list3)):
         
         with open(csv_list3[m],encoding='UTF8') as f4:
@@ -963,7 +966,8 @@ def createCumulativeClassGraph(cName):
         
         #alatd_list=[]
         
-        
+        stnumb_list2=[]
+        atd_count_list2=[]
 
         for key2, value2 in count2.items():
             att_counter2='{}: {:d}'.format(key2,value2)
@@ -975,9 +979,8 @@ def createCumulativeClassGraph(cName):
             atd_count_list2.append(int(value2))
         #print(stnumb_list)
         #print(atd_count_list)
+    
     count3 = {}
-    stnumb_list3=[]
-    atd_count_list3=[]
     for l in range(len(csv_list3)):
         
         with open(csv_list3[l],encoding='UTF8') as f5:
@@ -992,7 +995,8 @@ def createCumulativeClassGraph(cName):
                     count3[data5] +=1
         
         #alatd_list=[]
-        
+        stnumb_list3=[]
+        atd_count_list3=[]
         
 
         for key3, value3 in count3.items():
@@ -1034,9 +1038,8 @@ def createCumulativeClassGraph(cName):
     plt.show()
 
     print(os.getcwd())
-    os.chdir("./team6/MainProject/") 
+    os.chdir("./team6/MainProject/")
 
 #これがないと動かないんでよ
 while True:
     eel.sleep(2.0)
-

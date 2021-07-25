@@ -1,20 +1,21 @@
 from typing import Counter
-from bottle import route, run, request
+from bottle import route, run, request, template
 import os
 import csv
 
 #http://localhost:5000/login
 #上のリンクに飛ぶ
 
-user_file = open('C:/Users/浅田恒樹/server/user.csv','r')
+#ユーザ情報の読み込み
+user_file = open('C:/user.csv','r')
 user_reader = csv.reader(user_file)
-
-pass_file = open('C:/Users/浅田恒樹/server/pass.csv','r')
-pass_reader = csv.reader(pass_file)
-
 user_line = [row for row in user_reader]
+
+#パスワード情報の読み込み
+pass_file = open('C:/pass.csv','r')
+pass_reader = csv.reader(pass_file)
 pass_line = [row for row in pass_reader]
- 
+
 @route("/login")
 def login():
     return """
@@ -28,7 +29,8 @@ def login():
 @route("/login", method="POST")
 def do_login():
     username = [request.forms.get("username")]
-    for i in range(3):
+    for i in range(12):
+        #rangeの()内はユーザの人数を入れる
         if username == user_line[i]:
             return do_login_pass(i)
         else:
@@ -39,9 +41,12 @@ def do_login_pass(count):
     password = [request.forms.get("password")]
 
     if check_login_pass(password,count):
-        return "<p>Your ligin infomation was correct.</p>"
+        return index()
     else:
-        return "<p>Login failed.</p>"
+        return """
+        <p>Login failed.</p>
+        <button type=“button” onclick="location.href='/login'">戻る</button>
+        """
 
 def check_login_pass(password,count):
 
@@ -50,5 +55,9 @@ def check_login_pass(password,count):
     else:
        return False
 
- 
+#認証後のサイト
+@route("/")
+def index():
+    return template('index')
+
 run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
