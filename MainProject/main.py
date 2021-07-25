@@ -20,7 +20,7 @@ from typing import Counter
 print("404 Not Found エラーが出た場合、VSCodeでこのファイルを開いてから実行してみてください。")
 
 eel.init("./MainProject/view")
-eel.start("login.html", size=(800, 480), block=False)
+eel.start("login.html", size=(800, 480), port=9999, block=False)
 
 @eel.expose
 def registtData():
@@ -57,14 +57,14 @@ def registtDatatoPy():
 def tIDtPWverify(tID,tPW):
     tID, tPW = gettData()
     tnamecsv = {}
-    with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
+    with open("./MainProject/data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
         reader = csv.DictReader(f)
         for row in reader:
             tnamecsv[row["ID"]] = row["氏名"]
     print(tnamecsv[tID])
 
     tpwcsv = {}
-    with open("./data/tPW.csv","r")as p:
+    with open("./MainProject/data/tPW.csv","r")as p:
         reader = csv.DictReader(p)
         for prow in reader:
             tpwcsv[prow["tID"]] = prow["tPW"]
@@ -82,7 +82,7 @@ def picktName():
     try:
         global tID
         tnamecsv = {}
-        with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
+        with open("./MainProject/data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
             reader = csv.DictReader(f)
             for row in reader:
                 tnamecsv[row["ID"]] = row["氏名"]
@@ -127,7 +127,7 @@ def pickcName():
     tc1csv = {}
     tc2csv = {}
     tcName = ["name", "name"]
-    with open("./data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
+    with open("./MainProject/data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
         reader = csv.DictReader(f)
         for row in reader:
             tc1csv[row["ID"]] = row["担当科目1"]
@@ -150,7 +150,7 @@ def pickcName():
 
     tc1xID = {}
     tc2xID = {}
-    with open("./data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
+    with open("./MainProject/data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
         reader = csv.DictReader(p)
         for row in reader:
             tc1xID[row["科目名"]] = row["講義ID"]
@@ -265,7 +265,7 @@ def clidSet(clid):
     tcxLT1 = {}
     tcxLT2 = {}
 
-    with open("./data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
+    with open("./MainProject/data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
         reader = csv.DictReader(p)
         for row in reader:
             tcxID[row["科目名"]] = row["講義ID"]
@@ -342,7 +342,7 @@ def stdSim(cID):
     #講義IDに一致した履修者csvを開く
     stdIDmx = {} #辞書型
     stdIDm = [] #配列
-    stdcsvName = "./data/履修者-" + cID + ".csv"
+    stdcsvName = "./MainProject/data/履修者-" + cID + ".csv"
     with open(stdcsvName, "r", encoding="utf_8", errors="", newline="") as p:
         reader = csv.DictReader(p)
         for row in reader:
@@ -373,7 +373,7 @@ def openIOcsv(cID, cName):
     tcxLT1 = {}
     tcxLT2 = {}
 
-    with open("./data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
+    with open("./MainProject/data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
         reader = csv.DictReader(p)
         for row in reader:
             tcxCT1[row["科目名"]] = row["開始時間"]
@@ -419,7 +419,7 @@ def openIOcsv(cID, cName):
     stdID = []
     stdName = []
     print("Preparations are underway: " + cName)
-    dirName = "./Mainproject/IOList/" + cName
+    dirName = "./MainProject/Mainproject/IOList/" + cName
     IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
     stdcsvName = "./data/履修者-" + cID + ".csv"
     if(os.path.exists(dirName) == False):
@@ -573,7 +573,7 @@ def generateIOcsvName(clid):
     except(IndexError):
         pass
 
-    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
+    IOcsvName = "./MainProject/Mainproject/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
     print(IOcsvName)
     eel.getcName(cName)
     eel.getIOcsvName(IOcsvName)
@@ -593,7 +593,7 @@ def updateIOcsv(cDataPockets):
     newLT1 = newcData[3]
     newLT2 = newcData[4]
 
-    f = open("./data/講義科目ルール.csv", "r", encoding="utf-8")
+    f = open("./MainProject/data/講義科目ルール.csv", "r", encoding="utf-8")
     csv_data = csv.reader(f)
     list = [ e for e in csv_data]
     f.close()
@@ -709,7 +709,7 @@ def updateIOcsv(cDataPockets):
             list[i] = data
 
     # csv更新
-    with open("./data/講義科目ルール.csv", "w", encoding="utf_8", newline="") as f:
+    with open("./MainProject/data/講義科目ルール.csv", "w", encoding="utf_8", newline="") as f:
         writer = csv.writer(f)
         writer.writerows(list)
 
@@ -1040,119 +1040,117 @@ def createCumulativeClassGraph(cName):
     print(os.getcwd())
     os.chdir("./MainProject/")
 
-# from server import attendlist_send
-from server import gakusei_ex
-from server import gakusei_im
-# from server import exporter
-# from server import get
-# from server import importer
-# from server import kougi_rule_ex
-# from server import kougi_rule_im
-from server import risyuuF1_ex
-from server import risyuuF1_im
-from server import risyuuF2_ex
-from server import risyuuF2_im
-from server import risyuuF3_ex
-from server import risyuuF3_im
-from server import risyuuF4_1_ex
-from server import risyuuF4_1_im
-from server import risyuuF4_2_ex
-from server import risyuuM1_ex
-from server import risyuuM1_im
-from server import risyuuM2_ex
-from server import risyuuM2_im
-from server import risyuuM3_ex
-from server import risyuuM3_im
-from server import risyuuM4_ex
-from server import risyuuM4_im
-from server import risyuuTh2_ex
-from server import risyuuTh2_im
-from server import risyuuTh5_1_ex
-from server import risyuuTh5_1_im
-from server import risyuuTh5_2_ex
-from server import risyuuTh5_2_im
-from server import risyuuTh34_ex
-from server import risyuuTh34_im
-from server import risyuuTu3_1_ex
-from server import risyuuTu3_1_im
-from server import risyuuTu3_2_ex
-from server import risyuuTu3_2_im
-from server import risyuuTu4_ex
-from server import risyuuTu4_im
-from server import risyuuTu5_ex
-from server import risyuuTu5_im
-from server import risyuuW3_1_ex
-from server import risyuuW3_1_im
-from server import risyuuW3_2_ex
-from server import risyuuW3_2_im
-from server import risyuuW4_ex
-from server import risyuuW4_im
-from server import risyuuW5_1_ex
-from server import risyuuW5_1_im
-from server import risyuuW5_2_ex
-from server import risyuuW5_2_im
-from server import risyuuW12_ex
-from server import risyuuW12_im
-from server import tanntou_kyouinn_ex
-from server import tanntou_kyouinn_im
+# # from server import attendlist_send
+# from server import gakusei_ex
+# from server import gakusei_im
+# # from server import exporter
+# # from server import get
+# # from server import importer
+# # from server import kougi_rule_ex
+# # from server import kougi_rule_im
+# from server import risyuuF1_ex
+# from server import risyuuF1_im
+# from server import risyuuF2_ex
+# from server import risyuuF2_im
+# from server import risyuuF3_ex
+# from server import risyuuF3_im
+# from server import risyuuF4_1_ex
+# from server import risyuuF4_1_im
+# from server import risyuuF4_2_ex
+# from server import risyuuF4_2_im
+# from server import risyuuM1_ex
+# from server import risyuuM1_im
+# from server import risyuuM2_ex
+# from server import risyuuM2_im
+# from server import risyuuM3_ex
+# from server import risyuuM3_im
+# from server import risyuuM4_ex
+# from server import risyuuM4_im
+# from server import risyuuTh2_ex
+# from server import risyuuTh2_im
+# from server import risyuuTh5_1_ex
+# from server import risyuuTh5_1_im
+# from server import risyuuTh5_2_ex
+# from server import risyuuTh5_2_im
+# from server import risyuuTh34_ex
+# from server import risyuuTh34_im
+# from server import risyuuTu3_1_ex
+# from server import risyuuTu3_1_im
+# from server import risyuuTu3_2_ex
+# from server import risyuuTu3_2_im
+# from server import risyuuTu4_ex
+# from server import risyuuTu4_im
+# from server import risyuuTu5_ex
+# from server import risyuuTu5_im
+# from server import risyuuW3_1_ex
+# from server import risyuuW3_1_im
+# from server import risyuuW3_2_ex
+# from server import risyuuW3_2_im
+# from server import risyuuW4_ex
+# from server import risyuuW4_im
+# from server import risyuuW5_1_ex
+# from server import risyuuW5_1_im
+# from server import risyuuW5_2_ex
+# from server import risyuuW5_2_im
+# from server import risyuuW12_ex
+# from server import risyuuW12_im
+# from server import tanntou_kyouinn_ex
+# from server import tanntou_kyouinn_im
 
-@eel.expose
-def syncData():
-    # attendlist_send.fsync()
-    gakusei_ex.fsync()
-    gakusei_im.fsync()
-    # exporter.fsync()
-    # get.fsync()
-    # importer.fsync()
-    # kougi_rule_ex.fsync()
-    # kougi_rule_im.fsync()
-    risyuuF1_ex.fsync()
-    risyuuF1_im.fsync()
-    risyuuF2_ex.fsync()
-    risyuuF2_im.fsync()
-    risyuuF3_ex.fsync()
-    risyuuF3_im.fsync()
-    risyuuF4_1_ex.fsync()
-    risyuuF4_1_im.fsync()
-    risyuuF4_2_ex.fsync()
-    risyuuM1_ex.fsync()
-    risyuuM1_im.fsync()
-    risyuuM2_ex.fsync()
-    risyuuM2_im.fsync()
-    risyuuM3_ex.fsync()
-    risyuuM3_im.fsync()
-    risyuuM4_ex.fsync()
-    risyuuM4_im.fsync()
-    risyuuTh2_ex.fsync()
-    risyuuTh2_im.fsync()
-    risyuuTh5_1_ex.fsync()
-    risyuuTh5_1_im.fsync()
-    risyuuTh5_2_ex.fsync()
-    risyuuTh5_2_im.fsync()
-    risyuuTh34_ex.fsync()
-    risyuuTh34_im.fsync()
-    risyuuTu3_1_ex.fsync()
-    risyuuTu3_1_im.fsync()
-    risyuuTu3_2_ex.fsync()
-    risyuuTu3_2_im.fsync()
-    risyuuTu4_ex.fsync()
-    risyuuTu4_im.fsync()
-    risyuuTu5_ex.fsync()
-    risyuuTu5_im.fsync()
-    risyuuW3_1_ex.fsync()
-    risyuuW3_1_im.fsync()
-    risyuuW3_2_ex.fsync()
-    risyuuW3_2_im.fsync()
-    risyuuW4_ex.fsync()
-    risyuuW4_im.fsync()
-    risyuuW5_1_ex.fsync()
-    risyuuW5_1_im.fsync()
-    risyuuW5_2_ex.fsync()
-    risyuuW5_2_im.fsync()
-    risyuuW12_ex.fsync()
-    risyuuW12_im.fsync()
-    tanntou_kyouinn_ex.fsync()
-    tanntou_kyouinn_im.fsync()
+# @eel.expose
+# def syncData():
+#     gakusei_ex.fsync()
+#     risyuuF1_ex.fsync()
+#     risyuuF2_ex.fsync()
+#     risyuuF3_ex.fsync()
+#     risyuuF4_1_ex.fsync()
+#     risyuuF4_2_ex.fsync()
+#     risyuuM1_ex.fsync()
+#     risyuuM2_ex.fsync()
+#     risyuuM3_ex.fsync()
+#     risyuuM4_ex.fsync()
+#     risyuuTh2_ex.fsync()
+#     risyuuTh5_1_ex.fsync()
+#     risyuuTh5_2_ex.fsync()
+#     risyuuTh34_ex.fsync()
+#     risyuuTu3_1_ex.fsync()
+#     risyuuTu3_2_ex.fsync()
+#     risyuuTu4_ex.fsync()
+#     risyuuTu5_ex.fsync()
+#     risyuuW3_1_ex.fsync()
+#     risyuuW3_2_ex.fsync()
+#     risyuuW4_ex.fsync()
+#     risyuuW5_1_ex.fsync()
+#     risyuuW5_2_ex.fsync()
+#     risyuuW12_ex.fsync()
+#     tanntou_kyouinn_ex.fsync()
+
+
+#     gakusei_im.fsync()
+#     risyuuF1_im.fsync()
+#     risyuuF2_im.fsync()
+#     risyuuF3_im.fsync()
+#     risyuuF4_1_im.fsync()
+#     risyuuF4_2_im.fsync()
+#     risyuuM1_im.fsync()
+#     risyuuM2_im.fsync()
+#     risyuuM3_im.fsync()
+#     risyuuM4_im.fsync()
+#     risyuuTh2_im.fsync()
+#     risyuuTh5_1_im.fsync()
+#     risyuuTh5_2_im.fsync()
+#     risyuuTh34_im.fsync()
+#     risyuuTu3_1_im.fsync()
+#     risyuuTu3_2_im.fsync()
+#     risyuuTu4_im.fsync()
+#     risyuuTu5_im.fsync()
+#     risyuuW3_1_im.fsync()
+#     risyuuW3_2_im.fsync()
+#     risyuuW4_im.fsync()
+#     risyuuW5_1_im.fsync()
+#     risyuuW5_2_im.fsync()
+#     risyuuW12_im.fsync()
+#     tanntou_kyouinn_im.fsync()
 
 
 #これがないと動かないんでよ
