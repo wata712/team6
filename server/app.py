@@ -134,281 +134,337 @@ def fsync():
     @route("/gakusei_ex")
     def gakusei_ex():
         import gakusei_ex
+        gakusei_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/gakusei_im")
     def gakusei_im():
         import gakusei_im
+        gakusei_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/kougi_rule_ex")
     def kougi_rule_ex():
         import kougi_rule_ex
+        kougi_rule_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/kougi_rule_im")
     def kougi_rule_im():
         import kougi_rule_im
+        kougi_rule_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuF1_ex")
     def irisyuuF1_ex():
         import risyuuF1_ex
+        risyuuF1_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuF1_im")
     def risyuuF1_im():
         import risyuuF1_im
+        risyuuF1_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuF2_ex")
     def risyuuF2_ex():
         import risyuuF2_ex
+        risyuuF2_ex.fsync()  
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuF2_im")
     def risyuuF2_im():
         import risyuuF2_im
+        risyuuF2_im.fsync()        
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuF3_ex")
     def risyuuF3_ex():
         import risyuuF3_ex
+        risyuuF3_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuF3_im")
     def risyuuF3_im():
         import risyuuF3_im
+        risyuuF3_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuF4_1_ex")
     def risyuuF4_1_ex():
         import risyuuF4_1_ex
+        risyuuF4_1_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuF4_1_im")
     def risyuuF4_1_im():
         import risyuuF4_1_im
+        risyuuF4_1_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuF4_2_ex")
     def risyuuF4_2_ex():
         import risyuuF4_2_ex
+        risyuuF4_2_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuF4_2_im")
     def risyuuF4_2_im():
         import risyuuF4_2_im
+        risyuuF4_2_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuM1_ex")
     def risyuuM1_ex():
         import risyuuM1_ex
+        risyuuM1_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuM1_im")
     def risyuuM1_im():
         import risyuuM1_im
+        risyuuM1_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuM2_ex")
     def risyuuM2_ex():
         import risyuuM2_ex
+        risyuuM2_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuM2_im")
     def risyuuM2_im():
         import risyuuM2_im
+        risyuuM2_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuM3_ex")
     def risyuuM3_ex():
         import risyuuM3_ex
+        risyuuM3_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuM3_im")
     def risyuuM3_im():
         import risyuuM3_im
+        risyuuM3_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuM4_ex")
     def risyuuM4_ex():
         import risyuuM4_ex
+        risyuuM4_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuM4_im")
     def risyuuM4_im():
         import risyuuM4_im
+        risyuuM4_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuTh2_ex")
     def risyuuTh2_ex():
         import risyuuTh2_ex
+        risyuuTh2_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuTh2_im")
     def risyuuTh2_im():
         import risyuuTh2_im
+        risyuuTh2_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuTh34_ex")
     def risyuuTh34_ex():
         import risyuuTh34_ex
+        risyuuTh34_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuTh34_im")
     def risyuuTh34_im():
         import risyuuTh34_im
+        risyuuTh34_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuTh5_1_ex")
     def risyuuTh5_1_ex():
         import risyuuTh5_1_ex
+        risyuuTh5_1_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuTh5_1_im")
     def risyuuTh5_1_im():
         import risyuuTh5_1_im
+        risyuuTh5_1_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuTh5_2_ex")
     def risyuuTh5_2_ex():
         import risyuuTh5_2_ex
+        risyuuTh5_2_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuTh5_2_im")
     def risyuuTh5_2_im():
         import risyuuTh5_2_im
+        risyuuTh5_2_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuTu2_ex")
     def risyuuTu2_ex():
         import risyuuTu2_ex
+        risyuuTu2_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuTu2_im")
     def risyuuTu2_im():
         import risyuuTu2_im
+        risyuuTu2_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuTu3_1_ex")
     def risyuuTu3_1_ex():
         import risyuuTu3_1_ex
+        risyuuTu3_1_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuTu3_1_im")
     def risyuuTu3_1_im():
         import risyuuTu3_1_im
+        risyuuTu3_1_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuTu3_2_ex")
     def risyuuTu3_2_ex():
         import risyuuTu3_2_ex
+        risyuuTu3_2_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuTu3_2_im")
     def risyuuTu3_2_im():
         import risyuuTu3_2_im
+        risyuuTu3_2_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuTu4_ex")
     def risyuuTu4_ex():
         import risyuuTu4_ex
+        risyuuTu4_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuTu4_im")
     def risyuuTu4_im():
         import risyuuTu4_im
+        risyuuTu4_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuTu5_ex")
     def risyuuTu5_ex():
         import risyuuTu5_ex
+        risyuuTu5_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuTu5_im")
     def risyuuTu5_im():
         import risyuuTu5_im
+        risyuuTu5_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuW12_ex")
     def risyuuW12_ex():
         import risyuuW12_ex
+        risyuuW12_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuW12_im")
     def risyuuW12_im():
         import risyuuW12_im
+        risyuuW12_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuW3_1_ex")
     def risyuuW3_1_ex():
         import risyuuW3_1_ex
+        risyuuW3_1_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuW3_1_im")
     def risyuuW3_1_im():
         import risyuuW3_1_im
+        risyuuW3_1_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuW3_2_ex")
     def risyuuW3_2_ex():
         import risyuuW3_2_ex
+        risyuuW3_2_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuW3_2_im")
     def risyuuW3_2_im():
         import risyuuW3_2_im
+        risyuuW3_2_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuW4_ex")
     def risyuuW4_ex():
         import risyuuW4_ex
+        risyuuW4_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuW4_im")
     def risyuuW4_im():
         import risyuuW4_im
+        risyuuW4_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuW5_1_ex")
     def risyuuW5_1_ex():
         import risyuuW5_1_ex
+        risyuuW5_1_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuW5_1_im")
     def risyuuW5_1_im():
         import risyuuW5_1_im
+        risyuuW5_1_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuW5_2_ex")
     def risyuuW5_2_ex():
         import risyuuW5_2_ex
+        risyuuW5_2_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/risyuuW5_2_im")
     def risyuuW5_2_im():
         import risyuuW5_2_im
+        risyuuW5_2_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/tanntou_kyouinn_ex")
     def tanntou_kyouinn_ex():
         import tanntou_kyouinn_ex
+        tanntou_kyouinn_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/tanntou_kyouinn_im")
     def tanntou_kyouinn_im():
         import tanntou_kyouinn_im
+        tanntou_kyouinn_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/attendlist_ex")
     def attendlist_ex():
         import attendlist_ex
+        attendlist_ex.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     @route("/attendlist_im")
     def tattendlist_im():
         import attendlist_im
+        attendlist_im.fsync()
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
