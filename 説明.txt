@@ -5,6 +5,7 @@ xampp：
 4.本システムでサーバとデータのやりとりを行う場合は、ApacheとMySQLを動かしておいてください。
 
 pipのインストール：
+コマンドラインで"pip install MySQL"と入力してください。
 コマンドラインで"pip install bottle"と入力してください。
 コマンドラインで"pip install mysqlclient"と入力してください。
 コマンドラインで"pip install PyMySQL"と入力してください。
