@@ -62,5 +62,3 @@ def fsync():
       for row in rows:
           #  csv データを書き込み
           csvwriter.writerow(row)
-
-fsync()
