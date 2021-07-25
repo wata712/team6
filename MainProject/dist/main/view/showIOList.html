@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="eel.js"></script>
+        <!-- <script src="csv2table.js" charset="UTF-8"></script> -->
+        <title>showAttendanceList</title>
+        <link rel="stylesheet" href="showIOList.css">
+    </head>
+    <script>
+        // eel.expose(getIOcsvNamex);
+        // function getIOcsvNamex(IOcsvName){
+        //     console.log(IOcsvName);
+        //     // var tmp = document.getElementsByClassName("csv2table");
+        //     // tmp.setAttribute("data-src",IOcsvName);
+        // }
+        var cNameOP = "";
+
+        var csvName = "";
+        var cName = "";
+        eel.expose(getIOcsvName);
+        function getIOcsvName(IOcsvName){
+            console.log(IOcsvName);
+            csvName = IOcsvName;
+        }
+
+        eel.expose(getcName);
+        function getcName(cNamex){
+            cName = cNamex;
+            cNamePlus = "出欠管理システム  " + cName + "【出欠リスト】"
+            var outputDivc = document.getElementById("cNameArea");
+            console.log(cName);
+            outputDivc.innerHTML = cNamePlus;
+            cNameOP = cName;
+            let iNo = -1;
+            eel.chooseIOList(cName, iNo);
+        }
+
+        eel.expose(createIOTable);
+        function createIOTable(sID, sName, sIDm, sIntime, sStatus, sStatusVal, sNo, nIOcsvName, csvNo, IOcsvNames){
+            var outputIOcsvName = document.getElementById("csvName");
+            var outputTable = document.getElementById("IOTable");
+            var IOFamily = '<table cellpadding="1"><tr><th width="14%">学籍番号</th><th width="18%">氏名</th><th width="28%">IDm</th><th width="16%">入室時刻</th><th width="12%">出欠</th><th width="12%">出席率</th></tr>'
+            for(let i=0; i<sNo; i++){
+                var IOFamilyBase = '<tr><td>' + sID[i] + '</td><td>' + sName[i] + '</td><td>' + sIDm[i] + '</td><td>' + sIntime[i] + '</td><td>' + sStatus[i] + '</td><td>' + sStatusVal[i] + '</td></tr>';
+                IOFamily = IOFamily + IOFamilyBase;
+            }
+            var option = '<select id="listcsvName">'
+            for(let j=0; j<csvNo; j++){
+                if(IOcsvNames[j] == nIOcsvName){
+                    option = option + '<option value="' + j + '" selected>' + IOcsvNames[j] + '</option>'
+                }
+                else{
+                    option = option + '<option value="' + j + '" >' + IOcsvNames[j] + '</option>'
+                }
+            }
+            outputIOcsvName.innerHTML = option + '</select>';
+            outputTable.innerHTML = IOFamily + '</table>';
+            var outputListIOcsvName = document.getElementById("listcsvName");
+            outputListIOcsvName.addEventListener("change", inputChange);
+        }
+
+        eel.expose(showNameError)
+        function showNameError(){
+            var outputIOcsvName = document.getElementById("csvName");
+            outputIOcsvName.innerHTML = '出欠リストが見つかりませんでした<br>最初の出席受付をして出欠リストを作りましょう！';
+        }
+
+        var newcsvNo = -1
+
+        function inputChange(event){
+            newcsvNo = event.currentTarget.value;
+            eel.chooseIOList(cName, newcsvNo)
+        }
+
+        function createOneCG(){
+            console.log(newcsvNo);
+            eel.createOneClassGraph(cNameOP, newcsvNo);
+        }
+
+        function createCumCG(){
+            eel.createCumulativeClassGraph(cNameOP);
+        }
+
+        function calltName(){
+            eel.picktName();
+            var clid = getParam("clid");
+            console.log(clid);
+            eel.generateIOcsvName(clid);
+        }
+
+        eel.expose(printtName);
+        function printtName(tName){
+            var outputDiv = document.getElementById("tNameArea");
+            console.log(tName);
+            outputDiv.innerHTML = tName;
+            // eel.pickcName();
+        }
+
+        function getParam(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+    </script>
+    <body onload="calltName()">
+        <div id="top">
+            <h1 id="cNameArea">出欠管理システム</h1>
+        </div>
+        <div class="infoarea">
+            <div class="namearea">
+            <p id="tNameArea">読込中...</p>
+            </div>
+            <div class="btnarea">
+            <button id="toadminbtn" onclick="location.href='admin.html'">管理画面へ</button>
+            </div>
+            <div class="btnarea5">
+                <button id="toadminbtn" onclick=createOneCG()>今回の統計</button>
+            </div>
+            <div class="btnarea6">
+                <button id="toadminbtn" onclick=createCumCG()>通算の統計</button>
+            </div>
+        </div>
+        <div>
+            <p id="csvName"></p>
+            <p id="IOTable"></p>
+        </div>
+        
+        <div class="tablecsv">
+            <p><br></p>
+        </div>
+        <div class="underbar">
+            <p id="datetime">
+                <script src="timeshow.js">
+                </script>
+            </p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="eel.js"></script>
+        <title>Admin</title>
+        <link rel="stylesheet" href="admin.css">
+        <script>
+            let headtime = 0;
+            function calltName(){
+                eel.picktName();
+                sleep(2, function () {
+                    console.log('2秒経過');
+                    headtime = 2;
+                });
+                
+            }
+
+            function sleep(waitSec, callbackFunc) {
+                var spanedSec = 0;
+                var id = setInterval(function () {
+                    spanedSec++;
+                    // 経過時間 >= 待機時間の場合、待機終了。
+                    if (spanedSec >= waitSec) {
+                        // タイマー停止
+                        clearInterval(id);
+                        // 完了時、コールバック関数を実行
+                        if (callbackFunc) callbackFunc();
+                    }
+                }, 1000);
+            }
+
+            eel.expose(printtName);
+            function printtName(tName){
+                var outputDiv = document.getElementById("tNameArea");
+                console.log(tName);
+                outputDiv.innerHTML = tName;
+                eel.pickcName();
+            }
+
+            function btnctrl(){
+                if(headtime>1){
+                    location.href="login.html"
+                }
+                else{
+                    console.log("btn pass")
+                }
+            }
+
+            function settime(){
+                location.href="settime.html"
+            }
+
+            function toSync(){
+                eel.syncData();
+            }
+
+        </script>
+    </head>
+    <body onload="calltName()">
+        <div id="top">
+        <h1>出欠管理システム</h1>
+        </div>
+        <div class="infoarea">
+            <div class="namearea">
+            <p id="tNameArea">読込中...</p>
+            </div>
+            <div class="btnareaSync">
+                <button id="tologinbtn2" onclick="toSync()">データ同期</button>
+            </div>
+            <div class="btnarea0">
+                <button id="tologinbtn" onclick="settime()" > 時刻設定 </button>
+            </div>
+            <div class="btnarea">
+            <button id="tologinbtn" onclick="btnctrl()" >ログアウト</button>
+            </div>
+        </div>
+        <div>
+            <p id="adminTable">
+            </p>
+            <script>
+            eel.expose(addcData);
+            function addcData(tcName, tclen, tcDay, tcPeriod){
+                tableBase = '<table>'
+                let tcTable = document.getElementById("adminTable");
+
+                for(let i=0; i<tclen; i++){
+                    let clid = "10" + String(i+1);
+                    let cConfig = "講義設定";
+                    let showIOList = "出欠リスト";
+                    let startC = "受付開始";
+                    if(tcName[i] === undefined){
+                        tcDay[i] = ".";
+                        tcPeriod[i] = "";
+                        tcName[i] = "";
+                        cConfig = "";
+                        showIOList = "";
+                        startC = "";
+                        // fontID = "a";
+                    }
+                    if(tcName[i] == "undefined"){
+                        tcDay[i] = ".";
+                        tcPeriod[i] = "";
+                        tcName[i] = "";
+                        cConfig = "";
+                        showIOList = "";
+                        startC = "";
+                        // fontID = "x";
+                    }
+                    
+                    tableBase = tableBase + '<tr><td width="6%">' + tcDay[i] + '</td><td width="10%" id=>' + tcPeriod[i] + '</td><td width="36%">' + tcName[i] + '</td><td width="16%"><a href="classConfig.html?clid=' + clid + '">' + cConfig + '</a></td><td width="16%" id="IOList1"><a href="showIOList.html?clid=' + clid + '">' + showIOList + '</a></td><td width="16%" ><a href="checkin.html?clid=' + clid + '">' + startC + '</a></td></tr>';
+                }
+                tcTable.innerHTML = tableBase + '</table>'
+            }
+            </script>
+            <div class="btnarea2">
+                <button id="tologinbtn2" onclick="location.href='setTemporaryClass.html'">臨時の講義を追加</button>
+            </div>
+        </div>
+        <div class="underbar">
+            <p id="datetime">
+                <script src="timeshow.js">
+                </script>
+            </p>
+        </div>
+    </body>
+</html>

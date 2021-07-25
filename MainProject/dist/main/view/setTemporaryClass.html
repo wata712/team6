@@ -1,0 +1,320 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="eel.js"></script>
+        <title>ClassConfiguration</title>
+        <link rel="stylesheet" href="setTemporaryClass.css">
+    </head>
+    <script>
+        let headtime = 0;
+        function calltName(){
+            eel.picktName();
+            // var clid = getParam("clid");
+            // console.log(clid);
+            // eel.clidSet(clid);
+            // eel.generateIOcsvName(clid);
+        }
+
+        // eel.expose(getcName);
+        // function getcName(cNamex){
+        //     var cName = cNamex;
+        //     cNamePlus = "出欠管理システム  " + cName + "【講義設定】"
+        //     var outputDivc = document.getElementById("cNameArea");
+        //     console.log(cName);
+        //     outputDivc.innerHTML = cNamePlus;
+        //     // var outputDivcnt = document.getElementById("cNameText");
+        //     // outputDivcnt.innerHTML = '講義名： ' + cName;
+        // }
+
+        eel.expose(printtName);
+        function printtName(tName){
+            var outputDiv = document.getElementById("tNameArea");
+            console.log(tName);
+            outputDiv.innerHTML = tName;
+            // eel.pickcName();
+        }
+
+        eel.expose(showErrorInfo);
+        function showErrorInfo(){
+            var outputErrorInfo = document.getElementById("errorInfo");
+            outputErrorInfo.innerHTML = '⚠ 出席上限時刻または遅刻上限時刻が無効です'
+        }
+
+        eel.expose(initialID);
+        function initialID(cName, cID, cDay, cPeriod, CT1, CT2, LT1, LT2){
+            cNameq = cName;
+            console.log(cName);
+            console.log(LT1);
+            console.log(LT2);
+            let CT12 = document.getElementById("showCT")
+            var outputDivD = document.getElementById("daySelect");
+            var outputDivP = document.getElementById("periodSelect");
+            // var outputDivCT1 = document.getElementById("CT1Input");
+            var outputDivCT2 = document.getElementById("CT2Input");
+            // var outputDivLT1 = document.getElementById("LT1Input");
+            var outputDivLT2 = document.getElementById("LT2Input");
+            if(cDay == "月"){
+                var cDayName = '<select name="day" id="cDayx"><option value="M" selected>月曜</option><option value="Tu">火曜</option><option value="W">水曜</option><option value="Th">木曜</option><option value="F">金曜</option></select>'
+                outputDivD.innerHTML = cDayName;
+            }
+            if(cDay == "火"){
+                var cDayName = '<select name="day" id="cDayx"><option value="M">月曜</option><option value="Tu" selected>火曜</option><option value="W">水曜</option><option value="Th">木曜</option><option value="F">金曜</option></select>'
+                outputDivD.innerHTML = cDayName;
+            }
+            if(cDay == "水"){
+                var cDayName = '<select name="day" id="cDayx"><option value="M">月曜</option><option value="Tu">火曜</option><option value="W" selected>水曜</option><option value="Th">木曜</option><option value="F">金曜</option></select>'
+                outputDivD.innerHTML = cDayName;
+            }
+            if(cDay == "木"){
+                var cDayName = '<select name="day" id="cDayx"><option value="M">月曜</option><option value="Tu">火曜</option><option value="W">水曜</option><option value="Th" selected>木曜</option><option value="F">金曜</option></select>'
+                outputDivD.innerHTML = cDayName;
+            }
+            if(cDay == "金"){
+                var cDayName = '<select name="day" id="cDayx"><option value="M">月曜</option><option value="Tu">火曜</option><option value="W">水曜</option><option value="Th">木曜</option><option value="F" selected>金曜</option></select>'
+                outputDivD.innerHTML = cDayName;
+            }
+
+            if(cPeriod == "1,2限"){
+                var cPeriodName = '<select name="period" id="cPeriex"><option value="1_">1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_" selected>1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
+                outputDivP.innerHTML = cPeriodName;
+                CT12.innerHTML = "09:00 - 12:10"
+            }
+            if(cPeriod == "2,3限"){
+                var cPeriodName = '<select name="period" id="cPeriex"><option value="1_">1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_" selected>2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
+                outputDivP.innerHTML = cPeriodName;
+                CT12.innerHTML = "10:40 - 14:30"
+            }
+            if(cPeriod == "3,4限"){
+                var cPeriodName = '<select name="period" id="cPeriex"><option value="1_">1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_" selected>3,4限</option><option value="45_">4,5限</option></select>'
+                outputDivP.innerHTML = cPeriodName;
+                CT12.innerHTML = "13:00 - 14:30"
+            }
+            if(cPeriod == "4,5限"){
+                var cPeriodName = '<select name="period" id="cPeriex"><option value="1_">1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_" selected>4,5限</option></select>'
+                outputDivP.innerHTML = cPeriodName;
+                CT12.innerHTML = "14:40 - 16:10"
+            }
+            if(cPeriod == "1限"){
+                var cPeriodName = '<select name="period" id="cPeriex"><option value="1_" selected>1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
+                outputDivP.innerHTML = cPeriodName;
+                CT12.innerHTML = "09:00 - 10:30"
+            }
+            if(cPeriod == "2限"){
+                var cPeriodName = '<select name="period" id="cPeriex"><option value="1_">1限</option><option value="2_" selected>2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
+                outputDivP.innerHTML = cPeriodName;
+                CT12.innerHTML = "10:40 - 12:10"
+            }
+            if(cPeriod == "3限"){
+                var cPeriodName = '<select name="period" id="cPeriex"><option value="1_">1限</option><option value="2_">2限</option><option value="3_" selected>3限</option><option value="4_">4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
+                outputDivP.innerHTML = cPeriodName;
+                CT12.innerHTML = "13:00 - 14:30"
+            }
+            if(cPeriod == "4限"){
+                var cPeriodName = '<select name="period" id="cPeriex"><option value="1_">1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_" selected>4限</option><option value="5_">5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
+                outputDivP.innerHTML = cPeriodName;
+                CT12.innerHTML = "14:40 - 16:10"
+            }
+            if(cPeriod == "5限"){
+                var cPeriodName = '<select name="period" id="cPeriex"><option value="1_">1限</option><option value="2_">2限</option><option value="3_">3限</option><option value="4_">4限</option><option value="5_" selected>5限</option><option value="12_">1,2限</option><option value="23_">2,3限</option><option value="34_">3,4限</option><option value="45_">4,5限</option></select>'
+                outputDivP.innerHTML = cPeriodName;
+                CT12.innerHTML = "16:20 - 17:50"
+            }
+            let newcPeri = document.getElementById("cPerix");
+            newcPeri.addEventListener("change", inputChange);
+            
+            // outputDivCT2.innerHTML = '<input type="time" name="PreE"  id="LT1x" value=' + LT1 + '>まで<b>出席</b>扱い';
+            // outputDivLT2.innerHTML = '<input type="time" name="LateE"  id="LT2x" value=' + LT2 + '>まで<b>遅刻</b>扱い';
+        }
+
+        function inputChange(event){
+            let CT12 = document.getElementById("showCT")
+
+            let newcPeri = event.currentTarget.value
+            let newCT1 = "00:00"
+            let newCT2 = "00:00"
+
+            if(newcPeri == "1_"){
+                newCT1 = "09:00"
+                newCT2 = "10:30"
+            }
+            if(newcPeri == "2_"){
+                newCT1 = "10:40"
+                newCT2 = "12:10"
+            }
+            if(newcPeri == "3_"){
+                newCT1 = "13:00"
+                newCT2 = "14:30"
+            }
+            if(newcPeri == "4_"){
+                newCT1 = "14:40"
+                newCT2 = "16:10"
+            }
+            if(newcPeri == "5_"){
+                newCT1 = "16:20"
+                newCT2 = "17:50"
+            }
+            if(newcPeri == "12_"){
+                newCT1 = "09:00"
+                newCT2 = "12:10"
+            }
+            if(newcPeri == "23_"){
+                newCT1 = "10:40"
+                newCT2 = "14:30"
+            }
+            if(newcPeri == "34_"){
+                newCT1 = "13:00"
+                newCT2 = "16:10"
+            }
+            if(newcPeri == "45_"){
+                newCT1 = "14:40"
+                newCT2 = "17:50"
+            }
+
+            CT12.innerHTML = newCT1 + " - " + newCT2
+            console.log(newcPeri);
+        }
+        
+        function getParam(name, url){
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        function setcConfig(){
+            location.href="admin.html";
+        }
+
+    </script>
+    <body onload="calltName()">
+        <div id="top">
+            <h1>出欠管理システム</h1>
+        </div>
+        <div class="infoarea">
+            <div class="namearea">
+            <p id="tNameArea">読込中...</p>
+            </div>
+            <div class="btnarea">
+            <button id="toadminbtn" onclick="location.href='admin.html'">管理画面へ</button>
+            </div>
+        </div>
+        <div>
+            <p id="cNameText">講義名：<input type="text" name="class" id="cNameText"></p>
+            <div>
+                <p id="daySelect">
+                    <select name="day" id="cDayx">
+                    <option value="M" >月曜</option>
+                    <option value="Tu">火曜</option>
+                    <option value="W" >水曜</option>
+                    <option value="Th">木曜</option>
+                    <option value="F" >金曜</option>
+                    </select>
+                </p>
+                <p id="periodSelect">
+                    <select name="period" id="cPerix">
+                    <option value="1_">1限</option>
+                    <option value="2_">2限</option>
+                    <option value="3_">3限</option>
+                    <option value="4_">4限</option>
+                    <option value="5_">5限</option>
+                    <option value="12_">1,2限</option>
+                    <option value="23_">2,3限</option>
+                    <option value="34_">3,4限</option>
+                    <option value="45_">4,5限</option>
+                    </select>
+                </p>
+                <p id="showCT">
+                    09:00 - 10:30
+                </p>
+            </div>
+            <div>
+            <div>
+                <!-- <p id="CT1Input">
+                    <input type="time" name="PreS">
+                    から
+                </p> -->
+                <p id="CT2Input">
+                    <input type="time" name="PreE" id="LT1x">
+                    まで<b>出席</b>扱い  
+                </p>
+                <!-- <p id="LT1Input">
+                    <input type="time" name="LateS">
+                    から
+                </p> -->
+                <p id="LT2Input">
+                    <input type="time" name="LateE" id="LT2x">
+                    まで<b>遅刻</b>扱い  
+                </p>
+                <p>
+                    以降<b>欠席</b>扱い
+                </p>
+            </div>
+        </div>
+        <script>
+            function inputChange(event){
+                let CT12 = document.getElementById("showCT")
+
+                let newcPeri = event.currentTarget.value
+                let newCT1 = "00:00"
+                let newCT2 = "00:00"
+
+                if(newcPeri == "1_"){
+                    newCT1 = "09:00"
+                    newCT2 = "10:30"
+                }
+                if(newcPeri == "2_"){
+                    newCT1 = "10:40"
+                    newCT2 = "12:10"
+                }
+                if(newcPeri == "3_"){
+                    newCT1 = "13:00"
+                    newCT2 = "14:30"
+                }
+                if(newcPeri == "4_"){
+                    newCT1 = "14:40"
+                    newCT2 = "16:10"
+                }
+                if(newcPeri == "5_"){
+                    newCT1 = "16:20"
+                    newCT2 = "17:50"
+                }
+                if(newcPeri == "12_"){
+                    newCT1 = "09:00"
+                    newCT2 = "12:10"
+                }
+                if(newcPeri == "23_"){
+                    newCT1 = "10:40"
+                    newCT2 = "14:30"
+                }
+                if(newcPeri == "34_"){
+                    newCT1 = "13:00"
+                    newCT2 = "16:10"
+                }
+                if(newcPeri == "45_"){
+                    newCT1 = "14:40"
+                    newCT2 = "17:50"
+                }
+
+                CT12.innerHTML = newCT1 + " - " + newCT2
+                console.log(newcPeri);
+            }
+
+            let newcPeri = document.getElementById("cPerix");
+            newcPeri.addEventListener("change", inputChange);
+        </script>
+
+        <div class="btnarea2">
+            <button id="toadminbtn2" onclick="setcConfig()">臨時の講義を作成</button>
+        </div>
+        <div class="underbar">
+            <p id="datetime">
+                <script src="timeshow.js">
+                    
+                </script>
+            </p>
+        </div>
+    </body>
+</html>
