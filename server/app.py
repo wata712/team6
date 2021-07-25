@@ -5,17 +5,27 @@ import os
 import csv
 import webbrowser
 
+cwd = os.getcwd()
+xcwd = cwd.replace('\\','/')
+print(xcwd)
+
+sscwd = xcwd + "/server/security"
+print(sscwd)
+
 def fsync():
+    global sscwd
+    ssucwd = sscwd + "/user.csv"
+    sspcwd = sscwd + "/pass.csv"
 
     webbrowser.open('http://localhost:5000/login')
 
     #ユーザ情報の読み込み
-    user_file = open('server\\security\\user.csv','r')
+    user_file = open(ssucwd,'r')
     user_reader = csv.reader(user_file)
     user_line = [row for row in user_reader]
 
     #パスワード情報の読み込み
-    pass_file = open('server\\security\\pass.csv','r')
+    pass_file = open(sspcwd,'r')
     pass_reader = csv.reader(pass_file)
     pass_line = [row for row in pass_reader]
 
