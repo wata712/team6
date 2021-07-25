@@ -7,6 +7,7 @@ import tkinter as tk
 import MySQLdb
 
 
+
 def fsync():
 	root = tk.Tk()
 	root.geometry("300x100")
