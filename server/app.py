@@ -55,15 +55,15 @@ def fsync():
             """
     def check_login_pass(password,count):
 
-    if password == pass_line[count]:
-        return True
-    else:
-       return False
+        if password == pass_line[count]:
+            return True
+        else:
+            return False
 
-#認証後のサイト
-@route("/")
-def index():
-    return """
+    #認証後のサイト
+    @route("/")
+    def index():
+        return """
         <h1><a href="/">管理モード</a></h1>
 
         <p>開きたいファイルを選択してください</p>
@@ -131,284 +131,284 @@ def index():
         <button type=“button” onclick="location.href='/login'">ログアウト</button>
         """
 
-@route("/gakusei_ex")
-def gakusei_ex():
-    import gakusei_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/gakusei_ex")
+    def gakusei_ex():
+        import gakusei_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/gakusei_im")
-def gakusei_im():
-    import gakusei_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/gakusei_im")
+    def gakusei_im():
+        import gakusei_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/kougi_rule_ex")
-def kougi_rule_ex():
-    import kougi_rule_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/kougi_rule_ex")
+    def kougi_rule_ex():
+        import kougi_rule_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/kougi_rule_im")
-def kougi_rule_im():
-    import kougi_rule_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/kougi_rule_im")
+    def kougi_rule_im():
+        import kougi_rule_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuF1_ex")
-def irisyuuF1_ex():
-    import risyuuF1_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuF1_ex")
+    def irisyuuF1_ex():
+        import risyuuF1_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuF1_im")
-def risyuuF1_im():
-    import risyuuF1_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuF1_im")
+    def risyuuF1_im():
+        import risyuuF1_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuF2_ex")
-def risyuuF2_ex():
-    import risyuuF2_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuF2_ex")
+    def risyuuF2_ex():
+        import risyuuF2_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuF2_im")
-def risyuuF2_im():
-    import risyuuF2_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuF2_im")
+    def risyuuF2_im():
+        import risyuuF2_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuF3_ex")
-def risyuuF3_ex():
-    import risyuuF3_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuF3_ex")
+    def risyuuF3_ex():
+        import risyuuF3_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuF3_im")
-def risyuuF3_im():
-    import risyuuF3_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuF3_im")
+    def risyuuF3_im():
+        import risyuuF3_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuF4_1_ex")
-def risyuuF4_1_ex():
-    import risyuuF4_1_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuF4_1_ex")
+    def risyuuF4_1_ex():
+        import risyuuF4_1_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuF4_1_im")
-def risyuuF4_1_im():
-    import risyuuF4_1_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuF4_1_im")
+    def risyuuF4_1_im():
+        import risyuuF4_1_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuF4_2_ex")
-def risyuuF4_2_ex():
-    import risyuuF4_2_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuF4_2_ex")
+    def risyuuF4_2_ex():
+        import risyuuF4_2_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuF4_2_im")
-def risyuuF4_2_im():
-    import risyuuF4_2_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuF4_2_im")
+    def risyuuF4_2_im():
+        import risyuuF4_2_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuM1_ex")
-def risyuuM1_ex():
-    import risyuuM1_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuM1_ex")
+    def risyuuM1_ex():
+        import risyuuM1_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuM1_im")
-def risyuuM1_im():
-    import risyuuM1_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuM1_im")
+    def risyuuM1_im():
+        import risyuuM1_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuM2_ex")
-def risyuuM2_ex():
-    import risyuuM2_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuM2_ex")
+    def risyuuM2_ex():
+        import risyuuM2_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuM2_im")
-def risyuuM2_im():
-    import risyuuM2_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuM2_im")
+    def risyuuM2_im():
+        import risyuuM2_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuM3_ex")
-def risyuuM3_ex():
-    import risyuuM3_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuM3_ex")
+    def risyuuM3_ex():
+        import risyuuM3_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuM3_im")
-def risyuuM3_im():
-    import risyuuM3_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuM3_im")
+    def risyuuM3_im():
+        import risyuuM3_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuM4_ex")
-def risyuuM4_ex():
-    import risyuuM4_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuM4_ex")
+    def risyuuM4_ex():
+        import risyuuM4_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuM4_im")
-def risyuuM4_im():
-    import risyuuM4_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuM4_im")
+    def risyuuM4_im():
+        import risyuuM4_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuTh2_ex")
-def risyuuTh2_ex():
-    import risyuuTh2_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuTh2_ex")
+    def risyuuTh2_ex():
+        import risyuuTh2_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuTh2_im")
-def risyuuTh2_im():
-    import risyuuTh2_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuTh2_im")
+    def risyuuTh2_im():
+        import risyuuTh2_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuTh34_ex")
-def risyuuTh34_ex():
-    import risyuuTh34_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuTh34_ex")
+    def risyuuTh34_ex():
+        import risyuuTh34_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuTh34_im")
-def risyuuTh34_im():
-    import risyuuTh34_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuTh34_im")
+    def risyuuTh34_im():
+        import risyuuTh34_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuTh5_1_ex")
-def risyuuTh5_1_ex():
-    import risyuuTh5_1_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuTh5_1_ex")
+    def risyuuTh5_1_ex():
+        import risyuuTh5_1_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuTh5_1_im")
-def risyuuTh5_1_im():
-    import risyuuTh5_1_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuTh5_1_im")
+    def risyuuTh5_1_im():
+        import risyuuTh5_1_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuTh5_2_ex")
-def risyuuTh5_2_ex():
-    import risyuuTh5_2_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuTh5_2_ex")
+    def risyuuTh5_2_ex():
+        import risyuuTh5_2_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuTh5_2_im")
-def risyuuTh5_2_im():
-    import risyuuTh5_2_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuTh5_2_im")
+    def risyuuTh5_2_im():
+        import risyuuTh5_2_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuTu2_ex")
-def risyuuTu2_ex():
-    import risyuuTu2_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuTu2_ex")
+    def risyuuTu2_ex():
+        import risyuuTu2_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuTu2_im")
-def risyuuTu2_im():
-    import risyuuTu2_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuTu2_im")
+    def risyuuTu2_im():
+        import risyuuTu2_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuTu3_1_ex")
-def risyuuTu3_1_ex():
-    import risyuuTu3_1_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuTu3_1_ex")
+    def risyuuTu3_1_ex():
+        import risyuuTu3_1_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuTu3_1_im")
-def risyuuTu3_1_im():
-    import risyuuTu3_1_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuTu3_1_im")
+    def risyuuTu3_1_im():
+        import risyuuTu3_1_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuTu3_2_ex")
-def risyuuTu3_2_ex():
-    import risyuuTu3_2_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuTu3_2_ex")
+    def risyuuTu3_2_ex():
+        import risyuuTu3_2_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuTu3_2_im")
-def risyuuTu3_2_im():
-    import risyuuTu3_2_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuTu3_2_im")
+    def risyuuTu3_2_im():
+        import risyuuTu3_2_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuTu4_ex")
-def risyuuTu4_ex():
-    import risyuuTu4_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuTu4_ex")
+    def risyuuTu4_ex():
+        import risyuuTu4_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuTu4_im")
-def risyuuTu4_im():
-    import risyuuTu4_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuTu4_im")
+    def risyuuTu4_im():
+        import risyuuTu4_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuTu5_ex")
-def risyuuTu5_ex():
-    import risyuuTu5_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuTu5_ex")
+    def risyuuTu5_ex():
+        import risyuuTu5_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuTu5_im")
-def risyuuTu5_im():
-    import risyuuTu5_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuTu5_im")
+    def risyuuTu5_im():
+        import risyuuTu5_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuW12_ex")
-def risyuuW12_ex():
-    import risyuuW12_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuW12_ex")
+    def risyuuW12_ex():
+        import risyuuW12_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuW12_im")
-def risyuuW12_im():
-    import risyuuW12_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuW12_im")
+    def risyuuW12_im():
+        import risyuuW12_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuW3_1_ex")
-def risyuuW3_1_ex():
-    import risyuuW3_1_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuW3_1_ex")
+    def risyuuW3_1_ex():
+        import risyuuW3_1_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuW3_1_im")
-def risyuuW3_1_im():
-    import risyuuW3_1_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuW3_1_im")
+    def risyuuW3_1_im():
+        import risyuuW3_1_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuW3_2_ex")
-def risyuuW3_2_ex():
-    import risyuuW3_2_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuW3_2_ex")
+    def risyuuW3_2_ex():
+        import risyuuW3_2_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuW3_2_im")
-def risyuuW3_2_im():
-    import risyuuW3_2_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuW3_2_im")
+    def risyuuW3_2_im():
+        import risyuuW3_2_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuW4_ex")
-def risyuuW4_ex():
-    import risyuuW4_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuW4_ex")
+    def risyuuW4_ex():
+        import risyuuW4_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuW4_im")
-def risyuuW4_im():
-    import risyuuW4_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuW4_im")
+    def risyuuW4_im():
+        import risyuuW4_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuW5_1_ex")
-def risyuuW5_1_ex():
-    import risyuuW5_1_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuW5_1_ex")
+    def risyuuW5_1_ex():
+        import risyuuW5_1_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuW5_1_im")
-def risyuuW5_1_im():
-    import risyuuW5_1_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuW5_1_im")
+    def risyuuW5_1_im():
+        import risyuuW5_1_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuW5_2_ex")
-def risyuuW5_2_ex():
-    import risyuuW5_2_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuW5_2_ex")
+    def risyuuW5_2_ex():
+        import risyuuW5_2_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/risyuuW5_2_im")
-def risyuuW5_2_im():
-    import risyuuW5_2_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/risyuuW5_2_im")
+    def risyuuW5_2_im():
+        import risyuuW5_2_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/tanntou_kyouinn_ex")
-def tanntou_kyouinn_ex():
-    import tanntou_kyouinn_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/tanntou_kyouinn_ex")
+    def tanntou_kyouinn_ex():
+        import tanntou_kyouinn_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/tanntou_kyouinn_im")
-def tanntou_kyouinn_im():
-    import tanntou_kyouinn_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/tanntou_kyouinn_im")
+    def tanntou_kyouinn_im():
+        import tanntou_kyouinn_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/attendlist_ex")
-def attendlist_ex():
-    import attendlist_ex
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/attendlist_ex")
+    def attendlist_ex():
+        import attendlist_ex
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-@route("/attendlist_im")
-def tattendlist_im():
-    import attendlist_im
-    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+    @route("/attendlist_im")
+    def tattendlist_im():
+        import attendlist_im
+        return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
-run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
