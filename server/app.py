@@ -53,7 +53,7 @@ def fsync():
             <p>Login failed.</p>
             <button type=“button” onclick="location.href='/login'">戻る</button>
             """
-def check_login_pass(password,count):
+    def check_login_pass(password,count):
 
     if password == pass_line[count]:
         return True
