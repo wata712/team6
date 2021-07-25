@@ -123,7 +123,8 @@ def index():
         <li><button type=“button” onclick="location.href='/risyuuW5_2_im'">履修者-W5_2ダウンロード</button></li>
         <li><button type=“button” onclick="location.href='/tanntou_kyouinn_ex'">教員・担当科目リスト送信</button></li>
         <li><button type=“button” onclick="location.href='/tanntou_kyouinn_im'">教員・担当科目リストダウンロード</button></li>
-        
+        <li><button type=“button” onclick="location.href='/attendlist_ex'">出席者リスト送信</button></li>
+        <li><button type=“button” onclick="location.href='/attendlist_im'">出席者リストダウンロード</button></li>
         </ul>
 
         <button type=“button” onclick="location.href='/login'">ログアウト</button>
@@ -398,5 +399,13 @@ def tanntou_kyouinn_ex():
 def tanntou_kyouinn_im():
     import tanntou_kyouinn_im
     return """<button type=“button” onclick="location.href='/'">戻る</button>"""
+
+@route("/attendlist_ex")
+def attendlist_ex():
+    import attendlist_ex
+
+@route("/attendlist_im")
+def tattendlist_im():
+    import attendlist_im
 
 run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))

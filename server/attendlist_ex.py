@@ -33,8 +33,8 @@ cnx = None
 
 try:
     cnx = mysql.connector.connect(
-        user='watanabe',  # ユーザー名
-        password='team6pass',  # パスワード
+        user='root',  # ユーザー名
+        password='',  # パスワード
         host='localhost',  # ホスト名(IPアドレス）
         database='team6'  # データベース名
     )
