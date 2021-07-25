@@ -10,7 +10,6 @@ def fsync():
 
   cursor.execute("DELETE FROM w12")
 
-  #ここでは教員・担当科目リスト.csvをMySQLにinsert
   #path変更忘れずに
   f = open(".\\MainProject\\data\\履修者-W12_.csv", "r", encoding="utf-8")
 
