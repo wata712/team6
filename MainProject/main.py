@@ -2,7 +2,6 @@
 ### author: tanahashi, kurita, ito ###
 
 import os
-from server.tanntou_kyouinn_im import fsync
 import eel
 import csv
 import datetime
