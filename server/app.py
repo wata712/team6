@@ -403,9 +403,11 @@ def tanntou_kyouinn_im():
 @route("/attendlist_ex")
 def attendlist_ex():
     import attendlist_ex
+    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
 @route("/attendlist_im")
 def tattendlist_im():
     import attendlist_im
+    return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
 run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
