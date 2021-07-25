@@ -17,10 +17,18 @@ from typing import Counter
 
 # P000の初期PWは000b
 
-print("404 Not Found エラーが出た場合、VSCodeでこのファイルを開いてから実行してみてください。")
+print("バックグラウンドで port=8000 が使用されていると正常に動作しません。")
 
-eel.init("./MainProject/view")
-eel.start("login.html", size=(800, 480), port=9999, block=False)
+cwd = os.getcwd()
+xcwd = cwd.replace('\\','/')
+
+vcwd = xcwd + "/view"
+dcwd = xcwd + "/data"
+IOcwd = xcwd + "/IOList"
+print(vcwd)
+
+eel.init(vcwd)
+eel.start("login.html", size=(800, 480), block=False)
 
 @eel.expose
 def registtData():
@@ -55,16 +63,19 @@ def registtDatatoPy():
 
 #教員ファイル読み込み/tID,tPW照合
 def tIDtPWverify(tID,tPW):
+    global dcwd
+    ktcwd = dcwd + "/教員・担当科目リスト.csv"
+    tPWcwd = dcwd + "/tPW.csv"
     tID, tPW = gettData()
     tnamecsv = {}
-    with open("./MainProject/data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
+    with open(ktcwd, "r", encoding="utf_8", errors="", newline="") as f:
         reader = csv.DictReader(f)
         for row in reader:
             tnamecsv[row["ID"]] = row["氏名"]
     print(tnamecsv[tID])
 
     tpwcsv = {}
-    with open("./MainProject/data/tPW.csv","r")as p:
+    with open(tPWcwd,"r")as p:
         reader = csv.DictReader(p)
         for prow in reader:
             tpwcsv[prow["tID"]] = prow["tPW"]
@@ -79,10 +90,12 @@ def tIDtPWverify(tID,tPW):
 #管理モードで教員氏名を表示
 @eel.expose
 def picktName():
+    global dcwd
+    ktcwd = dcwd + "/教員・担当科目リスト.csv"
     try:
         global tID
         tnamecsv = {}
-        with open("./MainProject/data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
+        with open(ktcwd, "r", encoding="utf_8", errors="", newline="") as f:
             reader = csv.DictReader(f)
             for row in reader:
                 tnamecsv[row["ID"]] = row["氏名"]
@@ -92,7 +105,7 @@ def picktName():
         eel.printtName(tName)
     except(FileNotFoundError):
         os.getcwd()
-        os.chdir("./team6/MainProject/") 
+        os.chdir(xcwd) 
         picktName()
 
 # reader = "x"
@@ -107,7 +120,9 @@ def pickcName():
     global tcName
     global tcDay
     global tcPeriod
-
+    global dcwd
+    ktcwd = dcwd + "/教員・担当科目リスト.csv"
+    crcwd = dcwd + "/講義科目ルール.csv"
     # tccsv = [[0] * 5 for i in range(4)]
     # print(tccsv)
     # tcName = [[0] * 5 for i in range(4)]
@@ -127,7 +142,7 @@ def pickcName():
     tc1csv = {}
     tc2csv = {}
     tcName = ["name", "name"]
-    with open("./MainProject/data/教員・担当科目リスト.csv", "r", encoding="utf_8", errors="", newline="") as f:
+    with open(ktcwd, "r", encoding="utf_8", errors="", newline="") as f:
         reader = csv.DictReader(f)
         for row in reader:
             tc1csv[row["ID"]] = row["担当科目1"]
@@ -150,7 +165,7 @@ def pickcName():
 
     tc1xID = {}
     tc2xID = {}
-    with open("./MainProject/data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
+    with open(crcwd, "r", encoding="utf_8", errors="", newline="") as p:
         reader = csv.DictReader(p)
         for row in reader:
             tc1xID[row["科目名"]] = row["講義ID"]
@@ -228,6 +243,8 @@ def clidSet(clid):
     global tcName
     global tcDay
     global tcPeriod
+    global dcwd
+    crcwd = dcwd + "/講義科目ルール.csv"
 
     print(clid)
     print(tcName)
@@ -265,7 +282,7 @@ def clidSet(clid):
     tcxLT1 = {}
     tcxLT2 = {}
 
-    with open("./MainProject/data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
+    with open(crcwd, "r", encoding="utf_8", errors="", newline="") as p:
         reader = csv.DictReader(p)
         for row in reader:
             tcxID[row["科目名"]] = row["講義ID"]
@@ -332,6 +349,9 @@ print(datew)
 # 仮の出席者
 # main author: ito
 def stdSim(cID):
+    global dcwd
+    rcwd = dcwd + "/履修者-"
+
     number=range(1,101)
     rnumber=random.sample(number,len(number)) #学籍番号を(ランダムに)生成
     temlist=[]
@@ -342,7 +362,7 @@ def stdSim(cID):
     #講義IDに一致した履修者csvを開く
     stdIDmx = {} #辞書型
     stdIDm = [] #配列
-    stdcsvName = "./MainProject/data/履修者-" + cID + ".csv"
+    stdcsvName = rcwd + cID + ".csv"
     with open(stdcsvName, "r", encoding="utf_8", errors="", newline="") as p:
         reader = csv.DictReader(p)
         for row in reader:
@@ -365,15 +385,17 @@ IOcsvName = "xx"
 def openIOcsv(cID, cName):
     global datew
     global IOcsvName
-
+    global dcwd
+    global IOcwd
+    crcwd = dcwd + "/講義科目ルール.csv"
+    rcwd = dcwd + "/履修者-"
     
-
     tcxCT1 = {}
     tcxCT2 = {}
     tcxLT1 = {}
     tcxLT2 = {}
 
-    with open("./MainProject/data/講義科目ルール.csv", "r", encoding="utf_8", errors="", newline="") as p:
+    with open(crcwd, "r", encoding="utf_8", errors="", newline="") as p:
         reader = csv.DictReader(p)
         for row in reader:
             tcxCT1[row["科目名"]] = row["開始時間"]
@@ -419,9 +441,9 @@ def openIOcsv(cID, cName):
     stdID = []
     stdName = []
     print("Preparations are underway: " + cName)
-    dirName = "./MainProject/Mainproject/IOList/" + cName
-    IOcsvName = "./Mainproject/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
-    stdcsvName = "./data/履修者-" + cID + ".csv"
+    dirName = IOcwd + "/" + cName
+    IOcsvName = IOcwd + "/" + cName + "/" + cName + datew + "出欠リスト.csv"
+    stdcsvName = rcwd + cID + ".csv"
     if(os.path.exists(dirName) == False):
         os.mkdir(dirName)
     #履修者のリストを取得
@@ -559,6 +581,10 @@ def openIOcsv(cID, cName):
 @eel.expose
 def generateIOcsvName(clid):
     global tcName
+    global dcwd
+    global IOcwd
+    ktcwd = dcwd + "/教員・担当科目リスト.csv"
+    crcwd = dcwd + "/講義科目ルール.csv"
     try:
         if clid == "101":
             cName = tcName[0]
@@ -573,13 +599,16 @@ def generateIOcsvName(clid):
     except(IndexError):
         pass
 
-    IOcsvName = "./MainProject/Mainproject/IOList/" + cName + "/" + cName + datew + "出欠リスト.csv"
+    IOcsvName = IOcwd + cName + "/" + cName + datew + "出欠リスト.csv"
     print(IOcsvName)
     eel.getcName(cName)
     eel.getIOcsvName(IOcsvName)
 
 @eel.expose
 def updateIOcsv(cDataPockets):
+    global dcwd
+    crcwd = dcwd + "/講義科目ルール.csv"
+
     newcData = cDataPockets
     print(newcData[0])
     print(newcData[1])
@@ -593,7 +622,7 @@ def updateIOcsv(cDataPockets):
     newLT1 = newcData[3]
     newLT2 = newcData[4]
 
-    f = open("./MainProject/data/講義科目ルール.csv", "r", encoding="utf-8")
+    f = open(crcwd, "r", encoding="utf-8")
     csv_data = csv.reader(f)
     list = [ e for e in csv_data]
     f.close()
@@ -709,7 +738,7 @@ def updateIOcsv(cDataPockets):
             list[i] = data
 
     # csv更新
-    with open("./MainProject/data/講義科目ルール.csv", "w", encoding="utf_8", newline="") as f:
+    with open(crcwd, "w", encoding="utf_8", newline="") as f:
         writer = csv.writer(f)
         writer.writerows(list)
 
@@ -718,7 +747,8 @@ def updateIOcsv(cDataPockets):
 #出欠リスト表示用
 @eel.expose
 def chooseIOList(cName, iNo):
-    path = "./Mainproject/IOList/" + cName + "/"
+    global IOcwd
+    path = IOcwd + "/" + cName + "/"
     try:
         IOcsvNames = os.listdir(path)
     except(FileNotFoundError):
@@ -790,10 +820,11 @@ def chooseIOList(cName, iNo):
 
 @eel.expose
 def createOneClassGraph(cName, iNo):
+    global IOcwd
     # 講義回グラフ作成
     # main author: kurita
 
-    path = "./Mainproject/IOList/" + cName + "/"
+    path = IOcwd + "/" + cName + "/"
     IOcsvNames = os.listdir(path)
     print(path)
     print(IOcsvNames)
@@ -903,10 +934,11 @@ def createOneClassGraph(cName, iNo):
 
 @eel.expose
 def createCumulativeClassGraph(cName):
+    global IOcwd
     # 累積講義グラフ作成
     # main author: kurita
 
-    path = "./Mainproject/IOList/" + cName + "/"
+    path = IOcwd + "/" + cName + "/"
     csv_list3 = os.listdir(path)
     os.chdir(path)
 
