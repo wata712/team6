@@ -7,7 +7,7 @@ def fsync():
     db=pymysql.connect(host="localhost", user="root", password="" , cursorclass=pymysql.cursors.DictCursor)
     cursor=db.cursor()
     cursor.execute("USE team6")
-    sql=('SELECT * FROM w4')
+    sql=('SELECT * FROM kougi_rule')
     cursor.execute(sql)
     rows=cursor.fetchall()
     cursor.close()
@@ -19,7 +19,7 @@ def fsync():
         for i in cursor.description:
             columnNames.append(i[0])
         #path変更忘れずに
-        with open('.\\MainProject\\data\\履修者-W4_.csv','w',newline='', encoding='utf-8') as csvfile:
+        with open('C:\\Users\\tkr\\Desktop\\team6\\data\\講義科目ルール.csv','w',newline='', encoding='utf-8') as csvfile:
             # 辞書順序を指定しておく
             csvwriter = csv.DictWriter(csvfile,columnNames,delimiter=",",quotechar='"')
             # ヘッダ行を書き込み

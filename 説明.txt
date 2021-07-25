@@ -8,3 +8,4 @@ pipのインストール：
 コマンドラインで"pip install bottle"と入力してください。
 コマンドラインで"pip install mysqlclient"と入力してください。
 コマンドラインで"pip install PyMySQL"と入力してください。
+コマンドラインで"pip install mysql-connector-python"と入力してください。
