@@ -3,11 +3,11 @@ from warnings import resetwarnings
 from bottle import route, run, request, template
 import os
 import csv
-
+import webbrowser
 
 def fsync():
-    #http://localhost:5000/login
-    #上のリンクに飛ぶ
+
+    webbrowser.open('http://localhost:5000/login')
 
     #ユーザ情報の読み込み
     user_file = open('server\\security\\user.csv','r')
