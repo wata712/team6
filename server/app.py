@@ -64,72 +64,72 @@ def fsync():
     @route("/")
     def index():
         return """
-            <h1><a href="/">管理モード</a></h1>
+        <h1><a href="/">管理モード</a></h1>
 
-            <p>開きたいファイルを選択してください</p>
+        <p>開きたいファイルを選択してください</p>
 
-            <!-- ファイル選択画面 -->
-            <ul id="menu">
-            <li><button type=“button” onclick="location.href='/gakusei_ex'">学生リスト送信</button></li>
-            <li><button type=“button” onclick="location.href='/gakusei_im'">学生リストダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/kougi_rule_ex'">講義科目ルール送信</button></li>
-            <li><button type=“button” onclick="location.href='/kougi_rule_im'">講義科目ルールダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuF1_ex'">履修者-F1送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuF1_im'">履修者-F1ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuF2_ex'">履修者-F2送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuF2_im'">履修者-F2ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuF3_ex'">履修者-F3送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuF3_im'">履修者-F3ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuF4_1_ex'">履修者-F4_1送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuF4_1_im'">履修者-F4_1ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuF4_2_ex'">履修者-F4_2送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuF4_2_im'">履修者-F4_2ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuM1_ex'">履修者-M1送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuM1_im'">履修者-M1ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuM2_ex'">履修者-M2送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuM2_im'">履修者-M2ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuM3_ex'">履修者-M3送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuM3_im'">履修者-M3ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuM4_ex'">履修者-M4送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuM4_im'">履修者-M4ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuTh2_ex'">履修者-Th2送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuTh2_im'">履修者-Th2ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuTh34_ex'">履修者-Th34送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuTh34_im'">履修者-Th34ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuTh5_1_ex'">履修者-Th5_1送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuTh5_1_im'">履修者-Th5_1ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuTh5_2_ex'">履修者-Th5_2送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuTh5_2_im'">履修者-Th5_2ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuTu2_ex'">履修者-Tu2送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuTu2_im'">履修者-Tu2ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuTu3_1_ex'">履修者-Tu3_1送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuTu3_1_im'">履修者-Tu3_1ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuTu3_2_ex'">履修者-Tu3_2送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuTu3_2_im'">履修者-Tu3_2ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuTu4_ex'">履修者-Tu4送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuTu4_im'">履修者-Tu4ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuTu5_ex'">履修者-Tu5送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuTu5_im'">履修者-Tu5ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuW12_ex'">履修者-W12送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuW12_im'">履修者-W12ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuW3_1_ex'">履修者-W3_1送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuW3_1_im'">履修者-W3_1ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuW3_2_ex'">履修者-W3_2送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuW3_2_im'">履修者-W3_2ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuW4_ex'">履修者-W4送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuW4_im'">履修者-W4ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuW5_1_ex'">履修者-W5_1送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuW5_1_im'">履修者-W5_1ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuW5_2_ex'">履修者-W5_2送信</button></li>
-            <li><button type=“button” onclick="location.href='/risyuuW5_2_im'">履修者-W5_2ダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/tanntou_kyouinn_ex'">教員・担当科目リスト送信</button></li>
-            <li><button type=“button” onclick="location.href='/tanntou_kyouinn_im'">教員・担当科目リストダウンロード</button></li>
-            <li><button type=“button” onclick="location.href='/attendlist_ex'">出席者リスト送信</button></li>
-            <li><button type=“button” onclick="location.href='/attendlist_im'">出席者リストダウンロード</button></li>
-            </ul>
+        <!-- ファイル選択画面 -->
+        <ul id="menu">
+        <li><button type=“button” onclick="location.href='/gakusei_ex'">学生リスト送信</button></li>
+        <li><button type=“button” onclick="location.href='/gakusei_im'">学生リストダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/kougi_rule_ex'">講義科目ルール送信</button></li>
+        <li><button type=“button” onclick="location.href='/kougi_rule_im'">講義科目ルールダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuF1_ex'">履修者-F1送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuF1_im'">履修者-F1ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuF2_ex'">履修者-F2送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuF2_im'">履修者-F2ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuF3_ex'">履修者-F3送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuF3_im'">履修者-F3ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuF4_1_ex'">履修者-F4_1送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuF4_1_im'">履修者-F4_1ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuF4_2_ex'">履修者-F4_2送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuF4_2_im'">履修者-F4_2ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuM1_ex'">履修者-M1送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuM1_im'">履修者-M1ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuM2_ex'">履修者-M2送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuM2_im'">履修者-M2ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuM3_ex'">履修者-M3送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuM3_im'">履修者-M3ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuM4_ex'">履修者-M4送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuM4_im'">履修者-M4ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuTh2_ex'">履修者-Th2送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuTh2_im'">履修者-Th2ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuTh34_ex'">履修者-Th34送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuTh34_im'">履修者-Th34ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuTh5_1_ex'">履修者-Th5_1送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuTh5_1_im'">履修者-Th5_1ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuTh5_2_ex'">履修者-Th5_2送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuTh5_2_im'">履修者-Th5_2ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuTu2_ex'">履修者-Tu2送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuTu2_im'">履修者-Tu2ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuTu3_1_ex'">履修者-Tu3_1送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuTu3_1_im'">履修者-Tu3_1ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuTu3_2_ex'">履修者-Tu3_2送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuTu3_2_im'">履修者-Tu3_2ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuTu4_ex'">履修者-Tu4送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuTu4_im'">履修者-Tu4ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuTu5_ex'">履修者-Tu5送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuTu5_im'">履修者-Tu5ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuW12_ex'">履修者-W12送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuW12_im'">履修者-W12ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuW3_1_ex'">履修者-W3_1送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuW3_1_im'">履修者-W3_1ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuW3_2_ex'">履修者-W3_2送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuW3_2_im'">履修者-W3_2ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuW4_ex'">履修者-W4送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuW4_im'">履修者-W4ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuW5_1_ex'">履修者-W5_1送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuW5_1_im'">履修者-W5_1ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuW5_2_ex'">履修者-W5_2送信</button></li>
+        <li><button type=“button” onclick="location.href='/risyuuW5_2_im'">履修者-W5_2ダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/tanntou_kyouinn_ex'">教員・担当科目リスト送信</button></li>
+        <li><button type=“button” onclick="location.href='/tanntou_kyouinn_im'">教員・担当科目リストダウンロード</button></li>
+        <li><button type=“button” onclick="location.href='/attendlist_ex'">出席者リスト送信</button></li>
+        <li><button type=“button” onclick="location.href='/attendlist_im'">出席者リストダウンロード</button></li>
+        </ul>
 
-            <button type=“button” onclick="location.href='/login'">ログアウト</button>
-            """
+        <button type=“button” onclick="location.href='/login'">ログアウト</button>
+        """
 
     @route("/gakusei_ex")
     def gakusei_ex():
