@@ -2,7 +2,7 @@
 import pymysql.cursors
 import csv
 
-db=pymysql.connect(host="localhost", user="watanabe", password="team6pass" , cursorclass=pymysql.cursors.DictCursor)
+db=pymysql.connect(host="localhost", user="root", password="" , cursorclass=pymysql.cursors.DictCursor)
 cursor=db.cursor()
 cursor.execute("USE team6")
 sql=('SELECT * FROM kougi_rule')
