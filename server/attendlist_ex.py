@@ -92,4 +92,3 @@ def fsync():
 
 	cursor.close()
 	connection.close()
-
