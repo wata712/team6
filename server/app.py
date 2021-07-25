@@ -53,6 +53,7 @@ def fsync():
             <p>Login failed.</p>
             <button type=“button” onclick="location.href='/login'">戻る</button>
             """
+<<<<<<< HEAD
     def check_login_pass(password,count):
 
     if password == pass_line[count]:
@@ -130,6 +131,8 @@ def index():
 
         <button type=“button” onclick="location.href='/login'">ログアウト</button>
         """
+=======
+>>>>>>> 94d99302c4162580440f02be44677fb27a1c6e81
 
 @route("/gakusei_ex")
 def gakusei_ex():
