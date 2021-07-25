@@ -19,7 +19,7 @@ from typing import Counter
 
 print("404 Not Found エラーが出た場合、VSCodeでこのファイルを開いてから実行してみてください。")
 
-eel.init("MainProject/view")
+eel.init("./MainProject/view")
 eel.start("login.html", size=(800, 480), block=False)
 
 @eel.expose
@@ -910,11 +910,14 @@ def createCumulativeClassGraph(cName):
     csv_list3 = os.listdir(path)
     os.chdir(path)
 
-    #各生徒ごとに'出席'の数をカウント
-    stnumb_list=[]
-    atd_count_list=[]
+    
+    #csv_list3=glob.glob("/*.csv")
+    #csv_list3
+    #print(IOcsvNames)
+    print(csv_list3)
+    count1 = {}
     # csv_list3=glob.glob(IOcsvNames)
-    count = {}
+    
     for n in range(len(csv_list3)):
         print(csv_list3[n])
         
@@ -925,16 +928,18 @@ def createCumulativeClassGraph(cName):
             for row in atl_reader3:
                 data=row[0]
                 data2=row[4]
-                count.setdefault(data,0)
+                count1.setdefault(data,0)
                 if '出席' in data2:
-                    count[data] +=1
+                    count1[data] +=1
         
         #alatd_list=[]
         
-        
+        #各生徒ごとに'出席'の数をカウント
+        stnumb_list=[]
+        atd_count_list=[]
         
 
-        for key, value in count.items():
+        for key, value in count1.items():
             att_counter='{}: {:d}'.format(key,value)
             #学番と出席数リスト
             #alatd_list.append(att_counter)
@@ -946,8 +951,6 @@ def createCumulativeClassGraph(cName):
         #print(atd_count_list)
 
     count2 = {}
-    stnumb_list2=[]
-    atd_count_list2=[]
     for m in range(len(csv_list3)):
         
         with open(csv_list3[m],encoding='UTF8') as f4:
@@ -963,7 +966,8 @@ def createCumulativeClassGraph(cName):
         
         #alatd_list=[]
         
-        
+        stnumb_list2=[]
+        atd_count_list2=[]
 
         for key2, value2 in count2.items():
             att_counter2='{}: {:d}'.format(key2,value2)
@@ -975,9 +979,8 @@ def createCumulativeClassGraph(cName):
             atd_count_list2.append(int(value2))
         #print(stnumb_list)
         #print(atd_count_list)
+    
     count3 = {}
-    stnumb_list3=[]
-    atd_count_list3=[]
     for l in range(len(csv_list3)):
         
         with open(csv_list3[l],encoding='UTF8') as f5:
@@ -992,7 +995,8 @@ def createCumulativeClassGraph(cName):
                     count3[data5] +=1
         
         #alatd_list=[]
-        
+        stnumb_list3=[]
+        atd_count_list3=[]
         
 
         for key3, value3 in count3.items():
@@ -1034,7 +1038,122 @@ def createCumulativeClassGraph(cName):
     plt.show()
 
     print(os.getcwd())
-    os.chdir("./team6/MainProject/") 
+    os.chdir("./MainProject/")
+
+# from server import attendlist_send
+from server import gakusei_ex
+from server import gakusei_im
+# from server import exporter
+# from server import get
+# from server import importer
+# from server import kougi_rule_ex
+# from server import kougi_rule_im
+from server import risyuuF1_ex
+from server import risyuuF1_im
+from server import risyuuF2_ex
+from server import risyuuF2_im
+from server import risyuuF3_ex
+from server import risyuuF3_im
+from server import risyuuF4_1_ex
+from server import risyuuF4_1_im
+from server import risyuuF4_2_ex
+from server import risyuuM1_ex
+from server import risyuuM1_im
+from server import risyuuM2_ex
+from server import risyuuM2_im
+from server import risyuuM3_ex
+from server import risyuuM3_im
+from server import risyuuM4_ex
+from server import risyuuM4_im
+from server import risyuuTh2_ex
+from server import risyuuTh2_im
+from server import risyuuTh5_1_ex
+from server import risyuuTh5_1_im
+from server import risyuuTh5_2_ex
+from server import risyuuTh5_2_im
+from server import risyuuTh34_ex
+from server import risyuuTh34_im
+from server import risyuuTu3_1_ex
+from server import risyuuTu3_1_im
+from server import risyuuTu3_2_ex
+from server import risyuuTu3_2_im
+from server import risyuuTu4_ex
+from server import risyuuTu4_im
+from server import risyuuTu5_ex
+from server import risyuuTu5_im
+from server import risyuuW3_1_ex
+from server import risyuuW3_1_im
+from server import risyuuW3_2_ex
+from server import risyuuW3_2_im
+from server import risyuuW4_ex
+from server import risyuuW4_im
+from server import risyuuW5_1_ex
+from server import risyuuW5_1_im
+from server import risyuuW5_2_ex
+from server import risyuuW5_2_im
+from server import risyuuW12_ex
+from server import risyuuW12_im
+from server import tanntou_kyouinn_ex
+from server import tanntou_kyouinn_im
+
+@eel.expose
+def syncData():
+    # attendlist_send.fsync()
+    gakusei_ex.fsync()
+    gakusei_im.fsync()
+    # exporter.fsync()
+    # get.fsync()
+    # importer.fsync()
+    # kougi_rule_ex.fsync()
+    # kougi_rule_im.fsync()
+    risyuuF1_ex.fsync()
+    risyuuF1_im.fsync()
+    risyuuF2_ex.fsync()
+    risyuuF2_im.fsync()
+    risyuuF3_ex.fsync()
+    risyuuF3_im.fsync()
+    risyuuF4_1_ex.fsync()
+    risyuuF4_1_im.fsync()
+    risyuuF4_2_ex.fsync()
+    risyuuM1_ex.fsync()
+    risyuuM1_im.fsync()
+    risyuuM2_ex.fsync()
+    risyuuM2_im.fsync()
+    risyuuM3_ex.fsync()
+    risyuuM3_im.fsync()
+    risyuuM4_ex.fsync()
+    risyuuM4_im.fsync()
+    risyuuTh2_ex.fsync()
+    risyuuTh2_im.fsync()
+    risyuuTh5_1_ex.fsync()
+    risyuuTh5_1_im.fsync()
+    risyuuTh5_2_ex.fsync()
+    risyuuTh5_2_im.fsync()
+    risyuuTh34_ex.fsync()
+    risyuuTh34_im.fsync()
+    risyuuTu3_1_ex.fsync()
+    risyuuTu3_1_im.fsync()
+    risyuuTu3_2_ex.fsync()
+    risyuuTu3_2_im.fsync()
+    risyuuTu4_ex.fsync()
+    risyuuTu4_im.fsync()
+    risyuuTu5_ex.fsync()
+    risyuuTu5_im.fsync()
+    risyuuW3_1_ex.fsync()
+    risyuuW3_1_im.fsync()
+    risyuuW3_2_ex.fsync()
+    risyuuW3_2_im.fsync()
+    risyuuW4_ex.fsync()
+    risyuuW4_im.fsync()
+    risyuuW5_1_ex.fsync()
+    risyuuW5_1_im.fsync()
+    risyuuW5_2_ex.fsync()
+    risyuuW5_2_im.fsync()
+    risyuuW12_ex.fsync()
+    risyuuW12_im.fsync()
+    tanntou_kyouinn_ex.fsync()
+    tanntou_kyouinn_im.fsync()
+
 
 #これがないと動かないんでよ
 while True:

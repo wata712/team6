@@ -50,6 +50,10 @@
                 location.href="settime.html"
             }
 
+            function toSync(){
+                eel.syncData();
+            }
+
         </script>
     </head>
     <body onload="calltName()">
@@ -59,6 +63,9 @@
         <div class="infoarea">
             <div class="namearea">
             <p id="tNameArea">読込中...</p>
+            </div>
+            <div class="btnareaSync">
+                <button id="tologinbtn2" onclick="toSync()">データ同期</button>
             </div>
             <div class="btnarea0">
                 <button id="tologinbtn" onclick="settime()" > 時刻設定 </button>

@@ -13,6 +13,12 @@ h1{
 .namearea{
     width: 80%;
 }
+.btnareaSync{
+    width: 20%;
+    position: absolute;
+    top: 6%;
+    left: 57%;
+}
 .btnarea0{
     width: 20%;
     position: absolute;
