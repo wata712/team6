@@ -2,15 +2,15 @@
 
 echo =========================================
 echo.
-echo        ƒVƒXƒeƒ€‚ğ‹N“®‚µ‚Ü‚·
+echo        ã‚·ã‚¹ãƒ†ãƒ ã‚’èµ·å‹•ã—ã¾ã™
 echo                          Auther team6
 echo =========================================
 
-rem server‹N“®
+rem serverèµ·å‹•
 
 cd ..\MainProject
 start powershell -command "python main.py"
 
 echo.
-echo ƒVƒXƒeƒ€‚ğI—¹‚·‚éÛ‚É‚Í Control+C ‚ÅI—¹‚µ‚Ä‚­‚¾‚³‚¢B
+echo ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û‚É‚ï¿½ Control+C ï¿½ÅIï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 pause
