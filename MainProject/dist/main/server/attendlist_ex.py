@@ -5,9 +5,12 @@ import mysql.connector
 import csv
 import tkinter as tk
 import MySQLdb
+import os
 
 
 def fsync():
+	cwd = os.getcwd()
+	IOcwd = cwd + "\\IOList"
 	root = tk.Tk()
 	root.geometry("300x100")
 
@@ -75,7 +78,7 @@ def fsync():
 	#path変更忘れずに
 	Name = ""
 	Name2 = ""
-	files = glob.glob(".\\MainProject\\IOList\\**\\"+ word+ ".csv")
+	files = glob.glob(IOcwd+"**\\"+ word+ ".csv")
 	for file in files:
 		Name = file
 		Name2 = Name.replace("\\","\\\\")
