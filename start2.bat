@@ -1,3 +1,2 @@
-cd /d %~dp0
-.\MainProject\main.py
+C:\Users\tkr\Desktop\team6\MainProject\hello.py
 pause
