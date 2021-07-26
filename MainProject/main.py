@@ -16,6 +16,7 @@ from typing import Counter
 # import exporter
 
 # P000の初期PWは000b
+japanize_matplotlib
 
 print("バックグラウンドで port=8000 が使用されていると正常に動作しません。")
 
