@@ -43,7 +43,7 @@ def fsync():
 
   Name = ""
   Name2 = ""
-  files = glob.glob(".\\MainProject\\IOList\\**\\"+ word + ".csv")
+  files = glob.glob(".\\dist\main\\IOList\\**\\"+ word + ".csv")
   for file in files:
     Name = file
     Name2 = Name.replace("\\","\\\\")
