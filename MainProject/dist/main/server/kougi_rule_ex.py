@@ -9,7 +9,7 @@ cursor=connection.cursor()
 cursor.execute("DELETE FROM kougi_rule")
 
 #path変更忘れずに
-f = open(".\\MainProject\\data\\講義科目ルール.csv", "r", encoding="utf-8")
+f = open(".\\dist\main\\data\\講義科目ルール.csv", "r", encoding="utf-8")
 
 reader = csv.reader(f)
 header = next(reader)
