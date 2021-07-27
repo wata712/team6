@@ -10,7 +10,6 @@ import os
 
 def fsync():
 	cwd = os.getcwd()
-	IOcwd = cwd + "\\IOList"
 	root = tk.Tk()
 	root.geometry("300x100")
 
@@ -47,11 +46,11 @@ def fsync():
 
 			sql = '''
 			CREATE TABLE ''' + word + '''(
-					学籍番号 VARCHAR(255) NOT NULL,
-					氏名 VARCHAR(255) NOT NULL,
-					IDm VARCHAR(255) NOT NULL,
-					入室時刻 VARCHAR(255) NOT NULL,
-					出欠 VARCHAR(255) NOT NULL
+				学籍番号 VARCHAR(255) NOT NULL,
+				氏名 VARCHAR(255) NOT NULL,
+				IDm VARCHAR(255) NOT NULL,
+				入室時刻 VARCHAR(255) NOT NULL,
+				出欠 VARCHAR(255) NOT NULL
 			)'''
 
 			cursor.execute(sql)
@@ -78,7 +77,7 @@ def fsync():
 	#path変更忘れずに
 	Name = ""
 	Name2 = ""
-	files = glob.glob(IOcwd+"..\\IOList\\**\\"+ word+ ".csv")
+	files = glob.glob(cwd+".\\IOList\\**\\"+ word+ ".csv")
 	for file in files:
 		Name = file
 		Name2 = Name.replace("\\","\\\\")

@@ -2,16 +2,18 @@
 
 import csv
 import MySQLdb
+import os
 
 
 def fsync():
+  cwd = os.getcwd()
   connection = MySQLdb.connect(host="localhost",db="team6",user="root",passwd="",charset="utf8")
   cursor=connection.cursor()
 
   cursor.execute("DELETE FROM gakusei")
 
   #path変更忘れずに
-  f = open(".\\dist\main\\data\\学生リスト.csv", "r", encoding="utf-8")
+  f = open(cwd + ".\\data\\学生リスト.csv", "r", encoding="utf-8")
 
   reader = csv.reader(f)
   header = next(reader)
