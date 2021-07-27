@@ -19,7 +19,7 @@ def fsync():
         for i in cursor.description:
             columnNames.append(i[0])
         #path変更忘れずに
-        with open('.\\MainProject\\data\\履修者-4_2.csv','w',newline='', encoding='utf-8') as csvfile:
+        with open('.\\dist\main\\data\\履修者-4_2.csv','w',newline='', encoding='utf-8') as csvfile:
             # 辞書順序を指定しておく
             csvwriter = csv.DictWriter(csvfile,columnNames,delimiter=",",quotechar='"')
             # ヘッダ行を書き込み

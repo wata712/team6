@@ -11,7 +11,7 @@ def fsync():
   cursor.execute("DELETE FROM f4_1")
 
   #path変更忘れずに
-  f = open(".\\MainProject\\data\\履修者-F4_1.csv", "r", encoding="utf-8")
+  f = open(".\\dist\main\\data\\履修者-F4_1.csv", "r", encoding="utf-8")
 
   reader = csv.reader(f)
   header = next(reader)

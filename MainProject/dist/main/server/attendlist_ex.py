@@ -78,7 +78,7 @@ def fsync():
 	#path変更忘れずに
 	Name = ""
 	Name2 = ""
-	files = glob.glob(".\\dist\main\\IOList\\**\\"+ word + ".csv")
+	files = glob.glob(IOcwd+"**\\"+ word+ ".csv")
 	for file in files:
 		Name = file
 		Name2 = Name.replace("\\","\\\\")
