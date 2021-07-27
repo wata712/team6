@@ -13,6 +13,7 @@ def fsync():
     cursor.close()
     db.close()
 
+    
     if rows:
         columnNames = list()
         # ヘッダデータを作る
