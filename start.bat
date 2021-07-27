@@ -9,6 +9,6 @@ echo =========================================
 
 cd /d %~dp0
 cd .\MainProject
-start powershell -command "python main.py"
+start .\dist\main\main.exe
 
 pause
