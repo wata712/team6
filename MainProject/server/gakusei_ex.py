@@ -11,7 +11,7 @@ def fsync():
   cursor.execute("DELETE FROM gakusei")
 
   #path変更忘れずに
-  f = open(".\\MainProject\\data\\学生リスト.csv", "r", encoding="utf-8")
+  f = open("..\\data\\学生リスト.csv", "r", encoding="utf-8")
 
   reader = csv.reader(f)
   header = next(reader)
@@ -24,3 +24,5 @@ def fsync():
 
   cursor.close()
   connection.close()
+
+fsync()
