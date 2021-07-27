@@ -478,3 +478,5 @@ def fsync():
         return """<button type=“button” onclick="location.href='/'">戻る</button>"""
 
     run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+
+fsync()
